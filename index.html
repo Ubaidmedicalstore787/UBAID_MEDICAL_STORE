@@ -761,8 +761,108 @@ onAuthStateChanged(auth, (user) => {
   }
 
 });
+</script><!-- LOGIN / SIGNUP POPUP -->
 
-</script>
+<div id="authBox" style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.65);
+z-index:9999;
+align-items:center;
+justify-content:center;
+padding:20px;
+">
+
+<div style="
+background:white;
+width:100%;
+max-width:380px;
+padding:30px;
+border-radius:20px;
+position:relative;
+">
+
+<button id="closeAuth" style="
+position:absolute;
+right:15px;
+top:10px;
+border:0;
+background:#eee;
+border-radius:50%;
+width:32px;
+height:32px;
+font-size:20px;
+cursor:pointer;
+">×</button>
+
+<h2 id="authTitle" style="
+text-align:center;
+color:#2563eb;
+margin-bottom:20px;
+">
+🔐 Login
+</h2>
+
+<input
+id="authEmail"
+type="email"
+placeholder="Email"
+style="
+width:100%;
+padding:13px;
+margin-bottom:10px;
+border:1px solid #ddd;
+border-radius:10px;
+">
+
+<input
+id="authPassword"
+type="password"
+placeholder="Password"
+style="
+width:100%;
+padding:13px;
+margin-bottom:10px;
+border:1px solid #ddd;
+border-radius:10px;
+">
+
+<button id="doLogin" style="
+width:100%;
+padding:13px;
+border:0;
+border-radius:10px;
+background:#2563eb;
+color:white;
+font-weight:bold;
+cursor:pointer;
+">
+Login
+</button>
+
+<button id="doSignup" style="
+width:100%;
+padding:13px;
+border:0;
+border-radius:10px;
+background:#00a896;
+color:white;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+">
+Create Account
+</button>
+
+<p id="authMessage" style="
+text-align:center;
+margin-top:15px;
+font-size:14px;
+"></p>
+
+</div>
+</div>
 
 </body>
 </html>
