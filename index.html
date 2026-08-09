@@ -3,56 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>404 - Page Not Found</title>
+<title>Eye Animation</title>
 
 <style>
 body{
-margin:0;
-background:#111;
-color:#fff;
-font-family:Arial,sans-serif;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-text-align:center;
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#efe9dd;
 }
 
-h1{
-font-size:90px;
-margin:0;
-color:#ff4444;
-}
-
-p{
-font-size:22px;
-margin:15px 0;
-}
-
-small{
-color:#aaa;
-}
-
-a{
-display:inline-block;
-margin-top:20px;
-padding:12px 25px;
-background:#00b894;
-color:white;
-text-decoration:none;
-border-radius:8px;
+canvas{
+    background:#efe9dd;
 }
 </style>
-
 </head>
+
 <body>
 
-<div>
-<h1>404</h1>
-<p>This page could not be found.</p>
-<small>Custom 404 Page</small><br>
-<a href="/">Go to Home</a>
-</div>
+<canvas id="canvas"></canvas>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let mouse = {
+    x: canvas.width/2,
+    y: canvas.height/2
+};
+
+window.addEventListener("mousemove",(e)=>{
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+});
+
+function drawEye(){
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    let cx = canvas.width/2;
+    let cy = canvas.height/2;
+
+    // Eye
+    ctx.beginPath();
+    ctx.ellipse(cx,cy,180,80,0,0,Math.PI*2);
+    ctx.lineWidth=4;
+    ctx.stroke();
+
+    // Iris follows mouse
+    let dx = mouse.x-cx;
+    let dy = mouse.y-cy;
+
+    let angle = Math.atan2(dy,dx);
+
+    let px = cx + Math.cos(angle)*40;
+    let py = cy + Math.sin(angle)*20;
+
+    ctx.beginPath();
+    ctx.arc(px,py,25,0,Math.PI*2);
+    ctx.fill();
+
+    requestAnimationFrame(drawEye);
+}
+
+drawEye();
+</script>
 
 </body>
 </html>
