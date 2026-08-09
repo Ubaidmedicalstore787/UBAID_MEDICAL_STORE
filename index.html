@@ -704,6 +704,64 @@ document
 
 }
 
+</script><script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+  getAuth,
+  onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+import {
+  getFirestore
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyArvQz_z2U9Cz@YvP53vtBnGd-usI79R2s",
+
+  authDomain: "ubaid-medical-store.firebaseapp.com",
+
+  projectId: "ubaid-medical-store",
+
+  storageBucket: "ubaid-medical-store.firebasestorage.app",
+
+  messagingSenderId: "530772079400",
+
+  appId: "1:530772079400:web:7aee248bed07938a60d61d",
+
+  measurementId: "G-ZEJW6MV1DJ"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+onAuthStateChanged(auth, (user) => {
+
+  if (user) {
+
+    console.log("Firebase connected:",
+    user.email);
+
+  } else {
+
+    console.log("Firebase connected");
+
+  }
+
+});
+
 </script>
 
 </body>
