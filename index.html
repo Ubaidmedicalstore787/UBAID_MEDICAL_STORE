@@ -1,5 +1,17 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Ubaid Medical Store</title><style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ubaid Medical Store</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
 
 body{
 margin:0;
@@ -7,6 +19,8 @@ font-family:Arial,sans-serif;
 background:#f5faff;
 color:#222;
 }
+
+/* HEADER */
 
 header{
 background:#0b8f87;
@@ -17,36 +31,58 @@ padding:30px 15px;
 
 header h1{
 margin:0;
-font-size:30px;
+font-size:32px;
 }
 
+header p{
+margin:10px 0 0;
+font-size:17px;
+}
+
+/* NAVIGATION */
+
 nav{
-background:#ffffff;
-padding:15px;
+background:white;
+padding:15px 10px;
 text-align:center;
-box-shadow:0 2px 8px rgba(0,0,0,0.1);
+box-shadow:0 2px 10px rgba(0,0,0,.12);
+position:sticky;
+top:0;
+z-index:100;
 }
 
 nav a{
+display:inline-block;
 text-decoration:none;
 color:#0b8f87;
 font-weight:bold;
-margin:0 12px;
+margin:6px 10px;
+padding:8px 5px;
 }
+
+nav a:hover{
+color:#075f59;
+}
+
+/* HERO */
 
 .hero{
 text-align:center;
-padding:60px 20px;
+padding:70px 20px;
 background:#dff8f5;
 }
 
 .hero h2{
-font-size:32px;
+font-size:36px;
 color:#087c75;
+margin-bottom:15px;
 }
 
 .hero p{
-font-size:18px;
+font-size:19px;
+line-height:30px;
+max-width:750px;
+margin:auto;
 }
 
 .btn{
@@ -57,37 +93,61 @@ padding:14px 25px;
 border-radius:8px;
 text-decoration:none;
 font-weight:bold;
-margin-top:15px;
+margin-top:18px;
+border:none;
+cursor:pointer;
+font-size:16px;
 }
 
+.btn:hover{
+opacity:.85;
+}
+
+/* SECTIONS */
+
 .section{
-padding:40px 20px;
+padding:55px 20px;
 }
 
 .title{
 text-align:center;
 color:#087c75;
-margin-bottom:30px;
+font-size:30px;
+margin-bottom:35px;
 }
+
+/* CARDS */
 
 .cards{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:20px;
+gap:22px;
 }
 
 .card{
 background:white;
 width:280px;
 padding:25px;
-border-radius:12px;
-box-shadow:0 4px 12px rgba(0,0,0,0.1);
+border-radius:14px;
+box-shadow:0 4px 14px rgba(0,0,0,.1);
 text-align:center;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 8px 20px rgba(0,0,0,.15);
 }
 
 .card h3{
 color:#087c75;
+font-size:21px;
+}
+
+.card p{
+line-height:25px;
+color:#555;
 }
 
 .card a{
@@ -96,13 +156,59 @@ font-weight:bold;
 text-decoration:none;
 }
 
+/* SEARCH */
+
+.search-box{
+display:block;
+width:90%;
+max-width:600px;
+margin:0 auto 35px;
+padding:16px;
+border:2px solid #0b8f87;
+border-radius:10px;
+font-size:17px;
+outline:none;
+}
+
+.search-box:focus{
+box-shadow:0 0 8px rgba(11,143,135,.3);
+}
+
+/* MEDICINE BUTTON */
+
+.order-btn{
+background:#0b8f87;
+color:white;
+border:none;
+padding:11px 20px;
+border-radius:7px;
+cursor:pointer;
+font-weight:bold;
+margin-top:10px;
+}
+
+.order-btn:hover{
+background:#075f59;
+}
+
+/* CONTACT */
+
+.contact-card{
+max-width:900px;
+margin:auto;
+}
+
+/* FOOTER */
+
 footer{
 background:#222;
 color:white;
 text-align:center;
 padding:25px;
-margin-top:50px;
+margin-top:30px;
 }
+
+/* WHATSAPP */
 
 .whatsapp{
 position:fixed;
@@ -110,65 +216,485 @@ right:20px;
 bottom:20px;
 background:#25D366;
 color:white;
-font-size:28px;
-padding:18px;
+font-size:27px;
+width:58px;
+height:58px;
+display:flex;
+align-items:center;
+justify-content:center;
 border-radius:50%;
 text-decoration:none;
+box-shadow:0 4px 12px rgba(0,0,0,.3);
+z-index:200;
 }
 
-</style></head><body><header><h1>🏥 UBAID MEDICAL STORE</h1><p>Your Trusted Healthcare Partner</p></header><nav><a href="#">Home</a>
-<a href="#">Medicines</a>
-<a href="#">Healthcare</a>
+/* TOP BUTTON */
+
+.top{
+position:fixed;
+right:20px;
+bottom:90px;
+background:#0b8f87;
+color:white;
+width:45px;
+height:45px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+text-decoration:none;
+font-size:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+header h1{
+font-size:25px;
+}
+
+nav a{
+margin:4px 6px;
+font-size:14px;
+}
+
+.hero{
+padding:50px 15px;
+}
+
+.hero h2{
+font-size:28px;
+}
+
+.hero p{
+font-size:16px;
+}
+
+.section{
+padding:40px 15px;
+}
+
+.card{
+width:100%;
+max-width:350px;
+}
+
+}
+
+/* HIDDEN SEARCH ITEMS */
+
+.hidden{
+display:none !important;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header id="home">
+
+<h1>🏥 UBAID MEDICAL STORE</h1>
+
+<p>Your Trusted Healthcare Partner</p>
+
+</header>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+<a href="#home">Home</a>
+
+<a href="#services">Services</a>
+
+<a href="#medicines">Medicines</a>
+
+<a href="#healthcare">Healthcare</a>
+
 <a href="#offers">Offers</a>
+
 <a href="#contact">Contact</a>
 
-</nav><section class="hero"><h2>Welcome To Ubaid Medical Store</h2><p>
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<h2>Welcome To Ubaid Medical Store</h2>
+
+<p>
 Quality Medicines • Genuine Products • Fast Service • Best Customer Support
-</p><a class="btn" href="https://wa.me/919044286963">
-Order on WhatsApp
-</a></section><!-- SERVICES --><section class="section"><h2 class="title">Our Services</h2><div class="cards"><div class="card">
+</p>
+
+<a class="btn"
+href="https://wa.me/919044286963?text=Hello%20Ubaid%20Medical%20Store,%20I%20want%20to%20place%20an%20order.">
+📲 Order on WhatsApp
+</a>
+
+<a class="btn"
+href="tel:+919044286963">
+📞 Call Now
+</a>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section class="section" id="services">
+
+<h2 class="title">🛠️ Our Services</h2>
+
+<div class="cards">
+
+<div class="card">
 <h3>💊 All Medicines</h3>
-<p>Branded & Generic Medicines Available.</p>
-</div><div class="card">
+<p>Branded and generic medicines available.</p>
+</div>
+
+<div class="card">
 <h3>🩺 Healthcare Products</h3>
-<p>Health & Personal Care Products.</p>
-</div><div class="card">
+<p>Health, wellness and personal care products.</p>
+</div>
+
+<div class="card">
 <h3>🚚 Home Delivery</h3>
-<p>Fast Home Delivery Available.</p>
-</div><div class="card">
-<h3>👨‍⚕️ Doctor Consultation</h3>
-<p>Health Advice & Consultation.</p>
-</div></div></section><!-- TODAY'S OFFERS --><section class="section" id="offers"><h2 class="title">Today's Offers</h2><div class="cards"><div class="card">
+<p>Fast and convenient local delivery service.</p>
+</div>
+
+<div class="card">
+<h3>👨‍⚕️ Health Support</h3>
+<p>For medicine and healthcare product information.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MEDICINES -->
+
+<section class="section" id="medicines">
+
+<h2 class="title">💊 Medicines</h2>
+
+<input
+type="text"
+id="searchBox"
+class="search-box"
+placeholder="🔍 Search medicine..."
+onkeyup="searchMedicine()"
+>
+
+<div class="cards" id="medicineList">
+
+
+<div class="card medicine">
+<h3>💊 Paracetamol</h3>
+<p>Common pain and fever medicine.</p>
+
+<button class="order-btn"
+onclick="orderMedicine('Paracetamol')">
+Order Now
+</button>
+</div>
+
+
+<div class="card medicine">
+<h3>💊 Cetirizine</h3>
+<p>Common allergy medicine.</p>
+
+<button class="order-btn"
+onclick="orderMedicine('Cetirizine')">
+Order Now
+</button>
+</div>
+
+
+<div class="card medicine">
+<h3>💊 ORS</h3>
+<p>Oral rehydration product.</p>
+
+<button class="order-btn"
+onclick="orderMedicine('ORS')">
+Order Now
+</button>
+</div>
+
+
+<div class="card medicine">
+<h3>💊 Vitamin Products</h3>
+<p>Healthcare and wellness products.</p>
+
+<button class="order-btn"
+onclick="orderMedicine('Vitamin Products')">
+Order Now
+</button>
+</div>
+
+
+<div class="card medicine">
+<h3>💊 First Aid</h3>
+<p>Basic first-aid healthcare products.</p>
+
+<button class="order-btn"
+onclick="orderMedicine('First Aid Products')">
+Order Now
+</button>
+</div>
+
+
+<div class="card medicine">
+<h3>💊 Personal Care</h3>
+<p>Personal and daily healthcare products.</p>
+
+<button class="order-btn"
+onclick="orderMedicine('Personal Care Products')">
+Order Now
+</button>
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- HEALTHCARE -->
+
+<section class="section" id="healthcare">
+
+<h2 class="title">🩺 Healthcare Products</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>🩸 BP Monitor</h3>
+<p>Blood pressure monitoring products.</p>
+
+<button class="order-btn"
+onclick="orderMedicine('BP Monitor')">
+Enquire Now
+</button>
+</div>
+
+
+<div class="card">
+<h3>🌡️ Thermometer</h3>
+<p>Temperature monitoring products.</p>
+
+<button class="order-btn"
+onclick="orderMedicine('Thermometer')">
+Enquire Now
+</button>
+</div>
+
+
+<div class="card">
+<h3>🧴 Personal Care</h3>
+<p>Personal hygiene and healthcare products.</p>
+
+<button class="order-btn"
+onclick="orderMedicine('Personal Care')">
+Enquire Now
+</button>
+</div>
+
+
+<div class="card">
+<h3>🩹 First Aid</h3>
+<p>Basic first-aid supplies.</p>
+
+<button class="order-btn"
+onclick="orderMedicine('First Aid')">
+Enquire Now
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- OFFERS -->
+
+<section class="section" id="offers">
+
+<h2 class="title">🎁 Today's Offers</h2>
+
+<div class="cards">
+
+<div class="card">
 <h3>💉 10% OFF</h3>
-<p>All Healthcare Products</p>
-</div><div class="card">
+<p>Selected healthcare products.</p>
+</div>
+
+
+<div class="card">
 <h3>🩺 Free BP Check</h3>
-<p>Available Every Sunday</p>
-</div><div class="card">
+<p>Available every Sunday.</p>
+</div>
+
+
+<div class="card">
 <h3>🚑 24×7 Service</h3>
-<p>Emergency Medicine Available</p>
-</div></div></section><!-- CONTACT US --><section class="section" id="contact"><h2 class="title">Contact Us</h2><div class="cards"><div class="card">
-<h3>📞 Call</h3>
+<p>Emergency medicine availability may vary.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="section" id="contact">
+
+<h2 class="title">📞 Contact Us</h2>
+
+<div class="cards contact-card">
+
+<div class="card">
+
+<h3>📞 Call Us</h3>
+
 <p>
 <a href="tel:+919044286963">
 +91 9044286963
 </a>
 </p>
-</div><div class="card">
-<h3>📍 Address</h3>
-<p>Thamarwa,gopamau Hardoi</p>
-</div><div class="card">
+
+<a class="btn"
+href="tel:+919044286963">
+Call Now
+</a>
+
+</div>
+
+
+<div class="card">
+
 <h3>📲 WhatsApp</h3>
-<p>
-<a href="https://wa.me/919044286963">
+
+<p>Chat with Ubaid Medical Store.</p>
+
+<a class="btn"
+href="https://wa.me/919044286963">
 Chat Now
 </a>
-</p>
-</div></div></section><!-- FOOTER --><footer>© 2026 Ubaid Medical Store | All Rights Reserved
 
-</footer><!-- FLOATING WHATSAPP BUTTON --><a class="whatsapp"
-href="https://wa.me/919044286963">
+</div>
+
+
+<div class="card">
+
+<h3>📍 Address</h3>
+
+<p>
+Thamarwa, Gopamau, Hardoi
+</p>
+
+<a class="btn"
+href="https://www.google.com/maps/search/?api=1&query=Thamarwa+Gopamau+Hardoi"
+target="_blank">
+Open Map
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>© 2026 Ubaid Medical Store</p>
+
+<p>All Rights Reserved</p>
+
+</footer>
+
+
+<!-- FLOATING WHATSAPP -->
+
+<a class="whatsapp"
+href="https://wa.me/919044286963"
+target="_blank"
+title="WhatsApp">
 💬
 </a>
 
-</body></html>
+
+<!-- BACK TO TOP -->
+
+<a class="top"
+href="#home"
+title="Back to top">
+↑
+</a>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+function searchMedicine(){
+
+let input =
+document.getElementById("searchBox")
+.value
+.toLowerCase();
+
+let medicines =
+document.querySelectorAll(".medicine");
+
+medicines.forEach(function(medicine){
+
+let text =
+medicine.innerText.toLowerCase();
+
+if(text.includes(input)){
+
+medicine.classList.remove("hidden");
+
+}else{
+
+medicine.classList.add("hidden");
+
+}
+
+});
+
+}
+
+
+function orderMedicine(name){
+
+let message =
+"Hello Ubaid Medical Store,%0A%0AI want to enquire/order:%20"
++ encodeURIComponent(name);
+
+let url =
+"https://wa.me/919044286963?text="
++ message;
+
+window.open(url,"_blank");
+
+}
+
+</script>
+
+
+</body>
+</html>
