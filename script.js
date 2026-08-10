@@ -1,3 +1,11 @@
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+import { auth } from "./firebase.js";
 /* =====================================================
    UBAID MEDICAL STORE
    MAIN JAVASCRIPT
@@ -1593,12 +1601,245 @@ if (loginForm) {
         }
     );
 
+/* ============================= */
+/* FIREBASE LOGIN */
+/* ============================= */
+
+if (loginForm) {
+
+    loginForm.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        const email =
+            document.getElementById("loginEmail").value.trim();
+
+        const password =
+            document.getElementById("loginPassword").value;
+
+        if (!email || !password) {
+
+            showAuthMessage(
+                "Please enter email and password."
+            );
+
+            return;
+        }
+
+        try {
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            showAuthMessage(
+                "Login successful!",
+                "success"
+            );
+
+            showToast(
+                "Welcome back!"
+            );
+
+            setTimeout(() => {
+                closeAuthModal();
+            }, 1000);
+
+        } catch (error) {
+
+            console.error(error);
+
+            let message =
+                "Login failed. Please check your details.";
+
+            if (
+                error.code ===
+                "auth/invalid-credential"
+            ) {
+                message =
+                    "Email or password is incorrect.";
+            }
+
+            if (
+                error.code ===
+                "auth/user-not-found"
+            ) {
+                message =
+                    "No account found with this email.";
+            }
+
+            if (
+                error.code ===
+                "auth/wrong-password"
+            ) {
+                message =
+                    "Incorrect password.";
+            }
+
+            showAuthMessage(message);
+
+        }
+
+    });
+
 }
 
 
 /* ============================= */
-/* TEMPORARY SIGNUP */
+/* FIREBASE SIGNUP */
 /* ============================= */
+
+if (signupForm) {
+
+    signupForm.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        const name =
+            document.getElementById("signupName").value.trim();
+
+        const email =
+            document.getElementById("signupEmail").value.trim();
+
+        const password =
+            document.getElementById("signupPassword").value;
+
+
+        if (!name || !email || !password) {
+
+            showAuthMessage(
+                "Please fill all fields."
+            );
+
+            return;
+        }
+
+
+        if (password.length < 6) {
+
+            showAuthMessage(
+                "Password must contain at least 6 characters."
+            );
+
+            return;
+        }
+
+
+        try {
+
+            const userCredential =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            console.log(
+                "New user:",
+                userCredential.user
+            );
+
+
+            showAuthMessage(
+                "Account created successfully!",
+                "success"
+            );
+
+            showToast(
+                "Account created successfully!"
+            );
+
+
+            setTimeout(() => {
+                closeAuthModal();
+            }, 1200);
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            let message =
+                "Signup failed. Please try again.";
+
+
+            if (
+                error.code ===
+                "auth/email-already-in-use"
+            ) {
+
+                message =
+                    "This email is already registered.";
+
+            }
+
+
+            if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                message =
+                    "Please enter a valid email.";
+
+            }
+
+
+            if (
+                error.code ===
+                "auth/weak-password"
+            ) {
+
+                message =
+                    "Password is too weak.";
+
+            }
+
+
+            showAuthMessage(message);
+
+        }
+
+    });
+
+}
+
+
+/* ============================= */
+/* CHECK LOGIN STATUS */
+/* ============================= */
+
+onAuthStateChanged(
+    auth,
+    (user) => {
+
+        if (user) {
+
+            console.log(
+                "Logged in:",
+                user.email
+            );
+
+            if (accountBtn) {
+
+                accountBtn.title =
+                    `Logged in as ${user.email}`;
+
+            }
+
+        } else {
+
+            console.log(
+                "No user logged in."
+            );
+
+        }
+
+    }
+);
 
 if (signupForm) {
 
