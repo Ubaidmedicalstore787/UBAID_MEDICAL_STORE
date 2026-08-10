@@ -1,1 +1,1435 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ubaid Medical Store | Trusted Healthcare</title>
+
+    <meta name="description"
+          content="Ubaid Medical Store - Buy medicines and healthcare products online. Search medicines, add to cart and order through WhatsApp.">
+
+    <meta name="theme-color" content="#0d9488">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ============================= -->
+    <!-- TOP BAR -->
+    <!-- ============================= -->
+
+    <div class="topbar">
+        <div class="container topbar-content">
+
+            <p>
+                <i class="fa-solid fa-truck-fast"></i>
+                Fast & Reliable Healthcare Service
+            </p>
+
+            <div class="topbar-right">
+                <span>
+                    <i class="fa-solid fa-phone"></i>
+                    <a href="tel:+919999999999">
+                        +91 99999 99999
+                    </a>
+                </span>
+
+                <span>
+                    <i class="fa-brands fa-whatsapp"></i>
+                    WhatsApp Orders Available
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- HEADER -->
+    <!-- ============================= -->
+
+    <header class="header">
+
+        <div class="container header-content">
+
+            <!-- Logo -->
+            <a href="#" class="logo">
+
+                <div class="logo-icon">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+
+                <div class="logo-text">
+                    <strong>Ubaid</strong>
+                    <span>Medical Store</span>
+                </div>
+
+            </a>
+
+
+            <!-- Desktop Search -->
+            <div class="header-search">
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="medicineSearch"
+                        placeholder="Search medicines, healthcare products..."
+                        autocomplete="off">
+
+                    <button id="searchBtn" type="button">
+                        Search
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+
+                <!-- Dark Mode -->
+                <button
+                    class="icon-btn"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Toggle dark mode">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </button>
+
+
+                <!-- Account -->
+                <button
+                    class="account-btn"
+                    id="accountBtn"
+                    type="button">
+
+                    <i class="fa-regular fa-user"></i>
+
+                    <span>
+                        <small>Hello,</small>
+                        Account
+                    </span>
+
+                </button>
+
+
+                <!-- Cart -->
+                <button
+                    class="cart-btn"
+                    id="cartBtn"
+                    type="button">
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    <span class="cart-count" id="cartCount">
+                        0
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ============================= -->
+    <!-- MOBILE SEARCH -->
+    <!-- ============================= -->
+
+    <div class="mobile-search">
+        <div class="container">
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="mobileMedicineSearch"
+                    placeholder="Search medicines...">
+
+                <button
+                    id="mobileSearchBtn"
+                    type="button">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- NAVIGATION -->
+    <!-- ============================= -->
+
+    <nav class="navbar">
+
+        <div class="container nav-content">
+
+            <button
+                class="mobile-menu-btn"
+                id="mobileMenuBtn"
+                type="button"
+                aria-label="Open menu">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <ul class="nav-links" id="navLinks">
+
+                <li>
+                    <a href="#home" class="active">
+                        <i class="fa-solid fa-house"></i>
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#medicines">
+                        <i class="fa-solid fa-pills"></i>
+                        Medicines
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#categories">
+                        <i class="fa-solid fa-layer-group"></i>
+                        Categories
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#healthcare">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                        Healthcare
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#offers">
+                        <i class="fa-solid fa-tags"></i>
+                        Offers
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#contact">
+                        <i class="fa-solid fa-phone"></i>
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+
+
+            <div class="nav-right">
+
+                <span>
+                    <i class="fa-solid fa-shield-heart"></i>
+                    Trusted Healthcare
+                </span>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ============================= -->
+    <!-- HERO SECTION -->
+    <!-- ============================= -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="container hero-content">
+
+                <div class="hero-text">
+
+                    <span class="hero-badge">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Your Health, Our Priority
+                    </span>
+
+                    <h1>
+                        Your Trusted
+                        <span>Medical Store</span>
+                    </h1>
+
+                    <p>
+                        Quality medicines and healthcare products
+                        at affordable prices. Search, add to cart
+                        and order easily from Ubaid Medical Store.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="#medicines"
+                            class="btn btn-primary">
+
+                            <i class="fa-solid fa-pills"></i>
+                            Shop Medicines
+
+                        </a>
+
+                        <a
+                            href="https://wa.me/919999999999"
+                            class="btn btn-whatsapp"
+                            target="_blank"
+                            rel="noopener">
+
+                            <i class="fa-brands fa-whatsapp"></i>
+                            Order on WhatsApp
+
+                        </a>
+
+                    </div>
+
+                    <div class="hero-features">
+
+                        <div>
+                            <i class="fa-solid fa-circle-check"></i>
+                            Genuine Products
+                        </div>
+
+                        <div>
+                            <i class="fa-solid fa-truck"></i>
+                            Fast Service
+                        </div>
+
+                        <div>
+                            <i class="fa-solid fa-headset"></i>
+                            Support
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-image">
+
+                    <div class="medical-card">
+
+                        <div class="medical-cross">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+
+                        <h3>
+                            Healthcare
+                            <br>
+                            You Can Trust
+                        </h3>
+
+                        <p>
+                            Medicines • Wellness • Care
+                        </p>
+
+                        <div class="floating-icon icon-one">
+                            <i class="fa-solid fa-pills"></i>
+                        </div>
+
+                        <div class="floating-icon icon-two">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+
+                        <div class="floating-icon icon-three">
+                            <i class="fa-solid fa-stethoscope"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- STATS -->
+        <!-- ============================= -->
+
+        <section class="stats-section">
+
+            <div class="container stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-pills"></i>
+                    </div>
+
+                    <div>
+                        <strong>500+</strong>
+                        <span>Medicines</span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <div>
+                        <strong>1000+</strong>
+                        <span>Happy Customers</span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+
+                    <div>
+                        <strong>Fast</strong>
+                        <span>Order Service</span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-shield-heart"></i>
+                    </div>
+
+                    <div>
+                        <strong>100%</strong>
+                        <span>Trusted Care</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- MEDICINE SEARCH SECTION -->
+        <!-- ============================= -->
+
+        <section class="medicine-section" id="medicines">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        Our Products
+                    </span>
+
+                    <h2>
+                        Medicines & Healthcare
+                    </h2>
+
+                    <p>
+                        Find the products you need quickly and
+                        conveniently.
+                    </p>
+
+                </div>
+
+
+                <!-- Medicine Filter -->
+
+                <div class="medicine-toolbar">
+
+                    <div class="result-info">
+                        <span id="resultCount">
+                            Showing all medicines
+                        </span>
+                    </div>
+
+                    <select id="categoryFilter">
+
+                        <option value="all">
+                            All Categories
+                        </option>
+
+                        <option value="fever">
+                            Fever & Pain
+                        </option>
+
+                        <option value="cold">
+                            Cold & Cough
+                        </option>
+
+                        <option value="vitamins">
+                            Vitamins
+                        </option>
+
+                        <option value="firstaid">
+                            First Aid
+                        </option>
+
+                        <option value="personal-care">
+                            Personal Care
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Medicine Products -->
+
+                <div
+                    class="products-grid"
+                    id="productsGrid">
+
+                    <!-- Products will be loaded by script.js -->
+
+                </div>
+
+
+                <div
+                    class="empty-products"
+                    id="emptyProducts"
+                    hidden>
+
+                    <i class="fa-solid fa-pills"></i>
+
+                    <h3>
+                        Medicine Not Found
+                    </h3>
+
+                    <p>
+                        Try searching for another medicine.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- CATEGORIES -->
+        <!-- ============================= -->
+
+        <section
+            class="categories-section"
+            id="categories">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        Shop By Category
+                    </span>
+
+                    <h2>
+                        Healthcare Categories
+                    </h2>
+
+                    <p>
+                        Explore our popular healthcare categories.
+                    </p>
+
+                </div>
+
+
+                <div class="categories-grid">
+
+                    <button
+                        class="category-card"
+                        data-category="fever">
+
+                        <div class="category-icon">
+                            <i class="fa-solid fa-temperature-half"></i>
+                        </div>
+
+                        <h3>
+                            Fever & Pain
+                        </h3>
+
+                        <span>
+                            View Products
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="category-card"
+                        data-category="cold">
+
+                        <div class="category-icon">
+                            <i class="fa-solid fa-head-side-cough"></i>
+                        </div>
+
+                        <h3>
+                            Cold & Cough
+                        </h3>
+
+                        <span>
+                            View Products
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="category-card"
+                        data-category="vitamins">
+
+                        <div class="category-icon">
+                            <i class="fa-solid fa-capsules"></i>
+                        </div>
+
+                        <h3>
+                            Vitamins
+                        </h3>
+
+                        <span>
+                            View Products
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="category-card"
+                        data-category="firstaid">
+
+                        <div class="category-icon">
+                            <i class="fa-solid fa-kit-medical"></i>
+                        </div>
+
+                        <h3>
+                            First Aid
+                        </h3>
+
+                        <span>
+                            View Products
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- HEALTHCARE SECTION -->
+        <!-- ============================= -->
+
+        <section
+            class="healthcare-section"
+            id="healthcare">
+
+            <div class="container healthcare-content">
+
+                <div class="healthcare-text">
+
+                    <span class="section-label">
+                        Complete Care
+                    </span>
+
+                    <h2>
+                        Everything You Need
+                        For Better Healthcare
+                    </h2>
+
+                    <p>
+                        Ubaid Medical Store provides a wide range
+                        of medicines and everyday healthcare
+                        products for your family.
+                    </p>
+
+
+                    <div class="healthcare-list">
+
+                        <div>
+                            <i class="fa-solid fa-circle-check"></i>
+                            Genuine Healthcare Products
+                        </div>
+
+                        <div>
+                            <i class="fa-solid fa-circle-check"></i>
+                            Easy Medicine Search
+                        </div>
+
+                        <div>
+                            <i class="fa-solid fa-circle-check"></i>
+                            Convenient Shopping Cart
+                        </div>
+
+                        <div>
+                            <i class="fa-solid fa-circle-check"></i>
+                            WhatsApp Ordering
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="healthcare-box">
+
+                    <i class="fa-solid fa-heart-pulse"></i>
+
+                    <h3>
+                        Your Health Matters
+                    </h3>
+
+                    <p>
+                        Quality care starts with trusted
+                        healthcare products.
+                    </p>
+
+                    <a
+                        href="#medicines"
+                        class="btn btn-primary">
+
+                        Explore Products
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- OFFERS -->
+        <!-- ============================= -->
+
+        <section
+            class="offers-section"
+            id="offers">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        Special Offers
+                    </span>
+
+                    <h2>
+                        Save More On Healthcare
+                    </h2>
+
+                </div>
+
+
+                <div class="offers-grid">
+
+                    <div class="offer-card">
+
+                        <div class="offer-icon">
+                            <i class="fa-solid fa-percent"></i>
+                        </div>
+
+                        <div>
+
+                            <span>
+                                SPECIAL OFFER
+                            </span>
+
+                            <h3>
+                                Up To 20% OFF
+                            </h3>
+
+                            <p>
+                                On selected healthcare products.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="offer-card">
+
+                        <div class="offer-icon">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+
+                        <div>
+
+                            <span>
+                                EASY ORDERING
+                            </span>
+
+                            <h3>
+                                WhatsApp Orders
+                            </h3>
+
+                            <p>
+                                Send your order directly on WhatsApp.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- CONTACT -->
+        <!-- ============================= -->
+
+        <section
+            class="contact-section"
+            id="contact">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        Contact Us
+                    </span>
+
+                    <h2>
+                        Need Help?
+                    </h2>
+
+                    <p>
+                        Contact Ubaid Medical Store for
+                        assistance with your order.
+                    </p>
+
+                </div>
+
+
+                <div class="contact-grid">
+
+                    <a
+                        href="tel:+919999999999"
+                        class="contact-card">
+
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+
+                        <div>
+                            <h3>
+                                Call Us
+                            </h3>
+
+                            <p>
+                                +91 99999 99999
+                            </p>
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="https://wa.me/919999999999"
+                        target="_blank"
+                        rel="noopener"
+                        class="contact-card">
+
+                        <div class="contact-icon">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+
+                        <div>
+                            <h3>
+                                WhatsApp
+                            </h3>
+
+                            <p>
+                                Chat With Us
+                            </p>
+                        </div>
+
+                    </a>
+
+
+                    <div class="contact-card">
+
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+
+                        <div>
+                            <h3>
+                                Opening Hours
+                            </h3>
+
+                            <p>
+                                Mon - Sun: 9 AM - 9 PM
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ============================= -->
+    <!-- CART SIDEBAR -->
+    <!-- ============================= -->
+
+    <div
+        class="overlay"
+        id="overlay">
+    </div>
+
+
+    <aside
+        class="cart-sidebar"
+        id="cartSidebar"
+        aria-label="Shopping cart">
+
+        <div class="cart-header">
+
+            <div>
+
+                <h2>
+                    Your Cart
+                </h2>
+
+                <span id="cartItemsText">
+                    0 items
+                </span>
+
+            </div>
+
+            <button
+                id="closeCart"
+                class="close-btn"
+                type="button"
+                aria-label="Close cart">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="cart-items"
+            id="cartItems">
+
+            <!-- Cart items generated by JavaScript -->
+
+        </div>
+
+
+        <div
+            class="empty-cart"
+            id="emptyCart">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <h3>
+                Your Cart Is Empty
+            </h3>
+
+            <p>
+                Add medicines to your cart to continue.
+            </p>
+
+            <button
+                class="btn btn-primary"
+                id="continueShopping"
+                type="button">
+
+                Continue Shopping
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="cart-footer"
+            id="cartFooter">
+
+            <div class="cart-total">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="cartTotal">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <button
+                class="btn btn-whatsapp cart-whatsapp"
+                id="whatsappOrderBtn"
+                type="button">
+
+                <i class="fa-brands fa-whatsapp"></i>
+
+                Order On WhatsApp
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ============================= -->
+    <!-- LOGIN / SIGNUP MODAL -->
+    <!-- ============================= -->
+
+    <div
+        class="modal"
+        id="authModal"
+        aria-hidden="true">
+
+        <div class="modal-box">
+
+            <button
+                class="close-btn modal-close"
+                id="closeAuth"
+                type="button"
+                aria-label="Close">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+
+            <div class="auth-header">
+
+                <div class="auth-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <h2 id="authTitle">
+                    Welcome Back
+                </h2>
+
+                <p id="authSubtitle">
+                    Login to your Ubaid Medical Store account.
+                </p>
+
+            </div>
+
+
+            <!-- Login Form -->
+
+            <form
+                id="loginForm"
+                class="auth-form">
+
+                <label for="loginEmail">
+                    Email Address
+                </label>
+
+                <div class="input-group">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your email"
+                        required>
+
+                </div>
+
+
+                <label for="loginPassword">
+                    Password
+                </label>
+
+                <div class="input-group">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        required>
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="loginPassword">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </button>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary auth-submit">
+
+                    Login
+
+                </button>
+
+
+                <p class="auth-switch">
+
+                    Don't have an account?
+
+                    <button
+                        type="button"
+                        id="showSignup">
+
+                        Sign Up
+
+                    </button>
+
+                </p>
+
+            </form>
+
+
+            <!-- Signup Form -->
+
+            <form
+                id="signupForm"
+                class="auth-form"
+                hidden>
+
+                <label for="signupName">
+                    Full Name
+                </label>
+
+                <div class="input-group">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <input
+                        type="text"
+                        id="signupName"
+                        placeholder="Enter your name"
+                        required>
+
+                </div>
+
+
+                <label for="signupEmail">
+                    Email Address
+                </label>
+
+                <div class="input-group">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input
+                        type="email"
+                        id="signupEmail"
+                        placeholder="Enter your email"
+                        required>
+
+                </div>
+
+
+                <label for="signupPassword">
+                    Password
+                </label>
+
+                <div class="input-group">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="signupPassword"
+                        placeholder="Create a password"
+                        minlength="6"
+                        required>
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="signupPassword">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </button>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary auth-submit">
+
+                    Create Account
+
+                </button>
+
+
+                <p class="auth-switch">
+
+                    Already have an account?
+
+                    <button
+                        type="button"
+                        id="showLogin">
+
+                        Login
+
+                    </button>
+
+                </p>
+
+            </form>
+
+
+            <div
+                class="auth-message"
+                id="authMessage">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- TOAST NOTIFICATION -->
+    <!-- ============================= -->
+
+    <div
+        class="toast"
+        id="toast">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <span id="toastMessage">
+            Added to cart
+        </span>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- FOOTER -->
+    <!-- ============================= -->
+
+    <footer class="footer">
+
+        <div class="container footer-grid">
+
+            <div class="footer-about">
+
+                <a href="#" class="logo footer-logo">
+
+                    <div class="logo-icon">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+
+                    <div class="logo-text">
+                        <strong>Ubaid</strong>
+                        <span>Medical Store</span>
+                    </div>
+
+                </a>
+
+                <p>
+                    Your trusted destination for medicines
+                    and everyday healthcare products.
+                </p>
+
+                <div class="social-links">
+
+                    <a
+                        href="#"
+                        aria-label="Facebook">
+
+                        <i class="fa-brands fa-facebook-f"></i>
+
+                    </a>
+
+                    <a
+                        href="#"
+                        aria-label="Instagram">
+
+                        <i class="fa-brands fa-instagram"></i>
+
+                    </a>
+
+                    <a
+                        href="https://wa.me/919999999999"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="WhatsApp">
+
+                        <i class="fa-brands fa-whatsapp"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#medicines">
+                    Medicines
+                </a>
+
+                <a href="#categories">
+                    Categories
+                </a>
+
+                <a href="#offers">
+                    Offers
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Healthcare
+                </h3>
+
+                <a href="#healthcare">
+                    Healthcare Products
+                </a>
+
+                <a href="#medicines">
+                    Medicines
+                </a>
+
+                <a href="#categories">
+                    Categories
+                </a>
+
+                <a href="#contact">
+                    Contact Support
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Contact
+                </h3>
+
+                <p>
+                    <i class="fa-solid fa-phone"></i>
+                    +91 99999 99999
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-envelope"></i>
+                    support@ubaidmedicalstore.com
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-clock"></i>
+                    9 AM - 9 PM
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <div class="container">
+
+                <p>
+                    © <span id="currentYear"></span>
+                    Ubaid Medical Store.
+                    All Rights Reserved.
+                </p>
+
+                <p>
+                    Made with ❤️ for better healthcare.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ============================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================= -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
