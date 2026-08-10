@@ -1,22 +1,30 @@
+/* =========================================================
+   UBAID MEDICAL STORE
+   COMPLETE JAVASCRIPT
+   Cart + Search + Dark Mode + Mobile Menu
+   WhatsApp + Firebase Authentication
+   ========================================================= */
+
+"use strict";
+
+/* =========================================================
+   FIREBASE
+   ========================================================= */
+
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
-    onAuthStateChanged
+    onAuthStateChanged,
+    updateProfile
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
 import { auth } from "./firebase.js";
-/* =====================================================
-   UBAID MEDICAL STORE
-   MAIN JAVASCRIPT
-   ===================================================== */
-
-"use strict";
 
 
-/* ============================= */
-/* MEDICINE DATA */
-/* ============================= */
+/* =========================================================
+   MEDICINE DATA
+   ========================================================= */
 
 const medicines = [
     {
@@ -118,20 +126,18 @@ const medicines = [
 ];
 
 
-/* ============================= */
-/* GLOBAL VARIABLES */
-/* ============================= */
+/* =========================================================
+   VARIABLES
+   ========================================================= */
 
 let cart = [];
-
 let currentSearch = "";
-
 let currentCategory = "all";
 
 
-/* ============================= */
-/* DOM ELEMENTS */
-/* ============================= */
+/* =========================================================
+   DOM ELEMENTS
+   ========================================================= */
 
 const productsGrid =
     document.getElementById("productsGrid");
@@ -248,40 +254,35 @@ const currentYear =
     document.getElementById("currentYear");
 
 
-/* ============================= */
-/* LOAD CART FROM LOCAL STORAGE */
-/* ============================= */
+/* =========================================================
+   LOCAL STORAGE - CART
+   ========================================================= */
 
 function loadCart() {
 
     try {
 
-        const savedCart =
-            localStorage.getItem("ubaidMedicalCart");
+        const saved =
+            localStorage.getItem(
+                "ubaidMedicalCart"
+            );
 
-        if (savedCart) {
-
-            cart = JSON.parse(savedCart);
-
+        if (saved) {
+            cart = JSON.parse(saved);
         }
 
     } catch (error) {
 
         console.error(
-            "Could not load cart:",
+            "Cart loading error:",
             error
         );
 
         cart = [];
 
     }
-
 }
 
-
-/* ============================= */
-/* SAVE CART */
-/* ============================= */
 
 function saveCart() {
 
@@ -293,20 +294,21 @@ function saveCart() {
 }
 
 
-/* ============================= */
-/* FORMAT PRICE */
-/* ============================= */
+/* =========================================================
+   PRICE
+   ========================================================= */
 
 function formatPrice(price) {
 
-    return `₹${price.toLocaleString("en-IN")}`;
+    return "₹" +
+        Number(price).toLocaleString("en-IN");
 
 }
 
 
-/* ============================= */
-/* SHOW TOAST */
-/* ============================= */
+/* =========================================================
+   TOAST
+   ========================================================= */
 
 function showToast(message) {
 
@@ -319,10 +321,10 @@ function showToast(message) {
     toast.classList.add("show");
 
     clearTimeout(
-        window.toastTimer
+        window.ubaidToastTimer
     );
 
-    window.toastTimer =
+    window.ubaidToastTimer =
         setTimeout(() => {
 
             toast.classList.remove("show");
@@ -332,133 +334,9 @@ function showToast(message) {
 }
 
 
-/* ============================= */
-/* RENDER PRODUCTS */
-/* ============================= */
-
-function renderProducts() {
-
-    if (!productsGrid) {
-        return;
-    }
-
-    const search =
-        currentSearch.trim().toLowerCase();
-
-    let filteredProducts =
-        medicines.filter(product => {
-
-            const matchesSearch =
-                product.name
-                    .toLowerCase()
-                    .includes(search) ||
-                product.description
-                    .toLowerCase()
-                    .includes(search);
-
-            const matchesCategory =
-                currentCategory === "all" ||
-                product.category === currentCategory;
-
-            return (
-                matchesSearch &&
-                matchesCategory
-            );
-
-        });
-
-
-    productsGrid.innerHTML = "";
-
-
-    if (
-        resultCount
-    ) {
-
-        resultCount.textContent =
-            `Showing ${filteredProducts.length} medicine${filteredProducts.length !== 1 ? "s" : ""}`;
-
-    }
-
-
-    if (
-        filteredProducts.length === 0
-    ) {
-
-        if (emptyProducts) {
-            emptyProducts.hidden = false;
-        }
-
-        return;
-
-    }
-
-
-    if (emptyProducts) {
-        emptyProducts.hidden = true;
-    }
-
-
-    filteredProducts.forEach(
-        product => {
-
-            const card =
-                document.createElement("article");
-
-            card.className =
-                "product-card";
-
-
-            card.innerHTML = `
-
-                <div class="product-image">
-                    <i class="fa-solid ${product.icon}"></i>
-                </div>
-
-                <span class="product-category">
-                    ${getCategoryName(product.category)}
-                </span>
-
-                <h3>
-                    ${product.name}
-                </h3>
-
-                <p class="product-description">
-                    ${product.description}
-                </p>
-
-                <div class="product-bottom">
-
-                    <span class="product-price">
-                        ${formatPrice(product.price)}
-                    </span>
-
-                    <button
-                        type="button"
-                        class="add-cart-btn"
-                        data-product-id="${product.id}"
-                        aria-label="Add ${product.name} to cart">
-
-                        <i class="fa-solid fa-cart-plus"></i>
-
-                    </button>
-
-                </div>
-
-            `;
-
-
-            productsGrid.appendChild(card);
-
-        }
-    );
-
-}
-
-
-/* ============================= */
-/* CATEGORY NAME */
-/* ============================= */
+/* =========================================================
+   CATEGORY NAME
+   ========================================================= */
 
 function getCategoryName(category) {
 
@@ -481,9 +359,128 @@ function getCategoryName(category) {
 }
 
 
-/* ============================= */
-/* ADD TO CART */
-/* ============================= */
+/* =========================================================
+   RENDER PRODUCTS
+   ========================================================= */
+
+function renderProducts() {
+
+    if (!productsGrid) {
+        return;
+    }
+
+    const search =
+        currentSearch.trim().toLowerCase();
+
+
+    const filtered =
+        medicines.filter(product => {
+
+            const matchesSearch =
+                product.name
+                    .toLowerCase()
+                    .includes(search) ||
+
+                product.description
+                    .toLowerCase()
+                    .includes(search);
+
+
+            const matchesCategory =
+                currentCategory === "all" ||
+                product.category === currentCategory;
+
+
+            return (
+                matchesSearch &&
+                matchesCategory
+            );
+
+        });
+
+
+    productsGrid.innerHTML = "";
+
+
+    if (resultCount) {
+
+        resultCount.textContent =
+            `Showing ${filtered.length} medicine${filtered.length !== 1 ? "s" : ""}`;
+
+    }
+
+
+    if (filtered.length === 0) {
+
+        if (emptyProducts) {
+            emptyProducts.hidden = false;
+        }
+
+        return;
+    }
+
+
+    if (emptyProducts) {
+        emptyProducts.hidden = true;
+    }
+
+
+    filtered.forEach(product => {
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "product-card";
+
+
+        card.innerHTML = `
+
+            <div class="product-image">
+                <i class="fa-solid ${product.icon}"></i>
+            </div>
+
+            <span class="product-category">
+                ${getCategoryName(product.category)}
+            </span>
+
+            <h3>
+                ${product.name}
+            </h3>
+
+            <p class="product-description">
+                ${product.description}
+            </p>
+
+            <div class="product-bottom">
+
+                <span class="product-price">
+                    ${formatPrice(product.price)}
+                </span>
+
+                <button
+                    type="button"
+                    class="add-cart-btn"
+                    data-product-id="${product.id}">
+
+                    <i class="fa-solid fa-cart-plus"></i>
+
+                </button>
+
+            </div>
+        `;
+
+
+        productsGrid.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================================
+   ADD TO CART
+   ========================================================= */
 
 function addToCart(productId) {
 
@@ -492,20 +489,21 @@ function addToCart(productId) {
             item => item.id === productId
         );
 
+
     if (!product) {
         return;
     }
 
 
-    const existingItem =
+    const existing =
         cart.find(
             item => item.id === productId
         );
 
 
-    if (existingItem) {
+    if (existing) {
 
-        existingItem.quantity += 1;
+        existing.quantity += 1;
 
     } else {
 
@@ -531,15 +529,16 @@ function addToCart(productId) {
     updateCart();
 
     showToast(
-        `${product.name} added to cart`
+        product.name +
+        " added to cart"
     );
 
 }
 
 
-/* ============================= */
-/* REMOVE FROM CART */
-/* ============================= */
+/* =========================================================
+   REMOVE FROM CART
+   ========================================================= */
 
 function removeFromCart(productId) {
 
@@ -548,6 +547,7 @@ function removeFromCart(productId) {
             item => item.id !== productId
         );
 
+
     saveCart();
 
     updateCart();
@@ -555,13 +555,13 @@ function removeFromCart(productId) {
 }
 
 
-/* ============================= */
-/* CHANGE QUANTITY */
-/* ============================= */
+/* =========================================================
+   QUANTITY
+   ========================================================= */
 
 function changeQuantity(
     productId,
-    change
+    amount
 ) {
 
     const item =
@@ -569,12 +569,13 @@ function changeQuantity(
             product => product.id === productId
         );
 
+
     if (!item) {
         return;
     }
 
 
-    item.quantity += change;
+    item.quantity += amount;
 
 
     if (item.quantity <= 0) {
@@ -582,7 +583,6 @@ function changeQuantity(
         removeFromCart(productId);
 
         return;
-
     }
 
 
@@ -593,9 +593,9 @@ function changeQuantity(
 }
 
 
-/* ============================= */
-/* UPDATE CART */
-/* ============================= */
+/* =========================================================
+   UPDATE CART
+   ========================================================= */
 
 function updateCart() {
 
@@ -608,7 +608,6 @@ function updateCart() {
 
 
     let totalItems = 0;
-
     let totalPrice = 0;
 
 
@@ -617,26 +616,25 @@ function updateCart() {
         totalItems +=
             item.quantity;
 
+
         totalPrice +=
             item.price *
             item.quantity;
 
 
-        const itemElement =
+        const element =
             document.createElement("div");
 
-        itemElement.className =
+
+        element.className =
             "cart-item";
 
 
-        itemElement.innerHTML = `
+        element.innerHTML = `
 
             <div class="cart-item-image">
-
                 <i class="fa-solid ${item.icon}"></i>
-
             </div>
-
 
             <div>
 
@@ -648,62 +646,50 @@ function updateCart() {
                     ${formatPrice(item.price)}
                 </div>
 
-
                 <div class="cart-quantity">
 
                     <button
                         type="button"
                         data-action="decrease"
                         data-id="${item.id}">
-
                         −
-
                     </button>
-
 
                     <span>
                         ${item.quantity}
                     </span>
 
-
                     <button
                         type="button"
                         data-action="increase"
                         data-id="${item.id}">
-
                         +
-
                     </button>
 
                 </div>
 
             </div>
 
-
             <button
                 type="button"
                 class="remove-item"
                 data-action="remove"
-                data-id="${item.id}"
-                aria-label="Remove ${item.name}">
+                data-id="${item.id}">
 
                 <i class="fa-solid fa-trash"></i>
 
             </button>
-
         `;
 
 
-        cartItems.appendChild(itemElement);
+        cartItems.appendChild(element);
 
     });
 
 
     if (cartCount) {
-
         cartCount.textContent =
             totalItems;
-
     }
 
 
@@ -728,22 +714,57 @@ function updateCart() {
 
 
     if (emptyCart) {
+
         emptyCart.style.display =
             isEmpty ? "block" : "none";
+
     }
 
 
     if (cartFooter) {
+
         cartFooter.style.display =
             isEmpty ? "none" : "block";
+
     }
 
 }
 
 
-/* ============================= */
-/* CART EVENT DELEGATION */
-/* ============================= */
+/* =========================================================
+   CART EVENTS
+   ========================================================= */
+
+if (productsGrid) {
+
+    productsGrid.addEventListener(
+        "click",
+        event => {
+
+            const button =
+                event.target.closest(
+                    ".add-cart-btn"
+                );
+
+
+            if (!button) {
+                return;
+            }
+
+
+            const id =
+                Number(
+                    button.dataset.productId
+                );
+
+
+            addToCart(id);
+
+        }
+    );
+
+}
+
 
 if (cartItems) {
 
@@ -756,6 +777,7 @@ if (cartItems) {
                     "button"
                 );
 
+
             if (!button) {
                 return;
             }
@@ -765,6 +787,7 @@ if (cartItems) {
                 Number(
                     button.dataset.id
                 );
+
 
             const action =
                 button.dataset.action;
@@ -789,7 +812,7 @@ if (cartItems) {
                 removeFromCart(id);
 
                 showToast(
-                    "Item removed from cart"
+                    "Item removed"
                 );
 
             }
@@ -800,53 +823,30 @@ if (cartItems) {
 }
 
 
-/* ============================= */
-/* PRODUCT EVENT DELEGATION */
-/* ============================= */
-
-if (productsGrid) {
-
-    productsGrid.addEventListener(
-        "click",
-        event => {
-
-            const button =
-                event.target.closest(
-                    ".add-cart-btn"
-                );
-
-            if (!button) {
-                return;
-            }
-
-
-            const productId =
-                Number(
-                    button.dataset.productId
-                );
-
-
-            addToCart(productId);
-
-        }
-    );
-
-}
-
-
-/* ============================= */
-/* OPEN CART */
-/* ============================= */
+/* =========================================================
+   OPEN / CLOSE CART
+   ========================================================= */
 
 function openCart() {
 
-    if (!cartSidebar || !overlay) {
+    if (!cartSidebar) {
         return;
     }
 
-    cartSidebar.classList.add("active");
 
-    overlay.classList.add("active");
+    cartSidebar.classList.add(
+        "active"
+    );
+
+
+    if (overlay) {
+
+        overlay.classList.add(
+            "active"
+        );
+
+    }
+
 
     document.body.classList.add(
         "no-scroll"
@@ -855,19 +855,25 @@ function openCart() {
 }
 
 
-/* ============================= */
-/* CLOSE CART */
-/* ============================= */
-
 function closeCartSidebar() {
 
-    if (!cartSidebar || !overlay) {
-        return;
+    if (cartSidebar) {
+
+        cartSidebar.classList.remove(
+            "active"
+        );
+
     }
 
-    cartSidebar.classList.remove("active");
 
-    overlay.classList.remove("active");
+    if (overlay) {
+
+        overlay.classList.remove(
+            "active"
+        );
+
+    }
+
 
     document.body.classList.remove(
         "no-scroll"
@@ -875,10 +881,6 @@ function closeCartSidebar() {
 
 }
 
-
-/* ============================= */
-/* CART BUTTON EVENTS */
-/* ============================= */
 
 if (cartBtn) {
 
@@ -920,26 +922,28 @@ if (continueShopping) {
 }
 
 
-/* ============================= */
-/* SEARCH FUNCTION */
-/* ============================= */
+/* =========================================================
+   SEARCH
+   ========================================================= */
 
 function performSearch(value) {
 
     currentSearch =
         value.trim();
 
+
     renderProducts();
 
-    const medicinesSection =
+
+    const section =
         document.getElementById(
             "medicines"
         );
 
 
-    if (medicinesSection) {
+    if (section) {
 
-        medicinesSection.scrollIntoView({
+        section.scrollIntoView({
             behavior: "smooth"
         });
 
@@ -947,10 +951,6 @@ function performSearch(value) {
 
 }
 
-
-/* ============================= */
-/* DESKTOP SEARCH */
-/* ============================= */
 
 if (searchBtn) {
 
@@ -976,9 +976,7 @@ if (medicineSearch) {
         "keydown",
         event => {
 
-            if (
-                event.key === "Enter"
-            ) {
+            if (event.key === "Enter") {
 
                 performSearch(
                     medicineSearch.value
@@ -991,10 +989,6 @@ if (medicineSearch) {
 
 }
 
-
-/* ============================= */
-/* MOBILE SEARCH */
-/* ============================= */
 
 if (mobileSearchBtn) {
 
@@ -1020,9 +1014,7 @@ if (mobileMedicineSearch) {
         "keydown",
         event => {
 
-            if (
-                event.key === "Enter"
-            ) {
+            if (event.key === "Enter") {
 
                 performSearch(
                     mobileMedicineSearch.value
@@ -1035,10 +1027,6 @@ if (mobileMedicineSearch) {
 
 }
 
-
-/* ============================= */
-/* MAIN SEARCH */
-/* ============================= */
 
 if (mainSearchBtn) {
 
@@ -1064,9 +1052,7 @@ if (mainMedicineSearch) {
         "keydown",
         event => {
 
-            if (
-                event.key === "Enter"
-            ) {
+            if (event.key === "Enter") {
 
                 performSearch(
                     mainMedicineSearch.value
@@ -1080,9 +1066,9 @@ if (mainMedicineSearch) {
 }
 
 
-/* ============================= */
-/* CATEGORY FILTER */
-/* ============================= */
+/* =========================================================
+   CATEGORY FILTER
+   ========================================================= */
 
 if (categoryFilter) {
 
@@ -1101,9 +1087,9 @@ if (categoryFilter) {
 }
 
 
-/* ============================= */
-/* CATEGORY CARDS */
-/* ============================= */
+/* =========================================================
+   CATEGORY CARDS
+   ========================================================= */
 
 document
     .querySelectorAll(
@@ -1117,6 +1103,12 @@ document
 
                 const category =
                     card.dataset.category;
+
+
+                if (!category) {
+                    return;
+                }
+
 
                 currentCategory =
                     category;
@@ -1133,15 +1125,15 @@ document
                 renderProducts();
 
 
-                const medicineSection =
+                const section =
                     document.getElementById(
                         "medicines"
                     );
 
 
-                if (medicineSection) {
+                if (section) {
 
-                    medicineSection.scrollIntoView({
+                    section.scrollIntoView({
                         behavior: "smooth"
                     });
 
@@ -1153,9 +1145,9 @@ document
     });
 
 
-/* ============================= */
-/* POPULAR SEARCH BUTTONS */
-/* ============================= */
+/* =========================================================
+   SEARCH BUTTONS
+   ========================================================= */
 
 document
     .querySelectorAll(
@@ -1195,30 +1187,15 @@ document
 
                 renderProducts();
 
-
-                const section =
-                    document.getElementById(
-                        "medicines"
-                    );
-
-
-                if (section) {
-
-                    section.scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-                }
-
             }
         );
 
     });
 
 
-/* ============================= */
-/* DARK MODE */
-/* ============================= */
+/* =========================================================
+   DARK MODE
+   ========================================================= */
 
 function updateThemeIcon() {
 
@@ -1238,36 +1215,26 @@ function updateThemeIcon() {
     }
 
 
-    if (
+    const dark =
         document.body.classList.contains(
             "dark-mode"
-        )
-    ) {
+        );
+
+
+    if (dark) {
 
         icon.className =
             "fa-solid fa-sun";
-
-        themeToggle.setAttribute(
-            "aria-label",
-            "Switch to light mode"
-        );
 
     } else {
 
         icon.className =
             "fa-solid fa-moon";
 
-        themeToggle.setAttribute(
-            "aria-label",
-            "Switch to dark mode"
-        );
-
     }
 
 }
 
-
-/* Load saved theme */
 
 const savedTheme =
     localStorage.getItem(
@@ -1287,8 +1254,6 @@ if (savedTheme === "dark") {
 updateThemeIcon();
 
 
-/* Theme toggle */
-
 if (themeToggle) {
 
     themeToggle.addEventListener(
@@ -1300,7 +1265,7 @@ if (themeToggle) {
             );
 
 
-            const isDark =
+            const dark =
                 document.body.classList.contains(
                     "dark-mode"
                 );
@@ -1308,7 +1273,7 @@ if (themeToggle) {
 
             localStorage.setItem(
                 "ubaidMedicalTheme",
-                isDark
+                dark
                     ? "dark"
                     : "light"
             );
@@ -1322,9 +1287,9 @@ if (themeToggle) {
 }
 
 
-/* ============================= */
-/* MOBILE MENU */
-/* ============================= */
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
 
 if (mobileMenuBtn) {
 
@@ -1332,17 +1297,19 @@ if (mobileMenuBtn) {
         "click",
         () => {
 
-            navLinks.classList.toggle(
-                "active"
-            );
+            if (navLinks) {
+
+                navLinks.classList.toggle(
+                    "active"
+                );
+
+            }
 
         }
     );
 
 }
 
-
-/* Close mobile menu after clicking link */
 
 document
     .querySelectorAll(
@@ -1368,9 +1335,9 @@ document
     });
 
 
-/* ============================= */
-/* AUTH MODAL */
-/* ============================= */
+/* =========================================================
+   AUTH MODAL
+   ========================================================= */
 
 function openAuthModal() {
 
@@ -1378,12 +1345,17 @@ function openAuthModal() {
         return;
     }
 
-    authModal.classList.add("active");
+
+    authModal.classList.add(
+        "active"
+    );
+
 
     authModal.setAttribute(
         "aria-hidden",
         "false"
     );
+
 
     document.body.classList.add(
         "no-scroll"
@@ -1398,14 +1370,17 @@ function closeAuthModal() {
         return;
     }
 
+
     authModal.classList.remove(
         "active"
     );
+
 
     authModal.setAttribute(
         "aria-hidden",
         "true"
     );
+
 
     document.body.classList.remove(
         "no-scroll"
@@ -1413,8 +1388,6 @@ function closeAuthModal() {
 
 }
 
-
-/* Account button */
 
 if (accountBtn) {
 
@@ -1426,8 +1399,6 @@ if (accountBtn) {
 }
 
 
-/* Close auth */
-
 if (closeAuth) {
 
     closeAuth.addEventListener(
@@ -1437,8 +1408,6 @@ if (closeAuth) {
 
 }
 
-
-/* Click outside modal */
 
 if (authModal) {
 
@@ -1460,25 +1429,40 @@ if (authModal) {
 }
 
 
-/* ============================= */
-/* LOGIN / SIGNUP SWITCH */
-/* ============================= */
+/* =========================================================
+   AUTH TABS
+   ========================================================= */
 
 if (showSignup) {
 
     showSignup.addEventListener(
         "click",
-        () => {
+        event => {
 
-            loginForm.hidden = true;
+            event.preventDefault();
 
-            signupForm.hidden = false;
 
-            authTitle.textContent =
-                "Create Account";
+            if (loginForm) {
+                loginForm.hidden = true;
+            }
 
-            authSubtitle.textContent =
-                "Create your Ubaid Medical Store account.";
+
+            if (signupForm) {
+                signupForm.hidden = false;
+            }
+
+
+            if (authTitle) {
+                authTitle.textContent =
+                    "Create Account";
+            }
+
+
+            if (authSubtitle) {
+                authSubtitle.textContent =
+                    "Create your Ubaid Medical Store account.";
+            }
+
 
             clearAuthMessage();
 
@@ -1492,17 +1476,32 @@ if (showLogin) {
 
     showLogin.addEventListener(
         "click",
-        () => {
+        event => {
 
-            signupForm.hidden = true;
+            event.preventDefault();
 
-            loginForm.hidden = false;
 
-            authTitle.textContent =
-                "Welcome Back";
+            if (signupForm) {
+                signupForm.hidden = true;
+            }
 
-            authSubtitle.textContent =
-                "Login to your Ubaid Medical Store account.";
+
+            if (loginForm) {
+                loginForm.hidden = false;
+            }
+
+
+            if (authTitle) {
+                authTitle.textContent =
+                    "Welcome Back";
+            }
+
+
+            if (authSubtitle) {
+                authSubtitle.textContent =
+                    "Login to your Ubaid Medical Store account.";
+            }
+
 
             clearAuthMessage();
 
@@ -1512,15 +1511,16 @@ if (showLogin) {
 }
 
 
-/* ============================= */
-/* AUTH MESSAGE */
-/* ============================= */
+/* =========================================================
+   AUTH MESSAGE
+   ========================================================= */
 
 function clearAuthMessage() {
 
     if (!authMessage) {
         return;
     }
+
 
     authMessage.textContent = "";
 
@@ -1539,8 +1539,10 @@ function showAuthMessage(
         return;
     }
 
+
     authMessage.textContent =
         message;
+
 
     authMessage.className =
         `auth-message ${type}`;
@@ -1548,324 +1550,53 @@ function showAuthMessage(
 }
 
 
-/* ============================= */
-/* TEMPORARY LOGIN */
-/* ============================= */
-
-if (loginForm) {
-
-    loginForm.addEventListener(
-        "submit",
-        event => {
-
-            event.preventDefault();
-
-
-            const email =
-                document.getElementById(
-                    "loginEmail"
-                ).value.trim();
-
-
-            const password =
-                document.getElementById(
-                    "loginPassword"
-                ).value;
-
-
-            if (
-                !email ||
-                !password
-            ) {
-
-                showAuthMessage(
-                    "Please enter email and password."
-                );
-
-                return;
-
-            }
-
-
-            /*
-             * Firebase Authentication
-             * will be connected in the
-             * Firebase setup part.
-             */
-
-            showAuthMessage(
-                "Login system is ready for Firebase connection.",
-                "success"
-            );
-
-        }
-    );
-
-/* ============================= */
-/* FIREBASE LOGIN */
-/* ============================= */
-
-if (loginForm) {
-
-    loginForm.addEventListener("submit", async (event) => {
-
-        event.preventDefault();
-
-        const email =
-            document.getElementById("loginEmail").value.trim();
-
-        const password =
-            document.getElementById("loginPassword").value;
-
-        if (!email || !password) {
-
-            showAuthMessage(
-                "Please enter email and password."
-            );
-
-            return;
-        }
-
-        try {
-
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-
-            showAuthMessage(
-                "Login successful!",
-                "success"
-            );
-
-            showToast(
-                "Welcome back!"
-            );
-
-            setTimeout(() => {
-                closeAuthModal();
-            }, 1000);
-
-        } catch (error) {
-
-            console.error(error);
-
-            let message =
-                "Login failed. Please check your details.";
-
-            if (
-                error.code ===
-                "auth/invalid-credential"
-            ) {
-                message =
-                    "Email or password is incorrect.";
-            }
-
-            if (
-                error.code ===
-                "auth/user-not-found"
-            ) {
-                message =
-                    "No account found with this email.";
-            }
-
-            if (
-                error.code ===
-                "auth/wrong-password"
-            ) {
-                message =
-                    "Incorrect password.";
-            }
-
-            showAuthMessage(message);
-
-        }
-
-    });
-
-}
-
-
-/* ============================= */
-/* FIREBASE SIGNUP */
-/* ============================= */
-
-if (signupForm) {
-
-    signupForm.addEventListener("submit", async (event) => {
-
-        event.preventDefault();
-
-        const name =
-            document.getElementById("signupName").value.trim();
-
-        const email =
-            document.getElementById("signupEmail").value.trim();
-
-        const password =
-            document.getElementById("signupPassword").value;
-
-
-        if (!name || !email || !password) {
-
-            showAuthMessage(
-                "Please fill all fields."
-            );
-
-            return;
-        }
-
-
-        if (password.length < 6) {
-
-            showAuthMessage(
-                "Password must contain at least 6 characters."
-            );
-
-            return;
-        }
-
-
-        try {
-
-            const userCredential =
-                await createUserWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
-
-
-            console.log(
-                "New user:",
-                userCredential.user
-            );
-
-
-            showAuthMessage(
-                "Account created successfully!",
-                "success"
-            );
-
-            showToast(
-                "Account created successfully!"
-            );
-
-
-            setTimeout(() => {
-                closeAuthModal();
-            }, 1200);
-
-
-        } catch (error) {
-
-            console.error(error);
-
-            let message =
-                "Signup failed. Please try again.";
-
-
-            if (
-                error.code ===
-                "auth/email-already-in-use"
-            ) {
-
-                message =
-                    "This email is already registered.";
-
-            }
-
-
-            if (
-                error.code ===
-                "auth/invalid-email"
-            ) {
-
-                message =
-                    "Please enter a valid email.";
-
-            }
-
-
-            if (
-                error.code ===
-                "auth/weak-password"
-            ) {
-
-                message =
-                    "Password is too weak.";
-
-            }
-
-
-            showAuthMessage(message);
-
-        }
-
-    });
-
-}
-
-
-/* ============================= */
-/* CHECK LOGIN STATUS */
-/* ============================= */
-
-onAuthStateChanged(
-    auth,
-    (user) => {
-
-        if (user) {
-
-            console.log(
-                "Logged in:",
-                user.email
-            );
-
-            if (accountBtn) {
-
-                accountBtn.title =
-                    `Logged in as ${user.email}`;
-
-            }
-
-        } else {
-
-            console.log(
-                "No user logged in."
-            );
-
-        }
-
-    }
-);
+/* =========================================================
+   FIREBASE SIGNUP
+   ========================================================= */
 
 if (signupForm) {
 
     signupForm.addEventListener(
         "submit",
-        event => {
+        async event => {
 
             event.preventDefault();
 
 
-            const name =
+            const nameElement =
                 document.getElementById(
                     "signupName"
-                ).value.trim();
+                );
+
+
+            const emailElement =
+                document.getElementById(
+                    "signupEmail"
+                );
+
+
+            const passwordElement =
+                document.getElementById(
+                    "signupPassword"
+                );
+
+
+            const name =
+                nameElement
+                    ? nameElement.value.trim()
+                    : "";
 
 
             const email =
-                document.getElementById(
-                    "signupEmail"
-                ).value.trim();
+                emailElement
+                    ? emailElement.value.trim()
+                    : "";
 
 
             const password =
-                document.getElementById(
-                    "signupPassword"
-                ).value;
+                passwordElement
+                    ? passwordElement.value
+                    : "";
 
 
             if (
@@ -1883,12 +1614,10 @@ if (signupForm) {
             }
 
 
-            if (
-                password.length < 6
-            ) {
+            if (password.length < 6) {
 
                 showAuthMessage(
-                    "Password must contain at least 6 characters."
+                    "Password must be at least 6 characters."
                 );
 
                 return;
@@ -1896,15 +1625,89 @@ if (signupForm) {
             }
 
 
-            /*
-             * Firebase Authentication
-             * will be connected later.
-             */
+            try {
 
-            showAuthMessage(
-                "Signup form is ready for Firebase connection.",
-                "success"
-            );
+                const result =
+                    await createUserWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+
+                await updateProfile(
+                    result.user,
+                    {
+                        displayName: name
+                    }
+                );
+
+
+                showAuthMessage(
+                    "Account created successfully!",
+                    "success"
+                );
+
+
+                showToast(
+                    "Account created successfully!"
+                );
+
+
+                signupForm.reset();
+
+
+                setTimeout(
+                    closeAuthModal,
+                    1200
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Signup error:",
+                    error
+                );
+
+
+                let message =
+                    "Signup failed. Please try again.";
+
+
+                switch (error.code) {
+
+                    case "auth/email-already-in-use":
+                        message =
+                            "This email is already registered.";
+                        break;
+
+
+                    case "auth/invalid-email":
+                        message =
+                            "Please enter a valid email address.";
+                        break;
+
+
+                    case "auth/weak-password":
+                        message =
+                            "Password must be at least 6 characters.";
+                        break;
+
+
+                    case "auth/network-request-failed":
+                        message =
+                            "Internet connection problem.";
+                        break;
+
+                }
+
+
+                showAuthMessage(
+                    message
+                );
+
+            }
 
         }
     );
@@ -1912,9 +1715,211 @@ if (signupForm) {
 }
 
 
-/* ============================= */
-/* PASSWORD VISIBILITY */
-/* ============================= */
+/* =========================================================
+   FIREBASE LOGIN
+   ========================================================= */
+
+if (loginForm) {
+
+    loginForm.addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+
+            const emailElement =
+                document.getElementById(
+                    "loginEmail"
+                );
+
+
+            const passwordElement =
+                document.getElementById(
+                    "loginPassword"
+                );
+
+
+            const email =
+                emailElement
+                    ? emailElement.value.trim()
+                    : "";
+
+
+            const password =
+                passwordElement
+                    ? passwordElement.value
+                    : "";
+
+
+            if (!email || !password) {
+
+                showAuthMessage(
+                    "Please enter email and password."
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+                showAuthMessage(
+                    "Login successful!",
+                    "success"
+                );
+
+
+                showToast(
+                    "Welcome back!"
+                );
+
+
+                loginForm.reset();
+
+
+                setTimeout(
+                    closeAuthModal,
+                    1000
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Login error:",
+                    error
+                );
+
+
+                let message =
+                    "Login failed. Please try again.";
+
+
+                switch (error.code) {
+
+                    case "auth/invalid-credential":
+                        message =
+                            "Email or password is incorrect.";
+                        break;
+
+
+                    case "auth/user-not-found":
+                        message =
+                            "No account found with this email.";
+                        break;
+
+
+                    case "auth/wrong-password":
+                        message =
+                            "Incorrect password.";
+                        break;
+
+
+                    case "auth/invalid-email":
+                        message =
+                            "Please enter a valid email address.";
+                        break;
+
+
+                    case "auth/too-many-requests":
+                        message =
+                            "Too many attempts. Please try again later.";
+                        break;
+
+
+                    case "auth/network-request-failed":
+                        message =
+                            "Internet connection problem.";
+                        break;
+
+                }
+
+
+                showAuthMessage(
+                    message
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   FIREBASE LOGIN STATUS
+   ========================================================= */
+
+onAuthStateChanged(
+    auth,
+    user => {
+
+        if (user) {
+
+            console.log(
+                "Logged in:",
+                user.email
+            );
+
+
+            if (accountBtn) {
+
+                accountBtn.title =
+                    `Logged in as ${user.displayName || user.email}`;
+
+            }
+
+        } else {
+
+            console.log(
+                "User is logged out."
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+function logoutUser() {
+
+    signOut(auth)
+        .then(() => {
+
+            showToast(
+                "Logged out successfully"
+            );
+
+        })
+        .catch(error => {
+
+            console.error(
+                "Logout error:",
+                error
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   PASSWORD VISIBILITY
+   ========================================================= */
 
 document
     .querySelectorAll(
@@ -1926,19 +1931,13 @@ document
             "click",
             () => {
 
-                const targetId =
+                const target =
                     button.dataset.target;
 
 
                 const input =
                     document.getElementById(
-                        targetId
-                    );
-
-
-                const icon =
-                    button.querySelector(
-                        "i"
+                        target
                     );
 
 
@@ -1947,26 +1946,36 @@ document
                 }
 
 
+                const icon =
+                    button.querySelector(
+                        "i"
+                    );
+
+
                 if (
                     input.type === "password"
                 ) {
 
-                    input.type =
-                        "text";
+                    input.type = "text";
+
 
                     if (icon) {
+
                         icon.className =
                             "fa-solid fa-eye-slash";
+
                     }
 
                 } else {
 
-                    input.type =
-                        "password";
+                    input.type = "password";
+
 
                     if (icon) {
+
                         icon.className =
                             "fa-solid fa-eye";
+
                     }
 
                 }
@@ -1977,16 +1986,34 @@ document
     });
 
 
-/* ============================= */
-/* WHATSAPP ORDER */
-/* ============================= */
+/* =========================================================
+   WHATSAPP ORDER
+   ========================================================= */
+
+/*
+   IMPORTANT:
+   Replace the number below with
+   your actual WhatsApp number.
+
+   India format:
+   91 + 10 digit number
+
+   Example:
+   919876543210
+
+   Do NOT use + or spaces.
+*/
+
+const whatsappNumber =
+    "919999999999";
+
 
 function orderOnWhatsApp() {
 
     if (cart.length === 0) {
 
         showToast(
-            "Your cart is empty"
+            "Your cart is empty."
         );
 
         return;
@@ -1994,25 +2021,11 @@ function orderOnWhatsApp() {
     }
 
 
-    /*
-     * IMPORTANT:
-     * Replace this number with
-     * your actual WhatsApp number.
-     *
-     * Format:
-     * Country code + number
-     * without + or spaces.
-     */
-
-    const whatsappNumber =
-        "919999999999";
-
-
     let message =
         "Hello Ubaid Medical Store!%0A%0A";
 
     message +=
-        "*I want to order:%*%0A";
+        "*My Order:*%0A%0A";
 
 
     let total = 0;
@@ -2041,12 +2054,12 @@ function orderOnWhatsApp() {
         "Please confirm my order. Thank you!";
 
 
-    const whatsappURL =
+    const url =
         `https://wa.me/${whatsappNumber}?text=${message}`;
 
 
     window.open(
-        whatsappURL,
+        url,
         "_blank"
     );
 
@@ -2063,9 +2076,9 @@ if (whatsappOrderBtn) {
 }
 
 
-/* ============================= */
-/* YEAR */
-/* ============================= */
+/* =========================================================
+   YEAR
+   ========================================================= */
 
 if (currentYear) {
 
@@ -2075,17 +2088,15 @@ if (currentYear) {
 }
 
 
-/* ============================= */
-/* ESC KEY */
-/* ============================= */
+/* =========================================================
+   ESC KEY
+   ========================================================= */
 
 document.addEventListener(
     "keydown",
     event => {
 
-        if (
-            event.key === "Escape"
-        ) {
+        if (event.key === "Escape") {
 
             closeCartSidebar();
 
@@ -2097,9 +2108,9 @@ document.addEventListener(
 );
 
 
-/* ============================= */
-/* INITIALIZE */
-/* ============================= */
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
 
 loadCart();
 
@@ -2107,6 +2118,7 @@ updateCart();
 
 renderProducts();
 
+
 console.log(
-    "Ubaid Medical Store loaded successfully."
+    "Ubaid Medical Store is ready."
 );
