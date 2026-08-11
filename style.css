@@ -1,11 +1,7 @@
 /* =========================================================
    UBAID MEDICAL STORE V2
-   MAIN STYLE SHEET
+   CLEAN RESPONSIVE MAIN STYLE SHEET
    ========================================================= */
-
-/* =========================
-   ROOT
-   ========================= */
 
 :root {
     --primary: #087f5b;
@@ -39,9 +35,9 @@
 }
 
 
-/* =========================
-   DARK MODE VARIABLES
-   ========================= */
+/* =========================================================
+   DARK MODE
+   ========================================================= */
 
 body.dark-mode {
     --text: #edf2f7;
@@ -55,15 +51,15 @@ body.dark-mode {
 
     --primary-light: #17382e;
 
-    --shadow-sm: 0 4px 14px rgba(0, 0, 0, .25);
-    --shadow: 0 12px 30px rgba(0, 0, 0, .30);
-    --shadow-lg: 0 20px 50px rgba(0, 0, 0, .40);
+    --shadow-sm: 0 4px 14px rgba(0,0,0,.25);
+    --shadow: 0 12px 30px rgba(0,0,0,.30);
+    --shadow-lg: 0 20px 50px rgba(0,0,0,.40);
 }
 
 
-/* =========================
+/* =========================================================
    RESET
-   ========================= */
+   ========================================================= */
 
 * {
     margin: 0;
@@ -89,12 +85,11 @@ body {
     color: var(--text);
 
     line-height: 1.6;
+    overflow-x: hidden;
 
     transition:
         background var(--transition),
         color var(--transition);
-
-    overflow-x: hidden;
 }
 
 body.no-scroll {
@@ -119,14 +114,9 @@ button {
 }
 
 img {
-    max-width: 100%;
     display: block;
+    max-width: 100%;
 }
-
-
-/* =========================
-   CONTAINER
-   ========================= */
 
 .container {
     width: min(1180px, calc(100% - 32px));
@@ -134,13 +124,13 @@ img {
 }
 
 
-/* =========================
+/* =========================================================
    TOP BAR
-   ========================= */
+   ========================================================= */
 
 .top-bar {
     background: var(--primary-dark);
-    color: #ffffff;
+    color: #fff;
     font-size: 13px;
 }
 
@@ -168,18 +158,14 @@ img {
     gap: 7px;
 }
 
-.top-bar a {
-    transition: opacity var(--transition);
-}
-
 .top-bar a:hover {
     opacity: .8;
 }
 
 
-/* =========================
+/* =========================================================
    HEADER
-   ========================= */
+   ========================================================= */
 
 .header {
     position: sticky;
@@ -187,12 +173,11 @@ img {
     z-index: 900;
 
     background: var(--bg);
-
     border-bottom: 1px solid var(--border);
 
     transition:
         background var(--transition),
-        border var(--transition);
+        border-color var(--transition);
 }
 
 .header-content {
@@ -200,19 +185,18 @@ img {
 
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 24px;
 }
 
 
-/* =========================
+/* =========================================================
    LOGO
-   ========================= */
+   ========================================================= */
 
 .logo {
     display: inline-flex;
     align-items: center;
     gap: 11px;
-
     flex-shrink: 0;
 }
 
@@ -232,28 +216,24 @@ img {
     border-radius: 14px;
 
     box-shadow:
-        0 8px 20px rgba(8, 127, 91, .22);
+        0 8px 20px rgba(8,127,91,.22);
 }
 
 .logo-cross {
+    position: relative;
     width: 24px;
     height: 24px;
-
-    position: relative;
 }
 
 .logo-cross span {
     position: absolute;
-
-    background: #ffffff;
-
+    background: #fff;
     border-radius: 4px;
 }
 
 .logo-cross span:first-child {
     width: 24px;
     height: 8px;
-
     left: 0;
     top: 8px;
 }
@@ -261,7 +241,6 @@ img {
 .logo-cross span:last-child {
     width: 8px;
     height: 24px;
-
     left: 8px;
     top: 0;
 }
@@ -269,7 +248,6 @@ img {
 .logo-text {
     display: flex;
     flex-direction: column;
-
     line-height: 1.05;
 }
 
@@ -288,9 +266,9 @@ img {
 }
 
 
-/* =========================
-   HEADER SEARCH
-   ========================= */
+/* =========================================================
+   SEARCH
+   ========================================================= */
 
 .header-search {
     height: 48px;
@@ -300,20 +278,17 @@ img {
     align-items: center;
 
     background: var(--bg-soft);
-
     border: 1px solid var(--border);
     border-radius: 14px;
 
     overflow: hidden;
-
-    transition: var(--transition);
 }
 
 .header-search:focus-within {
     border-color: var(--primary);
 
     box-shadow:
-        0 0 0 4px rgba(8, 127, 91, .08);
+        0 0 0 4px rgba(8,127,91,.08);
 }
 
 .header-search > i {
@@ -323,32 +298,26 @@ img {
 
 .header-search input {
     flex: 1;
-
     min-width: 0;
-
     height: 100%;
+
+    padding: 0 13px;
 
     border: 0;
     outline: 0;
 
     background: transparent;
-
     color: var(--text);
-
-    padding: 0 13px;
 }
 
 .header-search button {
     height: 100%;
-
     padding: 0 20px;
 
     background: var(--primary);
-    color: #ffffff;
+    color: #fff;
 
     font-weight: 700;
-
-    transition: var(--transition);
 }
 
 .header-search button:hover {
@@ -356,14 +325,14 @@ img {
 }
 
 
-/* =========================
+/* =========================================================
    HEADER ACTIONS
-   ========================= */
+   ========================================================= */
 
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 9px;
+    gap: 8px;
 }
 
 .header-icon-btn,
@@ -393,15 +362,16 @@ img {
 }
 
 
-/* =========================
+/* =========================================================
    ACCOUNT
-   ========================= */
+   ========================================================= */
 
 .account-btn {
     min-height: 43px;
 
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
 
     padding: 0 14px;
@@ -409,23 +379,20 @@ img {
     background: var(--primary-light);
     color: var(--primary);
 
-    border: 1px solid transparent;
     border-radius: 12px;
 
     font-weight: 700;
-
-    transition: var(--transition);
 }
 
 .account-btn:hover {
     background: var(--primary);
-    color: #ffffff;
+    color: #fff;
 }
 
 
-/* =========================
-   USER PROFILE
-   ========================= */
+/* =========================================================
+   PROFILE
+   ========================================================= */
 
 .user-profile-group {
     position: relative;
@@ -445,8 +412,6 @@ img {
 
     border: 1px solid var(--border);
     border-radius: 14px;
-
-    transition: var(--transition);
 }
 
 .profile-btn:hover {
@@ -467,8 +432,7 @@ img {
         #12a879
     );
 
-    color: #ffffff;
-
+    color: #fff;
     font-weight: 800;
 }
 
@@ -490,15 +454,14 @@ img {
 .profile-dropdown {
     position: absolute;
 
-    right: 0;
     top: calc(100% + 12px);
+    right: 0;
 
     width: 260px;
 
     padding: 12px;
 
     background: var(--card);
-
     border: 1px solid var(--border);
     border-radius: 18px;
 
@@ -506,6 +469,7 @@ img {
 
     opacity: 0;
     visibility: hidden;
+
     transform: translateY(-8px);
 
     transition: var(--transition);
@@ -523,7 +487,6 @@ img {
     gap: 11px;
 
     padding: 10px;
-
     margin-bottom: 7px;
 
     background: var(--bg-soft);
@@ -545,13 +508,13 @@ img {
 }
 
 .profile-dropdown-head small {
-    color: var(--muted);
-
     max-width: 160px;
 
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+
+    color: var(--muted);
 }
 
 .profile-dropdown > button {
@@ -569,8 +532,6 @@ img {
     border-radius: 10px;
 
     text-align: left;
-
-    transition: var(--transition);
 }
 
 .profile-dropdown > button:hover {
@@ -582,15 +543,10 @@ img {
     color: var(--danger);
 }
 
-.profile-dropdown .logout-menu-btn:hover {
-    background: rgba(220, 53, 69, .08);
-    color: var(--danger);
-}
 
-
-/* =========================
-   CART
-   ========================= */
+/* =========================================================
+   CART BUTTON
+   ========================================================= */
 
 .cart-button {
     position: relative;
@@ -611,7 +567,7 @@ img {
     padding: 0 5px;
 
     background: var(--danger);
-    color: #ffffff;
+    color: #fff;
 
     border-radius: 20px;
 
@@ -624,9 +580,9 @@ img {
 }
 
 
-/* =========================
+/* =========================================================
    MOBILE SEARCH
-   ========================= */
+   ========================================================= */
 
 .mobile-search {
     display: none;
@@ -639,7 +595,6 @@ img {
     align-items: center;
 
     background: var(--bg-soft);
-
     border: 1px solid var(--border);
     border-radius: 12px;
 
@@ -653,9 +608,7 @@ img {
 
 .mobile-search-box input {
     flex: 1;
-
     min-width: 0;
-
     height: 100%;
 
     padding: 0 10px;
@@ -672,13 +625,13 @@ img {
     height: 100%;
 
     background: var(--primary);
-    color: #ffffff;
+    color: #fff;
 }
 
 
-/* =========================
-   NAV
-   ========================= */
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 
 .nav {
     background: var(--card);
@@ -719,19 +672,20 @@ img {
 }
 
 
-/* =========================
+/* =========================================================
    HERO
-   ========================= */
+   ========================================================= */
 
 .hero {
     position: relative;
-
     overflow: hidden;
+
+    padding: 78px 0 88px;
 
     background:
         radial-gradient(
             circle at 85% 20%,
-            rgba(8, 127, 91, .12),
+            rgba(8,127,91,.12),
             transparent 30%
         ),
         linear-gradient(
@@ -739,8 +693,6 @@ img {
             var(--bg-soft),
             var(--bg)
         );
-
-    padding: 78px 0 88px;
 }
 
 .hero-content {
@@ -765,13 +717,12 @@ img {
     gap: 8px;
 
     padding: 7px 13px;
-
     margin-bottom: 20px;
 
     background: var(--primary-light);
     color: var(--primary);
 
-    border: 1px solid rgba(8, 127, 91, .14);
+    border: 1px solid rgba(8,127,91,.14);
     border-radius: 30px;
 
     font-size: 13px;
@@ -783,8 +734,7 @@ img {
 
     color: var(--heading);
 
-    font-size: clamp(42px, 6vw, 68px);
-
+    font-size: clamp(42px,6vw,68px);
     line-height: 1.04;
 
     letter-spacing: -2px;
@@ -830,10 +780,10 @@ img {
 
 .btn-primary {
     background: var(--primary);
-    color: #ffffff;
+    color: #fff;
 
     box-shadow:
-        0 9px 22px rgba(8, 127, 91, .18);
+        0 9px 22px rgba(8,127,91,.18);
 }
 
 .btn-primary:hover {
@@ -843,7 +793,7 @@ img {
 
 .whatsapp-btn {
     background: var(--whatsapp);
-    color: #ffffff;
+    color: #fff;
 }
 
 .whatsapp-btn:hover {
@@ -875,9 +825,9 @@ img {
 }
 
 
-/* =========================
+/* =========================================================
    HERO VISUAL
-   ========================= */
+   ========================================================= */
 
 .hero-visual {
     position: relative;
@@ -899,7 +849,7 @@ img {
     background:
         radial-gradient(
             circle,
-            rgba(8, 127, 91, .18),
+            rgba(8,127,91,.18),
             transparent 68%
         );
 }
@@ -908,7 +858,7 @@ img {
     position: relative;
     z-index: 2;
 
-    width: min(370px, 85%);
+    width: min(370px,85%);
 
     padding: 28px;
 
@@ -919,12 +869,12 @@ img {
             #075e47
         );
 
-    color: #ffffff;
+    color: #fff;
 
     border-radius: 30px;
 
     box-shadow:
-        0 28px 60px rgba(8, 127, 91, .25);
+        0 28px 60px rgba(8,127,91,.25);
 
     transform: rotate(2deg);
 
@@ -943,7 +893,6 @@ img {
     bottom: -100px;
 
     border: 30px solid rgba(255,255,255,.08);
-
     border-radius: 50%;
 }
 
@@ -981,18 +930,12 @@ img {
     place-items: center;
 
     background: rgba(255,255,255,.13);
-
     border-radius: 25px;
-
-    box-shadow:
-        0 12px 30px rgba(0,0,0,.12);
 }
 
 .big-cross span {
     position: absolute;
-
-    background: #ffffff;
-
+    background: #fff;
     border-radius: 8px;
 }
 
@@ -1012,7 +955,6 @@ img {
 
 .medical-card > p {
     margin: 3px 0 24px;
-
     opacity: .8;
 }
 
@@ -1022,7 +964,6 @@ img {
     border-top: 1px solid rgba(255,255,255,.18);
 
     font-size: 11px;
-
     gap: 10px;
 }
 
@@ -1096,21 +1037,19 @@ img {
 }
 
 
-/* =========================
+/* =========================================================
    STATS
-   ========================= */
+   ========================================================= */
 
 .stats {
     position: relative;
     z-index: 5;
-
     margin-top: -30px;
 }
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-
+    grid-template-columns: repeat(4,1fr);
     gap: 13px;
 }
 
@@ -1160,9 +1099,9 @@ img {
 }
 
 
-/* =========================
+/* =========================================================
    SEARCH SECTION
-   ========================= */
+   ========================================================= */
 
 .search-section {
     padding: 55px 0 20px;
@@ -1192,15 +1131,9 @@ img {
     padding-left: 18px;
 }
 
-.search-label {
-    display: none;
-}
-
 .search-content input {
     width: 100%;
-
     min-width: 0;
-
     height: 58px;
 
     border: 0;
@@ -1208,19 +1141,15 @@ img {
 
     background: transparent;
     color: var(--text);
-
-    font-size: 15px;
 }
 
 .search-main-btn {
     min-width: 120px;
 
     background: var(--primary);
-    color: #ffffff;
+    color: #fff;
 
     font-weight: 750;
-
-    transition: var(--transition);
 }
 
 .search-main-btn:hover {
@@ -1228,9 +1157,9 @@ img {
 }
 
 
-/* =========================
-   SECTION
-   ========================= */
+/* =========================================================
+   SECTIONS
+   ========================================================= */
 
 .section {
     padding: 82px 0;
@@ -1259,8 +1188,7 @@ img {
 
     color: var(--heading);
 
-    font-size: clamp(29px, 4vw, 42px);
-
+    font-size: clamp(29px,4vw,42px);
     line-height: 1.15;
 }
 
@@ -1268,30 +1196,26 @@ img {
     margin-top: 10px;
 
     color: var(--muted);
-
     font-size: 15px;
 }
 
 
-/* =========================
+/* =========================================================
    CATEGORIES
-   ========================= */
+   ========================================================= */
 
 .category-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-
+    grid-template-columns: repeat(5,1fr);
     gap: 14px;
 }
 
 .category-card {
     position: relative;
 
-    padding: 22px 18px;
-
     min-height: 180px;
 
-    text-align: left;
+    padding: 22px 18px;
 
     background: var(--card);
 
@@ -1307,9 +1231,7 @@ img {
 
 .category-card:hover {
     border-color: var(--primary);
-
     transform: translateY(-5px);
-
     box-shadow: var(--shadow);
 }
 
@@ -1347,21 +1269,12 @@ img {
     bottom: 20px;
 
     color: var(--primary);
-
-    opacity: .5;
-
-    transition: var(--transition);
-}
-
-.category-card:hover .category-arrow {
-    opacity: 1;
-    transform: translateX(4px);
 }
 
 
-/* =========================
-   MEDICINES
-   ========================= */
+/* =========================================================
+   MEDICINES / PRODUCTS
+   ========================================================= */
 
 .medicines-section {
     background: var(--bg-soft);
@@ -1373,7 +1286,6 @@ img {
     justify-content: space-between;
 
     gap: 15px;
-
     margin-bottom: 25px;
 }
 
@@ -1383,7 +1295,6 @@ img {
     gap: 8px;
 
     color: var(--muted);
-
     font-size: 13px;
 }
 
@@ -1416,16 +1327,11 @@ img {
     outline: 0;
 }
 
-
-/* =========================
-   PRODUCTS
-   ========================= */
-
 .products-grid {
     display: grid;
 
     grid-template-columns:
-        repeat(4, minmax(0, 1fr));
+        repeat(4,minmax(0,1fr));
 
     gap: 18px;
 }
@@ -1455,7 +1361,6 @@ img {
     place-items: center;
 
     background: var(--bg-soft);
-
     color: var(--primary);
 
     font-size: 50px;
@@ -1467,7 +1372,6 @@ img {
 
 .product-info h3 {
     color: var(--heading);
-
     font-size: 16px;
     line-height: 1.3;
 }
@@ -1489,7 +1393,6 @@ img {
     justify-content: space-between;
 
     gap: 10px;
-
     margin-top: 10px;
 }
 
@@ -1501,21 +1404,20 @@ img {
 .add-cart-btn {
     min-height: 38px;
 
-    padding: 0 12px;
-
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
 
+    padding: 0 12px;
+
     background: var(--primary);
-    color: #ffffff;
+    color: #fff;
 
     border-radius: 9px;
 
     font-size: 12px;
     font-weight: 750;
-
-    transition: var(--transition);
 }
 
 .add-cart-btn:hover {
@@ -1524,7 +1426,6 @@ img {
 
 .empty-products {
     padding: 60px 20px;
-
     text-align: center;
 }
 
@@ -1541,8 +1442,6 @@ img {
     color: var(--primary);
 
     border-radius: 50%;
-
-    font-size: 23px;
 }
 
 .empty-products h3 {
@@ -1551,20 +1450,17 @@ img {
 
 .empty-products p {
     margin: 6px 0 18px;
-
     color: var(--muted);
 }
 
 
-/* =========================
+/* =========================================================
    SERVICES
-   ========================= */
+   ========================================================= */
 
 .services-grid {
     display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
+    grid-template-columns: repeat(4,1fr);
     gap: 16px;
 }
 
@@ -1577,8 +1473,6 @@ img {
     border-radius: 18px;
 
     box-shadow: var(--shadow-sm);
-
-    transition: var(--transition);
 }
 
 .service-card:hover {
@@ -1615,16 +1509,14 @@ img {
 
 .service-card p {
     margin-top: 8px;
-
     color: var(--muted);
-
     font-size: 13px;
 }
 
 
-/* =========================
+/* =========================================================
    WHATSAPP BANNER
-   ========================= */
+   ========================================================= */
 
 .whatsapp-banner-section {
     padding: 10px 0 80px;
@@ -1644,7 +1536,7 @@ img {
             #056044
         );
 
-    color: #ffffff;
+    color: #fff;
 
     border-radius: 22px;
 
@@ -1662,7 +1554,6 @@ img {
     flex-shrink: 0;
 
     background: rgba(255,255,255,.13);
-
     border-radius: 18px;
 
     font-size: 30px;
@@ -1680,33 +1571,26 @@ img {
 
 .whatsapp-banner-text h2 {
     margin-top: 2px;
-
     font-size: 25px;
 }
 
 .whatsapp-banner-text p {
     margin-top: 3px;
-
     opacity: .82;
-
     font-size: 13px;
 }
 
 .whatsapp-banner-btn {
     flex-shrink: 0;
 
-    background: #ffffff;
+    background: #fff;
     color: var(--primary);
 }
 
-.whatsapp-banner-btn:hover {
-    transform: translateY(-2px);
-}
 
-
-/* =========================
+/* =========================================================
    OFFERS
-   ========================= */
+   ========================================================= */
 
 .offers-section {
     background: var(--bg-soft);
@@ -1714,9 +1598,7 @@ img {
 
 .offers-grid {
     display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
+    grid-template-columns: repeat(3,1fr);
     gap: 17px;
 }
 
@@ -1733,8 +1615,6 @@ img {
     border-radius: 18px;
 
     box-shadow: var(--shadow-sm);
-
-    transition: var(--transition);
 }
 
 .offer-card:hover {
@@ -1773,22 +1653,18 @@ img {
 
 .offer-card p {
     margin-top: 5px;
-
     color: var(--muted);
-
     font-size: 13px;
 }
 
 
-/* =========================
+/* =========================================================
    REVIEWS
-   ========================= */
+   ========================================================= */
 
 .reviews-layout {
     display: grid;
-
     grid-template-columns: .9fr 1.1fr;
-
     gap: 20px;
 }
 
@@ -1808,7 +1684,6 @@ img {
     display: flex;
     align-items: center;
     gap: 13px;
-
     margin-bottom: 22px;
 }
 
@@ -1856,17 +1731,12 @@ img {
     padding: 12px 13px;
 
     background: var(--bg);
-
     color: var(--text);
 
     border: 1px solid var(--border);
     border-radius: 10px;
 
     outline: 0;
-
-    resize: vertical;
-
-    transition: var(--transition);
 }
 
 .form-group input:focus,
@@ -1877,16 +1747,6 @@ img {
         0 0 0 3px rgba(8,127,91,.08);
 }
 
-.form-group small {
-    display: block;
-
-    margin-top: 5px;
-
-    color: var(--muted);
-
-    font-size: 10px;
-}
-
 .rating-input {
     display: flex;
     gap: 4px;
@@ -1895,10 +1755,7 @@ img {
 .rating-input button {
     background: transparent;
     color: #cbd5e1;
-
     font-size: 20px;
-
-    transition: var(--transition);
 }
 
 .rating-input button.active,
@@ -1908,6 +1765,14 @@ img {
 
 .review-submit-btn {
     width: 100%;
+}
+
+.auth-message {
+    display: none;
+}
+
+.auth-message.show {
+    display: block;
 }
 
 .reviews-display-header {
@@ -1920,15 +1785,6 @@ img {
     padding-bottom: 18px;
 
     border-bottom: 1px solid var(--border);
-}
-
-.reviews-display-header > div:first-child span {
-    color: var(--primary);
-
-    font-size: 10px;
-    font-weight: 850;
-
-    letter-spacing: 1.3px;
 }
 
 .reviews-display-header h3 {
@@ -1953,17 +1809,13 @@ img {
 .comments-list {
     display: flex;
     flex-direction: column;
-
     gap: 12px;
-
     margin-top: 18px;
 }
 
 .review-item {
     padding: 15px;
-
     background: var(--bg-soft);
-
     border-radius: 13px;
 }
 
@@ -1971,7 +1823,6 @@ img {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     gap: 10px;
 }
 
@@ -1989,7 +1840,7 @@ img {
     place-items: center;
 
     background: var(--primary);
-    color: #ffffff;
+    color: #fff;
 
     border-radius: 50%;
 
@@ -1999,9 +1850,7 @@ img {
 
 .review-user strong {
     display: block;
-
     color: var(--heading);
-
     font-size: 13px;
 }
 
@@ -2012,23 +1861,14 @@ img {
 
 .review-text {
     margin-top: 10px;
-
     color: var(--muted);
-
     font-size: 13px;
 }
 
 .review-placeholder {
     padding: 40px 20px;
-
     text-align: center;
-
     color: var(--muted);
-}
-
-.review-placeholder > i {
-    font-size: 35px;
-    opacity: .5;
 }
 
 .review-placeholder h3 {
@@ -2037,9 +1877,9 @@ img {
 }
 
 
-/* =========================
+/* =========================================================
    CONTACT
-   ========================= */
+   ========================================================= */
 
 .contact-section {
     background: var(--bg-soft);
@@ -2047,9 +1887,7 @@ img {
 
 .contact-grid {
     display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
+    grid-template-columns: repeat(4,1fr);
     gap: 15px;
 }
 
@@ -2066,8 +1904,6 @@ img {
     border-radius: 17px;
 
     box-shadow: var(--shadow-sm);
-
-    transition: var(--transition);
 }
 
 .contact-card:hover {
@@ -2097,7 +1933,6 @@ img {
 
 .contact-card span {
     color: var(--muted);
-
     font-size: 11px;
 }
 
@@ -2112,9 +1947,9 @@ img {
 }
 
 
-/* =========================
+/* =========================================================
    FOOTER
-   ========================= */
+   ========================================================= */
 
 .footer {
     background: #09251e;
@@ -2123,16 +1958,14 @@ img {
 
 .footer-content {
     display: grid;
-
     grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
-
     gap: 40px;
 
     padding: 60px 0 45px;
 }
 
 .footer .logo-text strong {
-    color: #ffffff;
+    color: #fff;
 }
 
 .footer .logo-text span {
@@ -2141,18 +1974,15 @@ img {
 
 .footer-brand > p {
     max-width: 300px;
-
     margin-top: 16px;
 
     color: #9fb6af;
-
     font-size: 13px;
 }
 
 .footer-social {
     display: flex;
     gap: 8px;
-
     margin-top: 18px;
 }
 
@@ -2164,30 +1994,24 @@ img {
     place-items: center;
 
     background: rgba(255,255,255,.08);
-
     border-radius: 10px;
-
-    transition: var(--transition);
 }
 
 .footer-social a:hover {
     background: var(--primary);
-    color: #ffffff;
+    color: #fff;
 }
 
 .footer-links {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
     gap: 8px;
 }
 
 .footer-links h3 {
     margin-bottom: 6px;
-
-    color: #ffffff;
-
+    color: #fff;
     font-size: 15px;
 }
 
@@ -2195,23 +2019,14 @@ img {
 .footer-links button,
 .footer-links span {
     color: #9fb6af;
-
     background: transparent;
-
     font-size: 12px;
-
     text-align: left;
-
-    transition: var(--transition);
 }
 
 .footer-links a:hover,
 .footer-links button:hover {
     color: #73d6b5;
-}
-
-.footer-contact i {
-    width: 18px;
 }
 
 .footer-bottom {
@@ -2228,18 +2043,16 @@ img {
     gap: 15px;
 
     color: #8da8a0;
-
     font-size: 11px;
 }
 
 
-/* =========================
+/* =========================================================
    OVERLAY
-   ========================= */
+   ========================================================= */
 
 .overlay {
     position: fixed;
-
     inset: 0;
 
     z-index: 1000;
@@ -2258,9 +2071,9 @@ img {
 }
 
 
-/* =========================
+/* =========================================================
    CART SIDEBAR
-   ========================= */
+   ========================================================= */
 
 .cart-sidebar {
     position: fixed;
@@ -2270,8 +2083,7 @@ img {
 
     z-index: 1100;
 
-    width: min(420px, 100%);
-
+    width: min(420px,100%);
     height: 100vh;
 
     display: flex;
@@ -2282,7 +2094,6 @@ img {
     box-shadow: -15px 0 45px rgba(0,0,0,.18);
 
     transform: translateX(100%);
-
     transition: transform .3s ease;
 }
 
@@ -2302,10 +2113,8 @@ img {
 
 .cart-header span {
     color: var(--primary);
-
     font-size: 10px;
     font-weight: 800;
-
     letter-spacing: 1px;
 }
 
@@ -2329,8 +2138,6 @@ img {
 
     border: 1px solid var(--border);
     border-radius: 10px;
-
-    transition: var(--transition);
 }
 
 .close-btn:hover {
@@ -2340,15 +2147,12 @@ img {
 
 .cart-items {
     flex: 1;
-
     overflow-y: auto;
-
     padding: 16px;
 }
 
 .cart-item {
     display: grid;
-
     grid-template-columns: 50px 1fr auto;
 
     gap: 12px;
@@ -2385,7 +2189,6 @@ img {
     display: flex;
     align-items: center;
     gap: 7px;
-
     margin-top: 7px;
 }
 
@@ -2401,10 +2204,10 @@ img {
 
 .cart-qty span {
     min-width: 18px;
+
     text-align: center;
 
     color: var(--heading);
-
     font-size: 12px;
     font-weight: 700;
 }
@@ -2450,9 +2253,7 @@ img {
 
 .empty-cart p {
     margin: 5px 0 18px;
-
     color: var(--muted);
-
     font-size: 13px;
 }
 
@@ -2478,7 +2279,6 @@ img {
 
 .cart-total-row {
     margin: 10px 0 15px;
-
     color: var(--heading);
 }
 
@@ -2496,7 +2296,7 @@ img {
     gap: 8px;
 
     background: var(--whatsapp);
-    color: #ffffff;
+    color: #fff;
 
     border-radius: 11px;
 
@@ -2504,14 +2304,13 @@ img {
 }
 
 
-/* =========================
+/* =========================================================
    AUTH MODAL
-   ========================= */
+   ========================================================= */
 
 .auth-modal,
 .profile-modal {
     position: fixed;
-
     inset: 0;
 
     z-index: 1200;
@@ -2539,8 +2338,7 @@ img {
 .auth-box {
     position: relative;
 
-    width: min(430px, 100%);
-
+    width: min(430px,100%);
     max-height: 92vh;
 
     overflow-y: auto;
@@ -2553,26 +2351,16 @@ img {
     border-radius: 24px;
 
     box-shadow: var(--shadow-lg);
-
-    transform: translateY(15px) scale(.98);
-
-    transition: var(--transition);
-}
-
-.auth-modal.active .auth-box {
-    transform: translateY(0) scale(1);
 }
 
 .auth-close {
     position: absolute;
-
     right: 15px;
     top: 15px;
 }
 
 .auth-header {
     text-align: center;
-
     padding: 8px 20px 22px;
 }
 
@@ -2586,6 +2374,7 @@ img {
     margin: 0 auto 13px;
 
     background: var(--primary);
+    color: #fff;
 
     border-radius: 17px;
 }
@@ -2596,9 +2385,7 @@ img {
 
 .auth-header p {
     margin-top: 5px;
-
     color: var(--muted);
-
     font-size: 12px;
 }
 
@@ -2606,7 +2393,6 @@ img {
     display: none;
 
     padding: 10px 12px;
-
     margin-bottom: 15px;
 
     border-radius: 9px;
@@ -2692,7 +2478,6 @@ img {
     content: "";
 
     flex: 1;
-
     height: 1px;
 
     background: var(--border);
@@ -2707,72 +2492,24 @@ img {
     text-align: center;
 
     color: var(--muted);
-
     font-size: 12px;
 }
 
 .auth-switch button {
     background: transparent;
     color: var(--primary);
-
     font-weight: 800;
 }
 
-.forgot-icon {
-    width: 55px;
-    height: 55px;
 
-    display: grid;
-    place-items: center;
-
-    margin: 10px auto 15px;
-
-    background: var(--primary-light);
-    color: var(--primary);
-
-    border-radius: 50%;
-
-    font-size: 21px;
-}
-
-.auth-box > form h3 {
-    text-align: center;
-    color: var(--heading);
-}
-
-.forgot-description {
-    margin: 6px 0 20px;
-
-    color: var(--muted);
-
-    text-align: center;
-
-    font-size: 12px;
-}
-
-.back-login-btn {
-    width: 100%;
-
-    margin-top: 10px;
-
-    min-height: 42px;
-
-    background: transparent;
-    color: var(--muted);
-
-    border: 1px solid var(--border);
-    border-radius: 10px;
-}
-
-
-/* =========================
+/* =========================================================
    PROFILE MODAL
-   ========================= */
+   ========================================================= */
 
 .profile-modal-box {
     position: relative;
 
-    width: min(420px, 100%);
+    width: min(420px,100%);
 
     overflow: hidden;
 
@@ -2797,7 +2534,6 @@ img {
 
 .profile-main {
     padding: 0 25px 25px;
-
     text-align: center;
 }
 
@@ -2841,7 +2577,6 @@ img {
     padding: 11px;
 
     background: var(--bg-soft);
-
     border-radius: 11px;
 }
 
@@ -2849,7 +2584,6 @@ img {
     grid-row: span 2;
 
     color: var(--primary);
-
     align-self: center;
 }
 
@@ -2865,7 +2599,6 @@ img {
 
 .logout-large-btn {
     width: 100%;
-
     min-height: 46px;
 
     background: rgba(220,53,69,.09);
@@ -2874,19 +2607,17 @@ img {
     border-radius: 10px;
 
     font-weight: 800;
-
-    transition: var(--transition);
 }
 
 .logout-large-btn:hover {
     background: var(--danger);
-    color: #ffffff;
+    color: #fff;
 }
 
 
-/* =========================
+/* =========================================================
    TOAST
-   ========================= */
+   ========================================================= */
 
 .toast {
     position: fixed;
@@ -2923,7 +2654,6 @@ img {
 .toast.show {
     opacity: 1;
     visibility: visible;
-
     transform: translateY(0);
 }
 
@@ -2932,14 +2662,14 @@ img {
 }
 
 
-/* =========================
-   RESPONSIVE 1050
-   ========================= */
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 1050px) {
 
     .header-content {
-        gap: 16px;
+        gap: 14px;
     }
 
     .nav-links a {
@@ -2952,30 +2682,30 @@ img {
     }
 
     .category-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3,1fr);
     }
 
     .products-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3,1fr);
     }
 
     .services-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
     }
 
     .contact-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
     }
 
     .footer-content {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
     }
 }
 
 
-/* =========================
-   RESPONSIVE 800
-   ========================= */
+/* =========================================================
+   MOBILE NAV
+   ========================================================= */
 
 @media (max-width: 800px) {
 
@@ -2994,7 +2724,6 @@ img {
 
     .mobile-search {
         display: block;
-
         padding-bottom: 12px;
     }
 
@@ -3009,7 +2738,6 @@ img {
     .account-btn {
         width: 43px;
         padding: 0;
-        justify-content: center;
     }
 
     .nav {
@@ -3048,7 +2776,6 @@ img {
 
     .nav-links a {
         padding: 12px;
-
         font-size: 14px;
     }
 
@@ -3079,7 +2806,7 @@ img {
     }
 
     .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
     }
 
     .reviews-layout {
@@ -3088,14 +2815,14 @@ img {
 }
 
 
-/* =========================
-   RESPONSIVE 600
-   ========================= */
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
 
 @media (max-width: 600px) {
 
     .container {
-        width: min(100% - 22px, 1180px);
+        width: min(100% - 22px,1180px);
     }
 
     .top-bar-content {
@@ -3122,7 +2849,7 @@ img {
     }
 
     .header-actions {
-        gap: 5px;
+        gap: 4px;
     }
 
     .header-icon-btn,
@@ -3268,7 +2995,7 @@ img {
     }
 
     .category-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
     }
 
     .category-card {
@@ -3276,7 +3003,7 @@ img {
     }
 
     .products-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
         gap: 10px;
     }
 
@@ -3299,7 +3026,6 @@ img {
 
     .add-cart-btn {
         width: 100%;
-        justify-content: center;
     }
 
     .medicine-toolbar {
@@ -3339,7 +3065,6 @@ img {
 
     .footer-bottom-content {
         padding: 15px 0;
-
         flex-direction: column;
         text-align: center;
     }
@@ -3357,21 +3082,16 @@ img {
         right: 11px;
         left: 11px;
         bottom: 11px;
-
         max-width: none;
     }
 }
 
 
-/* =========================
-   RESPONSIVE 400
-   ========================= */
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
 
 @media (max-width: 400px) {
-
-    .category-grid {
-        grid-template-columns: 1fr 1fr;
-    }
 
     .category-card {
         padding: 17px 13px;
@@ -3385,10 +3105,6 @@ img {
 
     .category-card h3 {
         font-size: 13px;
-    }
-
-    .products-grid {
-        grid-template-columns: 1fr 1fr;
     }
 
     .hero h1 {
@@ -3405,9 +3121,9 @@ img {
 }
 
 
-/* =========================
+/* =========================================================
    ACCESSIBILITY
-   ========================= */
+   ========================================================= */
 
 button:focus-visible,
 a:focus-visible,
@@ -3419,9 +3135,9 @@ select:focus-visible {
 }
 
 
-/* =========================
+/* =========================================================
    REDUCED MOTION
-   ========================= */
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -3433,5 +3149,4 @@ select:focus-visible {
         animation-iteration-count: 1 !important;
         transition-duration: .01ms !important;
     }
-
 }
