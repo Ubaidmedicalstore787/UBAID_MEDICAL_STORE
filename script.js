@@ -1185,4 +1185,765 @@ console.log(
 
 console.log(
     "ℹ️ Login & Comments temporarily disabled"
+);/* =========================================================
+   UBAID MEDICAL STORE V2
+   MAIN SCRIPT - PART 2
+   ========================================================= */
+
+
+/* =========================================================
+   PRODUCT FILTER
+   ========================================================= */
+
+function initProductFilter() {
+
+    const select =
+        document.querySelector(
+            ".medicine-filter select"
+        );
+
+    if (!select) return;
+
+
+    select.addEventListener(
+        "change",
+        () => {
+
+            const value =
+                select.value
+                    .trim()
+                    .toLowerCase();
+
+            const products =
+                document.querySelectorAll(
+                    ".product-card"
+                );
+
+            let count = 0;
+
+
+            products.forEach(product => {
+
+                const category =
+                    product.querySelector(
+                        ".product-category"
+                    )?.textContent
+                    ?.trim()
+                    .toLowerCase() || "";
+
+
+                const name =
+                    product.querySelector(
+                        "h3"
+                    )?.textContent
+                    ?.trim()
+                    .toLowerCase() || "";
+
+
+                const match =
+                    value === "all" ||
+                    value === "" ||
+                    category.includes(value) ||
+                    name.includes(value);
+
+
+                product.style.display =
+                    match ? "" : "none";
+
+
+                if (match) {
+                    count++;
+                }
+
+            });
+
+
+            updateMedicineResult(count);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   MEDICINE RESULT
+   ========================================================= */
+
+function updateMedicineResult(count) {
+
+    const result =
+        document.querySelector(
+            ".medicine-result"
+        );
+
+
+    if (!result) return;
+
+
+    result.innerHTML = `
+        <i class="fa-solid fa-pills"></i>
+        <span>${count} products found</span>
+    `;
+
+}
+
+
+/* =========================================================
+   PRODUCT SORT
+   ========================================================= */
+
+function initProductSort() {
+
+    const select =
+        document.querySelector(
+            ".medicine-filter select"
+        );
+
+    if (!select) return;
+
+
+    /*
+       Agar HTML me future me
+       sort options add kiye jayein
+       to ye function handle karega.
+    */
+
+}
+
+
+/* =========================================================
+   CATEGORY CLICK
+   ========================================================= */
+
+function initCategoryCards() {
+
+    const categories =
+        document.querySelectorAll(
+            ".category-card"
+        );
+
+
+    categories.forEach(card => {
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                const title =
+                    card.querySelector(
+                        "h3"
+                    )?.textContent
+                    ?.trim();
+
+
+                if (!title) return;
+
+
+                const searchInput =
+                    document.querySelector(
+                        "#mainSearchInput"
+                    );
+
+
+                if (searchInput) {
+
+                    searchInput.value =
+                        title;
+
+                }
+
+
+                filterProducts(
+                    title.toLowerCase()
+                );
+
+
+                const medicineSection =
+                    document.querySelector(
+                        "#medicines"
+                    );
+
+
+                if (medicineSection) {
+
+                    medicineSection.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                }
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   PROFILE DROPDOWN
+   ========================================================= */
+
+function initProfileDropdown() {
+
+    const profileGroup =
+        document.querySelector(
+            ".user-profile-group"
+        );
+
+
+    const profileButton =
+        document.querySelector(
+            ".profile-btn"
+        );
+
+
+    if (!profileGroup || !profileButton) {
+        return;
+    }
+
+
+    profileButton.addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+            profileGroup.classList.toggle(
+                "open"
+            );
+
+        }
+    );
+
+
+    document.addEventListener(
+        "click",
+        event => {
+
+            if (
+                !profileGroup.contains(
+                    event.target
+                )
+            ) {
+
+                profileGroup.classList.remove(
+                    "open"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   AUTH BUTTONS - TEMPORARILY OFF
+   ========================================================= */
+
+function initAuthButtons() {
+
+    /*
+       LOGIN / SIGNUP / FIREBASE
+       ABHI DISABLED HAIN.
+
+       Kal jab login system karenge
+       tab yahan Firebase connect karenge.
+    */
+
+
+    const accountButtons =
+        document.querySelectorAll(
+            ".account-btn"
+        );
+
+
+    accountButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            event => {
+
+                event.preventDefault();
+
+                showToast(
+                    "Login system baad me activate hoga"
+                );
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   REVIEW FORM - TEMPORARILY OFF
+   ========================================================= */
+
+function initReviewForm() {
+
+    const form =
+        document.querySelector(
+            ".review-form-card form"
+        );
+
+
+    if (!form) return;
+
+
+    form.addEventListener(
+        "submit",
+        event => {
+
+            event.preventDefault();
+
+
+            showToast(
+                "Reviews system baad me activate hoga"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PROFILE MODAL
+   ========================================================= */
+
+function initProfileModal() {
+
+    const modal =
+        document.querySelector(
+            ".profile-modal"
+        );
+
+
+    if (!modal) return;
+
+
+    const closeButton =
+        modal.querySelector(
+            ".close-btn"
+        );
+
+
+    if (closeButton) {
+
+        closeButton.addEventListener(
+            "click",
+            () => {
+
+                modal.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+    }
+
+
+    modal.addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target === modal
+            ) {
+
+                modal.classList.remove(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SMOOTH BUTTON LINKS
+   ========================================================= */
+
+function initSmoothLinks() {
+
+    document
+        .querySelectorAll(
+            'a[href^="#"]'
+        )
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                event => {
+
+                    const id =
+                        link.getAttribute(
+                            "href"
+                        );
+
+
+                    if (
+                        !id ||
+                        id === "#"
+                    ) {
+                        return;
+                    }
+
+
+                    const target =
+                        document.querySelector(
+                            id
+                        );
+
+
+                    if (!target) return;
+
+
+                    event.preventDefault();
+
+
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   NEWSLETTER / EMAIL FORMS
+   ========================================================= */
+
+function initForms() {
+
+    document
+        .querySelectorAll(
+            "form"
+        )
+        .forEach(form => {
+
+            if (
+                form.classList.contains(
+                    "review-form"
+                )
+            ) {
+                return;
+            }
+
+
+            form.addEventListener(
+                "submit",
+                event => {
+
+                    const action =
+                        form.getAttribute(
+                            "action"
+                        );
+
+
+                    if (
+                        !action ||
+                        action === "#"
+                    ) {
+
+                        event.preventDefault();
+
+                        showToast(
+                            "Form submitted successfully"
+                        );
+
+                    }
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   PHONE / CONTACT
+   ========================================================= */
+
+function initContactButtons() {
+
+    document
+        .querySelectorAll(
+            '[href^="tel:"]'
+        )
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    console.log(
+                        "📞 Contact button clicked"
+                    );
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   WHATSAPP LINKS
+   ========================================================= */
+
+function initWhatsAppLinks() {
+
+    document
+        .querySelectorAll(
+            '[href*="wa.me"]'
+        )
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    console.log(
+                        "💬 WhatsApp button clicked"
+                    );
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   BACK TO TOP
+   ========================================================= */
+
+function initBackToTop() {
+
+    const button =
+        document.querySelector(
+            ".back-to-top"
+        );
+
+
+    if (!button) return;
+
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            if (
+                window.scrollY > 500
+            ) {
+
+                button.classList.add(
+                    "show"
+                );
+
+            } else {
+
+                button.classList.remove(
+                    "show"
+                );
+
+            }
+
+        }
+    );
+
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   LAZY IMAGE SUPPORT
+   ========================================================= */
+
+function initImages() {
+
+    document
+        .querySelectorAll(
+            "img"
+        )
+        .forEach(img => {
+
+            if (
+                !img.hasAttribute(
+                    "loading"
+                )
+            ) {
+
+                img.setAttribute(
+                    "loading",
+                    "lazy"
+                );
+
+            }
+
+        });
+
+}
+
+
+/* =========================================================
+   ONLINE / OFFLINE STATUS
+   ========================================================= */
+
+function initNetworkStatus() {
+
+    window.addEventListener(
+        "online",
+        () => {
+
+            showToast(
+                "Internet connection restored"
+            );
+
+        }
+    );
+
+
+    window.addEventListener(
+        "offline",
+        () => {
+
+            showToast(
+                "Internet connection lost"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   LOCAL STORAGE SAFETY
+   ========================================================= */
+
+function clearOldData() {
+
+    /*
+       Purane unnecessary data ko
+       abhi automatically delete nahi karenge.
+
+       User ka cart safe rahega.
+    */
+
+}
+
+
+/* =========================================================
+   INITIALIZE PART 2
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        initProductFilter();
+        initProductSort();
+
+        initCategoryCards();
+
+        initProfileDropdown();
+
+        initAuthButtons();
+
+        initReviewForm();
+
+        initProfileModal();
+
+        initSmoothLinks();
+
+        initForms();
+
+        initContactButtons();
+
+        initWhatsAppLinks();
+
+        initBackToTop();
+
+        initImages();
+
+        initNetworkStatus();
+
+        clearOldData();
+
+
+        console.log(
+            "✅ Ubaid Medical Store JS Part 2 Loaded"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   FINAL STATUS
+   ========================================================= */
+
+window.UbaidMedicalStore = {
+
+    cart: cart,
+
+    addToCart: addToCart,
+
+    openCart: openCart,
+
+    closeCart: closeCart,
+
+    showToast: showToast,
+
+    toggleTheme: toggleTheme
+
+};
+
+
+console.log(
+    "🩺 UBAID MEDICAL STORE V2 READY"
+);
+
+console.log(
+    "🚫 Firebase Login/Signup: Temporarily OFF"
+);
+
+console.log(
+    "🚫 Comments/Reviews backend: Temporarily OFF"
+);
+
+console.log(
+    "✅ Cart/Search/Theme/Mobile Menu: ON"
 );
