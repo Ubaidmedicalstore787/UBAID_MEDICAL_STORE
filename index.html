@@ -1,1512 +1,521 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>Ubaid Medical Store | Trusted Healthcare</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<link rel="stylesheet" href="style.css">
 
-    <meta
-        name="description"
-        content="Ubaid Medical Store - Trusted medicines and healthcare products."
-    >
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <meta
-        name="theme-color"
-        content="#0d6efd"
-    >
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <title>Ubaid Medical Store | Trusted Healthcare</title>
-
-
-    <!-- Font Awesome -->
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
-
-
-    <!-- Main CSS -->
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
 
-
 <body>
 
+<!-- Loader -->
 
-    <!-- ================================================= -->
-    <!-- TOP BAR -->
-    <!-- ================================================= -->
+<div id="loader">
+<div class="spinner"></div>
+<h2>Ubaid Medical Store</h2>
+</div>
 
-    <div class="top-bar">
+<!-- Header -->
 
-        <div class="container top-bar-content">
+<header>
 
-            <span>
-                <i class="fa-solid fa-truck"></i>
-                Fast & Reliable Delivery
-            </span>
+<div class="logo">
 
-            <span>
-                <i class="fa-solid fa-location-dot"></i>
-                Thamarwa, Gopamau, Hardoi
-            </span>
+<i class="fa-solid fa-heart-pulse"></i>
 
-        </div>
+<h2>Ubaid Medical Store</h2>
 
+</div>
+
+<nav>
+
+<ul id="menu">
+
+<li><a href="#home">Home</a></li>
+
+<li><a href="#medicines">Medicines</a></li>
+
+<li><a href="#services">Services</a></li>
+
+<li><a href="#about">About</a></li>
+
+<li><a href="#contact">Contact</a></li>
+
+</ul>
+
+</nav>
+
+<div class="header-buttons">
+
+<button id="darkBtn">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+<button id="loginBtn">
+
+<i class="fa-solid fa-user"></i>
+
+Login
+
+</button>
+
+<button id="logoutBtn" style="display:none;">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</button>
+
+<button id="cartBtn">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+<span id="cartCount">0</span>
+
+</button>
+
+<div class="menu-icon">
+
+<i class="fa-solid fa-bars"></i>
+
+</div>
+
+</div>
+
+</header>
+
+<!-- Hero -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<h1>Your Trusted Medical Store</h1>
+
+<p>
+
+Buy genuine medicines at affordable prices.
+
+Fast Delivery | 24×7 Support | Trusted Quality
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="#medicines" class="btn">
+
+Shop Medicines
+
+</a>
+
+<a href="https://wa.me/919999999999"
+
+target="_blank"
+
+class="btn green">
+
+WhatsApp Order
+
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-image">
+
+<img src="assets/hero.jpg"
+
+alt="Medical Store">
+
+</div>
+
+</section>
+
+<!-- Search -->
+
+<section class="search-section">
+
+<h2>Search Medicines</h2>
+
+<div class="search-box">
+
+<input
+
+type="text"
+
+id="searchInput"
+
+placeholder="Search medicine...">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+</div>
+
+</section>
+
+<!-- Medicines -->
+
+<section id="medicines" class="medicine-section">
+
+<h2>Popular Medicines</h2>
+
+<div class="medicine-grid"><!-- Medicine Card 1 -->
+
+<div class="medicine-card">
+
+<img src="assets/medicines/paracetamol.png" alt="Paracetamol">
+
+<h3>Paracetamol 650</h3>
+
+<p>Fever & Pain Relief</p>
+
+<h4>₹30</h4>
+
+<button class="add-cart"
+data-name="Paracetamol 650"
+data-price="30">
+
+Add to Cart
+
+</button>
+
+</div>
+
+<!-- Medicine Card 2 -->
+
+<div class="medicine-card">
+
+<img src="assets/medicines/dolo.png" alt="Dolo">
+
+<h3>Dolo 650</h3>
+
+<p>Fever Tablet</p>
+
+<h4>₹35</h4>
+
+<button class="add-cart"
+data-name="Dolo 650"
+data-price="35">
+
+Add to Cart
+
+</button>
+
+</div>
+
+<!-- Medicine Card 3 -->
+
+<div class="medicine-card">
+
+<img src="assets/medicines/cetirizine.png" alt="Cetirizine">
+
+<h3>Cetirizine</h3>
+
+<p>Allergy Relief</p>
+
+<h4>₹45</h4>
+
+<button class="add-cart"
+data-name="Cetirizine"
+data-price="45">
+
+Add to Cart
+
+</button>
+
+</div>
+
+<!-- Medicine Card 4 -->
+
+<div class="medicine-card">
+
+<img src="assets/medicines/amoxicillin.png" alt="Amoxicillin">
+
+<h3>Amoxicillin</h3>
+
+<p>Antibiotic</p>
+
+<h4>₹120</h4>
+
+<button class="add-cart"
+data-name="Amoxicillin"
+data-price="120">
+
+Add to Cart
+
+</button>
+
+</div>
+
+<!-- Medicine Card 5 -->
+
+<div class="medicine-card">
+
+<img src="assets/medicines/vitaminc.png" alt="Vitamin C">
+
+<h3>Vitamin C</h3>
+
+<p>Immunity Booster</p>
+
+<h4>₹99</h4>
+
+<button class="add-cart"
+data-name="Vitamin C"
+data-price="99">
+
+Add to Cart
+
+</button>
+
+</div>
+
+<!-- Medicine Card 6 -->
+
+<div class="medicine-card">
+
+<img src="assets/medicines/omeprazole.png" alt="Omeprazole">
+
+<h3>Omeprazole</h3>
+
+<p>Acidity Relief</p>
+
+<h4>₹85</h4>
+
+<button class="add-cart"
+data-name="Omeprazole"
+data-price="85">
+
+Add to Cart
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Shopping Cart -->
+
+<div class="cart-panel" id="cartPanel">
+
+<div class="cart-header">
+
+<h2>Your Cart</h2>
+
+<button id="closeCart">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+</div>
+
+<div id="cartItems">
+
+<p>Your cart is empty.</p>
+
+</div>
+
+<div class="cart-footer">
+
+<h3>Total :
+₹<span id="totalPrice">0</span></h3>
+
+<button id="whatsappOrder">
+
+Order on WhatsApp
+
+</button>
+
+</div>
+
+</div>
+
+<div id="cartOverlay"></div>
+
+<!-- Login Popup -->
+
+<div class="popup" id="loginPopup">
+
+<div class="popup-content">
+
+<span class="closePopup">&times;</span>
+
+<h2>Login</h2>
+
+<input
+type="email"
+id="loginEmail"
+placeholder="Email">
+
+<input
+type="password"
+id="loginPassword"
+placeholder="Password">
+
+<button id="loginUser">
+
+Login
+
+</button>
+
+<p>
+
+Don't have an account?
+
+<a href="#" id="openSignup">
+
+Signup
+
+</a>
+
+</p>
+
+</div>
+
+</div><!-- Signup Popup -->
+
+<div class="popup" id="signupPopup">
+
+  <div class="popup-content">
+
+    <span class="closeSignup">&times;</span>
+
+    <h2>Create Account</h2>
+
+    <input
+      type="text"
+      id="signupName"
+      placeholder="Full Name">
+
+    <input
+      type="email"
+      id="signupEmail"
+      placeholder="Email">
+
+    <input
+      type="password"
+      id="signupPassword"
+      placeholder="Password">
+
+    <button id="signupUser">
+      Create Account
+    </button>
+
+    <p>
+      Already have an account?
+      <a href="#" id="openLogin">
+        Login
+      </a>
+    </p>
+
+  </div>
+
+</div>
+
+<!-- Services -->
+
+<section id="services" class="services">
+
+  <h2>Our Services</h2>
+
+  <div class="service-grid">
+
+    <div class="service-card">
+      <i class="fa-solid fa-truck-medical"></i>
+      <h3>Fast Delivery</h3>
+      <p>Quick home delivery of medicines.</p>
     </div>
 
-
-    <!-- ================================================= -->
-    <!-- HEADER -->
-    <!-- ================================================= -->
-
-    <header class="header">
-
-        <div class="container header-content">
-
-
-            <!-- LOGO -->
-
-            <a href="#home" class="logo">
-
-                <div class="logo-icon">
-                    <i class="fa-solid fa-plus"></i>
-                </div>
-
-                <div class="logo-text">
-
-                    <strong>
-                        Ubaid Medical
-                    </strong>
-
-                    <span>
-                        Store
-                    </span>
-
-                </div>
-
-            </a>
-
-
-            <!-- SEARCH -->
-
-            <div class="header-search">
-
-                <input
-                    type="search"
-                    id="medicineSearch"
-                    placeholder="Search medicines..."
-                    autocomplete="off"
-                >
-
-                <button
-                    type="button"
-                    id="searchBtn"
-                    aria-label="Search"
-                >
-
-                    <i class="fa-solid fa-magnifying-glass"></i>
-
-                </button>
-
-            </div>
-
-
-            <!-- ACTIONS -->
-
-            <div class="header-actions">
-
-
-                <!-- DARK MODE -->
-
-                <button
-                    type="button"
-                    id="themeToggle"
-                    class="icon-btn"
-                    title="Dark Mode"
-                    aria-label="Toggle dark mode"
-                >
-
-                    <i class="fa-solid fa-moon"></i>
-
-                </button>
-
-
-                <!-- ACCOUNT BUTTON (Visible when logged out) -->
-
-                <button
-                    type="button"
-                    id="accountBtn"
-                    class="icon-btn"
-                    title="Login / Signup"
-                    aria-label="Account"
-                >
-
-                    <i class="fa-solid fa-user"></i>
-
-                </button>
-
-                <!-- USER PROFILE CONTAINER (Visible when logged in) -->
-                <div id="userProfileGroup" class="user-profile-group" style="display: none;">
-                    <div class="user-info">
-                        <i class="fa-solid fa-circle-user"></i>
-                        <span id="userDisplayName" class="user-name">User</span>
-                    </div>
-                    <button type="button" id="logoutBtn" class="logout-btn" title="Logout">
-                        <i class="fa-solid fa-right-from-bracket"></i> Logout
-                    </button>
-                </div>
-
-
-                <!-- CART -->
-
-                <button
-                    type="button"
-                    id="cartBtn"
-                    class="cart-button"
-                    aria-label="Shopping cart"
-                >
-
-                    <i class="fa-solid fa-cart-shopping"></i>
-
-                    <span id="cartCount">
-                        0
-                    </span>
-
-                </button>
-
-
-                <!-- MOBILE MENU -->
-
-                <button
-                    type="button"
-                    id="mobileMenuBtn"
-                    class="mobile-menu-btn"
-                    aria-label="Menu"
-                >
-
-                    <i class="fa-solid fa-bars"></i>
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- MOBILE SEARCH -->
-
-        <div class="mobile-search container">
-
-            <input
-                type="search"
-                id="mobileMedicineSearch"
-                placeholder="Search medicines..."
-            >
-
-            <button
-                type="button"
-                id="mobileSearchBtn"
-                aria-label="Search"
-            >
-
-                <i class="fa-solid fa-magnifying-glass"></i>
-
-            </button>
-
-        </div>
-
-    </header>
-
-
-    <!-- ================================================= -->
-    <!-- NAVIGATION -->
-    <!-- ================================================= -->
-
-    <nav class="nav">
-
-        <div class="container">
-
-            <div
-                class="nav-links"
-                id="navLinks"
-            >
-
-                <a href="#home">
-                    Home
-                </a>
-
-                <a href="#medicines">
-                    Medicines
-                </a>
-
-                <a href="#categories">
-                    Categories
-                </a>
-
-                <a href="#services">
-                    Services
-                </a>
-
-                <a href="#offers">
-                    Offers
-                </a>
-
-                <a href="#comments">
-                    Reviews
-                </a>
-
-                <a href="#contact">
-                    Contact
-                </a>
-
-            </div>
-
-        </div>
-
-    </nav>
-
-
-    <!-- ================================================= -->
-    <!-- HERO -->
-    <!-- ================================================= -->
-
-    <main>
-
-        <section
-            class="hero"
-            id="home"
-        >
-
-            <div class="container hero-content">
-
-
-                <div class="hero-text">
-
-                    <span class="hero-badge">
-
-                        <i class="fa-solid fa-shield-heart"></i>
-
-                        Trusted Healthcare
-
-                    </span>
-
-
-                    <h1>
-
-                        Your Health,
-                        <span>Our Priority</span>
-
-                    </h1>
-
-
-                    <p>
-
-                        Quality medicines and healthcare
-                        products delivered with care.
-
-                    </p>
-
-
-                    <div class="hero-buttons">
-
-                        <a
-                            href="#medicines"
-                            class="btn btn-primary"
-                        >
-
-                            <i class="fa-solid fa-pills"></i>
-
-                            Shop Medicines
-
-                        </a>
-
-
-                        <a
-                            href="#contact"
-                            class="btn btn-outline"
-                        >
-
-                            Contact Us
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <div class="hero-image">
-
-                    <div class="hero-circle">
-
-                        <i class="fa-solid fa-house-medical"></i>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================================= -->
-        <!-- STATS -->
-        <!-- ================================================= -->
-
-        <section class="stats">
-
-            <div class="container stats-grid">
-
-
-                <div class="stat-card">
-
-                    <i class="fa-solid fa-pills"></i>
-
-                    <div>
-
-                        <strong>
-                            500+
-                        </strong>
-
-                        <span>
-                            Medicines
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <i class="fa-solid fa-users"></i>
-
-                    <div>
-
-                        <strong>
-                            1000+
-                        </strong>
-
-                        <span>
-                            Happy Customers
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <i class="fa-solid fa-truck-fast"></i>
-
-                    <div>
-
-                        <strong>
-                            Fast
-                        </strong>
-
-                        <span>
-                            Delivery
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <i class="fa-solid fa-headset"></i>
-
-                    <div>
-
-                        <strong>
-                            Support
-                        </strong>
-
-                        <span>
-                            Available
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================================= -->
-        <!-- SEARCH -->
-        <!-- ================================================= -->
-
-        <section class="search-section">
-
-            <div class="container">
-
-                <div class="search-box">
-
-                    <input
-                        type="search"
-                        id="mainMedicineSearch"
-                        placeholder="What medicine are you looking for?"
-                    >
-
-                    <button
-                        type="button"
-                        id="mainSearchBtn"
-                    >
-
-                        <i class="fa-solid fa-magnifying-glass"></i>
-
-                        Search
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================================= -->
-        <!-- CATEGORIES -->
-        <!-- ================================================= -->
-
-        <section
-            class="section"
-            id="categories"
-        >
-
-            <div class="container">
-
-
-                <div class="section-heading">
-
-                    <span>
-                        Browse
-                    </span>
-
-                    <h2>
-                        Shop by Category
-                    </h2>
-
-                    <p>
-                        Find the healthcare products you need.
-                    </p>
-
-                </div>
-
-
-                <div class="category-grid">
-
-
-                    <button
-                        type="button"
-                        class="category-card"
-                        data-category="fever"
-                    >
-
-                        <div class="category-icon">
-
-                            <i class="fa-solid fa-temperature-half"></i>
-
-                        </div>
-
-                        <h3>
-                            Fever & Pain
-                        </h3>
-
-                        <span>
-                            Pain relief
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="category-card"
-                        data-category="cold"
-                    >
-
-                        <div class="category-icon">
-
-                            <i class="fa-solid fa-head-side-cough"></i>
-
-                        </div>
-
-                        <h3>
-                            Cold & Cough
-                        </h3>
-
-                        <span>
-                            Cold care
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="category-card"
-                        data-category="vitamins"
-                    >
-
-                        <div class="category-icon">
-
-                            <i class="fa-solid fa-capsules"></i>
-
-                        </div>
-
-                        <h3>
-                            Vitamins
-                        </h3>
-
-                        <span>
-                            Health supplements
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="category-card"
-                        data-category="firstaid"
-                    >
-
-                        <div class="category-icon">
-
-                            <i class="fa-solid fa-kit-medical"></i>
-
-                        </div>
-
-                        <h3>
-                            First Aid
-                        </h3>
-
-                        <span>
-                            Emergency care
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="category-card"
-                        data-category="personal-care"
-                    >
-
-                        <div class="category-icon">
-
-                            <i class="fa-solid fa-hand-holding-heart"></i>
-
-                        </div>
-
-                        <h3>
-                            Personal Care
-                        </h3>
-
-                        <span>
-                            Daily care
-                        </span>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================================= -->
-        <!-- MEDICINES -->
-        <!-- ================================================= -->
-
-        <section
-            class="section medicines-section"
-            id="medicines"
-        >
-
-            <div class="container">
-
-
-                <div class="section-heading">
-
-                    <span>
-                        Our Products
-                    </span>
-
-                    <h2>
-                        Popular Medicines
-                    </h2>
-
-                    <p>
-                        Quality healthcare products for your everyday needs.
-                    </p>
-
-                </div>
-
-
-                <div class="medicine-toolbar">
-
-                    <div>
-
-                        <span id="resultCount">
-                            Showing medicines
-                        </span>
-
-                    </div>
-
-
-                    <select
-                        id="categoryFilter"
-                        aria-label="Filter medicines"
-                    >
-
-                        <option value="all">
-                            All Categories
-                        </option>
-
-                        <option value="fever">
-                            Fever & Pain
-                        </option>
-
-                        <option value="cold">
-                            Cold & Cough
-                        </option>
-
-                        <option value="vitamins">
-                            Vitamins
-                        </option>
-
-                        <option value="firstaid">
-                            First Aid
-                        </option>
-
-                        <option value="personal-care">
-                            Personal Care
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- PRODUCTS LOAD HERE -->
-
-                <div
-                    class="products-grid"
-                    id="productsGrid"
-                ></div>
-
-
-                <div
-                    id="emptyProducts"
-                    class="empty-products"
-                    hidden
-                >
-
-                    <i class="fa-solid fa-magnifying-glass"></i>
-
-                    <h3>
-                        No medicines found
-                    </h3>
-
-                    <p>
-                        Try another medicine name or category.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================================= -->
-        <!-- SERVICES -->
-        <!-- ================================================= -->
-
-        <section
-            class="section services-section"
-            id="services"
-        >
-
-            <div class="container">
-
-
-                <div class="section-heading">
-
-                    <span>
-                        Why Choose Us
-                    </span>
-
-                    <h2>
-                        Our Services
-                    </h2>
-
-                </div>
-
-
-                <div class="services-grid">
-
-
-                    <div class="service-card">
-
-                        <i class="fa-solid fa-truck-fast"></i>
-
-                        <h3>
-                            Fast Delivery
-                        </h3>
-
-                        <p>
-                            Get your healthcare products delivered quickly.
-                        </p>
-
-                    </div>
-
-
-                    <div class="service-card">
-
-                        <i class="fa-solid fa-shield-heart"></i>
-
-                        <h3>
-                            Trusted Products
-                        </h3>
-
-                        <p>
-                            Quality healthcare products for your needs.
-                        </p>
-
-                    </div>
-
-
-                    <div class="service-card">
-
-                        <i class="fa-solid fa-headset"></i>
-
-                        <h3>
-                            Customer Support
-                        </h3>
-
-                        <p>
-                            Contact us whenever you need assistance.
-                        </p>
-
-                    </div>
-
-
-                    <div class="service-card">
-
-                        <i class="fa-brands fa-whatsapp"></i>
-
-                        <h3>
-                            WhatsApp Orders
-                        </h3>
-
-                        <p>
-                            Add products to your cart and order on WhatsApp.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================================= -->
-        <!-- OFFERS -->
-        <!-- ================================================= -->
-
-        <section
-            class="section offers-section"
-            id="offers"
-        >
-
-            <div class="container">
-
-                <div class="offer-banner">
-
-                    <div>
-
-                        <span>
-                            Special Offer
-                        </span>
-
-                        <h2>
-                            Healthcare Made Simple
-                        </h2>
-
-                        <p>
-                            Browse medicines and order easily through WhatsApp.
-                        </p>
-
-                    </div>
-
-
-                    <a
-                        href="#medicines"
-                        class="btn"
-                    >
-
-                        Shop Now
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================================= -->
-        <!-- COMMENTS / REVIEWS SECTION -->
-        <!-- ================================================= -->
-
-        <section class="section comments-section" id="comments">
-            <div class="container">
-                <div class="section-heading">
-                    <span>Feedback</span>
-                    <h2>Customer Reviews & Comments</h2>
-                    <p>Share your experience with Ubaid Medical Store.</p>
-                </div>
-
-                <div class="comment-form-container">
-                    <form id="commentForm">
-                        <div class="form-group">
-                            <input type="text" id="commentName" placeholder="Your Name" required />
-                        </div>
-                        <div class="form-group">
-                            <textarea id="commentText" rows="4" placeholder="Write your feedback or review..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa-solid fa-paper-plane"></i> Post Review
-                        </button>
-                    </form>
-                </div>
-
-                <div class="comments-list" id="commentsList">
-                    <!-- Comments JS se yahan render honge -->
-                </div>
-            </div>
-        </section>
-
-
-        <!-- ================================================= -->
-        <!-- CONTACT -->
-        <!-- ================================================= -->
-
-        <section
-            class="section contact-section"
-            id="contact"
-        >
-
-            <div class="container">
-
-
-                <div class="section-heading">
-
-                    <span>
-                        Get In Touch
-                    </span>
-
-                    <h2>
-                        Contact Ubaid Medical Store
-                    </h2>
-
-                    <p>
-                        For orders and product enquiries, contact us directly.
-                    </p>
-
-                </div>
-
-
-                <div class="contact-grid">
-
-
-                    <!-- PHONE 1 -->
-
-                    <a
-                        href="tel:+918009174690"
-                        class="contact-card"
-                    >
-
-                        <i class="fa-solid fa-phone"></i>
-
-                        <h3>
-                            Call Us
-                        </h3>
-
-                        <p>
-                            8009174690
-                        </p>
-
-                    </a>
-
-
-                    <!-- WHATSAPP -->
-
-                    <a
-                        href="https://wa.me/918009174690"
-                        target="_blank"
-                        rel="noopener"
-                        class="contact-card"
-                    >
-
-                        <i class="fa-brands fa-whatsapp"></i>
-
-                        <h3>
-                            WhatsApp
-                        </h3>
-
-                        <p>
-                            8009174690
-                        </p>
-
-                    </a>
-
-
-                    <!-- PHONE 2 -->
-
-                    <a
-                        href="tel:+919044286963"
-                        class="contact-card"
-                    >
-
-                        <i class="fa-solid fa-phone"></i>
-
-                        <h3>
-                            Alternate Number
-                        </h3>
-
-                        <p>
-                            9044286963
-                        </p>
-
-                    </a>
-
-
-                    <!-- ADDRESS -->
-
-                    <div class="contact-card">
-
-                        <i class="fa-solid fa-location-dot"></i>
-
-                        <h3>
-                            Store Address
-                        </h3>
-
-                        <p>
-                            Thamarwa, Gopamau, Hardoi
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- ================================================= -->
-    <!-- FOOTER -->
-    <!-- ================================================= -->
-
-    <footer class="footer">
-
-        <div class="container footer-content">
-
-
-            <div class="footer-brand">
-
-                <div class="logo">
-
-                    <div class="logo-icon">
-
-                        <i class="fa-solid fa-plus"></i>
-
-                    </div>
-
-                    <div class="logo-text">
-
-                        <strong>
-                            Ubaid Medical
-                        </strong>
-
-                        <span>
-                            Store
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <p>
-                    Trusted healthcare products for your everyday needs.
-                </p>
-
-            </div>
-
-
-            <div class="footer-links">
-
-                <h3>
-                    Quick Links
-                </h3>
-
-                <a href="#home">
-                    Home
-                </a>
-
-                <a href="#medicines">
-                    Medicines
-                </a>
-
-                <a href="#services">
-                    Services
-                </a>
-
-                <a href="#comments">
-                    Reviews
-                </a>
-
-                <a href="#contact">
-                    Contact
-                </a>
-
-            </div>
-
-
-            <div class="footer-links">
-
-                <h3>
-                    Contact
-                </h3>
-
-                <a href="tel:+918009174690">
-                    8009174690
-                </a>
-
-                <a href="tel:+919044286963">
-                    9044286963
-                </a>
-
-                <span>
-                    Thamarwa, Gopamau, Hardoi
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="footer-bottom">
-
-            <div class="container">
-
-                <p>
-
-                    ©
-                    <span id="currentYear"></span>
-                    Ubaid Medical Store.
-                    All Rights Reserved.
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </footer>
-
-
-    <!-- ================================================= -->
-    <!-- OVERLAY -->
-    <!-- ================================================= -->
-
-    <div
-        class="overlay"
-        id="overlay"
-    ></div>
-
-
-    <!-- ================================================= -->
-    <!-- CART -->
-    <!-- ================================================= -->
-
-    <aside
-        class="cart-sidebar"
-        id="cartSidebar"
-        aria-label="Shopping cart"
-    >
-
-        <div class="cart-header">
-
-            <div>
-
-                <h2>
-                    Your Cart
-                </h2>
-
-                <span id="cartItemsText">
-                    0 items
-                </span>
-
-            </div>
-
-
-            <button
-                type="button"
-                id="closeCart"
-                class="close-btn"
-                aria-label="Close cart"
-            >
-
-                <i class="fa-solid fa-xmark"></i>
-
-            </button>
-
-        </div>
-
-
-        <div
-            class="cart-items"
-            id="cartItems"
-        ></div>
-
-
-        <div
-            class="empty-cart"
-            id="emptyCart"
-        >
-
-            <i class="fa-solid fa-cart-shopping"></i>
-
-            <h3>
-                Your cart is empty
-            </h3>
-
-            <p>
-                Add some medicines to continue.
-            </p>
-
-            <button
-                type="button"
-                id="continueShopping"
-                class="btn btn-primary"
-            >
-
-                Continue Shopping
-
-            </button>
-
-        </div>
-
-
-        <div
-            class="cart-footer"
-            id="cartFooter"
-            style="display:none;"
-        >
-
-            <div class="cart-total-row">
-
-                <span>
-                    Total
-                </span>
-
-                <strong id="cartTotal">
-                    ₹0
-                </strong>
-
-            </div>
-
-
-            <button
-                type="button"
-                id="whatsappOrderBtn"
-                class="whatsapp-order-btn"
-            >
-
-                <i class="fa-brands fa-whatsapp"></i>
-
-                Order on WhatsApp
-
-            </button>
-
-        </div>
-
-    </aside>
-
-
-    <!-- ================================================= -->
-    <!-- LOGIN / SIGNUP MODAL -->
-    <!-- ================================================= -->
-
-    <div
-        class="auth-modal"
-        id="authModal"
-        aria-hidden="true"
-    >
-
-        <div class="auth-box">
-
-
-            <button
-                type="button"
-                id="closeAuth"
-                class="close-btn auth-close"
-                aria-label="Close"
-            >
-
-                <i class="fa-solid fa-xmark"></i>
-
-            </button>
-
-
-            <div class="auth-icon">
-
-                <i class="fa-solid fa-user-shield"></i>
-
-            </div>
-
-
-            <h2 id="authTitle">
-                Welcome Back
-            </h2>
-
-
-            <p id="authSubtitle">
-                Login to your Ubaid Medical Store account.
-            </p>
-
-
-            <div
-                id="authMessage"
-                class="auth-message"
-            ></div>
-
-
-            <!-- LOGIN -->
-
-            <form id="loginForm">
-
-                <div class="form-group">
-
-                    <label for="loginEmail">
-                        Email
-                    </label>
-
-                    <input
-                        type="email"
-                        id="loginEmail"
-                        placeholder="Enter your email"
-                        autocomplete="email"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="loginPassword">
-                        Password
-                    </label>
-
-                    <input
-                        type="password"
-                        id="loginPassword"
-                        placeholder="Enter your password"
-                        autocomplete="current-password"
-                        required
-                    >
-
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="btn btn-primary auth-submit"
-                >
-
-                    <i class="fa-solid fa-right-to-bracket"></i>
-
-                    Login
-
-                </button>
-
-
-                <p class="auth-switch">
-
-                    Don't have an account?
-
-                    <button
-                        type="button"
-                        id="showSignup"
-                    >
-                        Create Account
-                    </button>
-
-                </p>
-
-            </form>
-
-
-            <!-- SIGNUP -->
-
-            <form
-                id="signupForm"
-                hidden
-            >
-
-                <div class="form-group">
-
-                    <label for="signupName">
-                        Full Name
-                    </label>
-
-                    <input
-                        type="text"
-                        id="signupName"
-                        placeholder="Enter your name"
-                        autocomplete="name"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="signupEmail">
-                        Email
-                    </label>
-
-                    <input
-                        type="email"
-                        id="signupEmail"
-                        placeholder="Enter your email"
-                        autocomplete="email"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="signupPassword">
-                        Password
-                    </label>
-
-                    <input
-                        type="password"
-                        id="signupPassword"
-                        placeholder="Minimum 6 characters"
-                        autocomplete="new-password"
-                        minlength="6"
-                        required
-                    >
-
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="btn btn-primary auth-submit"
-                >
-
-                    <i class="fa-solid fa-user-plus"></i>
-
-                    Create Account
-
-                </button>
-
-
-                <p class="auth-switch">
-
-                    Already have an account?
-
-                    <button
-                        type="button"
-                        id="showLogin"
-                    >
-                        Login
-                    </button>
-
-                </p>
-
-            </form>
-
-        </div>
-
+    <div class="service-card">
+      <i class="fa-solid fa-user-doctor"></i>
+      <h3>Health Support</h3>
+      <p>Guidance for medicine availability.</p>
     </div>
 
-
-    <!-- ================================================= -->
-    <!-- TOAST -->
-    <!-- ================================================= -->
-
-    <div
-        class="toast"
-        id="toast"
-        role="status"
-        aria-live="polite"
-    >
-
-        <i class="fa-solid fa-circle-check"></i>
-
-        <span id="toastMessage">
-            Done
-        </span>
-
+    <div class="service-card">
+      <i class="fa-solid fa-clock"></i>
+      <h3>24×7 Service</h3>
+      <p>Available anytime for customers.</p>
     </div>
 
+  </div>
 
-    <!-- ================================================= -->
-    <!-- JAVASCRIPT -->
-    <!-- ================================================= -->
+</section>
 
-    <script
-        type="module"
-        src="firebase.js"
-    ></script>
+<!-- About -->
 
-    <script
-        type="module"
-        src="script.js"
-    ></script>
+<section id="about" class="about">
 
+  <h2>About Ubaid Medical Store</h2>
+
+  <p>
+    Ubaid Medical Store provides genuine medicines,
+    healthcare products and excellent customer support.
+    Our mission is to make quality healthcare easily
+    available at affordable prices.
+  </p>
+
+</section>
+
+<!-- Contact -->
+
+<section id="contact" class="contact">
+
+  <h2>Contact Us</h2>
+
+  <p>
+    <i class="fa-solid fa-phone"></i>
+    +91 XXXXXXXXXX
+  </p>
+
+  <p>
+    <i class="fa-solid fa-envelope"></i>
+    ubaidmedicalstore@gmail.com
+  </p>
+
+  <p>
+    <i class="fa-solid fa-location-dot"></i>
+    Your City, India
+  </p>
+
+</section>
+
+<!-- Footer -->
+
+<footer>
+
+  <p>
+    © 2026 Ubaid Medical Store.
+    All Rights Reserved.
+  </p>
+
+</footer>
+
+<!-- Firebase -->
+
+<script type="module" src="firebase-config.js"></script>
+
+<!-- Main Script -->
+
+<script src="script.js"></script>
 
 </body>
-
 </html>
