@@ -1946,4 +1946,40 @@ console.log(
 
 console.log(
     "✅ Cart/Search/Theme/Mobile Menu: ON"
-);
+);// ============================================================
+// THEME TOGGLE
+// ============================================================
+
+const themeButton = document.getElementById("themeToggle");
+
+function applyTheme(theme) {
+    if (theme === "dark") {
+        document.body.classList.add("dark-mode");
+    } else {
+        document.body.classList.remove("dark-mode");
+    }
+}
+
+const savedTheme = localStorage.getItem("ubaidTheme");
+
+if (savedTheme) {
+    applyTheme(savedTheme);
+} else {
+    applyTheme("light");
+}
+
+if (themeButton) {
+
+    themeButton.addEventListener("click", () => {
+
+        const isDark =
+            document.body.classList.toggle("dark-mode");
+
+        localStorage.setItem(
+            "ubaidTheme",
+            isDark ? "dark" : "light"
+        );
+
+    });
+
+}
