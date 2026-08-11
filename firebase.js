@@ -1,6 +1,6 @@
 // ============================================================
-// UBAID MEDICAL STORE - FIREBASE
-// Authentication: Login / Signup / Logout / Forgot Password
+// UBAID MEDICAL STORE V2
+// FIREBASE AUTHENTICATION - FINAL FIXED VERSION
 // ============================================================
 
 import {
@@ -38,7 +38,6 @@ const firebaseConfig = {
 // ============================================================
 
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
 
 
@@ -46,11 +45,15 @@ const auth = getAuth(app);
 // LOGIN
 // ============================================================
 
-window.ubaidLogin = async function(email, password) {
+window.ubaidLogin = async function (email, password) {
+
+    if (!email || !password) {
+        throw new Error("Email aur password required hai.");
+    }
 
     const result = await signInWithEmailAndPassword(
         auth,
-        email,
+        email.trim(),
         password
     );
 
@@ -62,34 +65,37 @@ window.ubaidLogin = async function(email, password) {
 // SIGNUP
 // ============================================================
 
-window.ubaidSignup = async function(
+window.ubaidSignup = async function (
     email,
     password,
     name
 ) {
 
-    const result =
-        await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+    if (!email || !password) {
+        throw new Error("Email aur password required hai.");
+    }
 
+    const result = await createUserWithEmailAndPassword(
+        auth,
+        email.trim(),
+        password
+    );
 
-    // Save user's name in Firebase profile
-    if (name) {
+    // User display name save karein
+    if (name && name.trim()) {
 
         await updateProfile(
             result.user,
             {
-                displayName: name
+                displayName: name.trim()
             }
         );
 
+        // Fresh user object ke saath event/UI update ke liye
+        await result.user.reload();
     }
 
-
-    return result.user;
+    return auth.currentUser;
 };
 
 
@@ -97,7 +103,7 @@ window.ubaidSignup = async function(
 // LOGOUT
 // ============================================================
 
-window.ubaidLogout = async function() {
+window.ubaidLogout = async function () {
 
     await signOut(auth);
 
@@ -109,11 +115,15 @@ window.ubaidLogout = async function() {
 // FORGOT PASSWORD
 // ============================================================
 
-window.ubaidResetPassword = async function(email) {
+window.ubaidResetPassword = async function (email) {
+
+    if (!email) {
+        throw new Error("Email enter karo.");
+    }
 
     await sendPasswordResetEmail(
         auth,
-        email
+        email.trim()
     );
 
     return true;
@@ -123,22 +133,64 @@ window.ubaidResetPassword = async function(email) {
 // ============================================================
 // AUTH STATE
 // ============================================================
+//
+// Important:
+// Firebase auth state ko global variable me bhi rakha gaya hai.
+// Isse script.js initial auth state miss nahi karega.
+//
+
+window.ubaidCurrentUser = null;
+window.ubaidAuthReady = false;
+
+
+// ============================================================
+// AUTH STATE LISTENER
+// ============================================================
 
 onAuthStateChanged(
     auth,
     (user) => {
 
+        window.ubaidCurrentUser = user || null;
+        window.ubaidAuthReady = true;
+
+        // Existing custom event
         window.dispatchEvent(
             new CustomEvent(
                 "ubaidAuthStateChanged",
                 {
-                    detail: user
+                    detail: user || null
                 }
             )
         );
 
+        // Extra ready event
+        window.dispatchEvent(
+            new CustomEvent(
+                "ubaidAuthReady",
+                {
+                    detail: user || null
+                }
+            )
+        );
+
+        console.log(
+            user
+                ? "✅ Firebase user logged in:",
+                  user.email
+                : "ℹ️ No Firebase user logged in"
+        );
     }
 );
+
+
+// ============================================================
+// GET CURRENT USER
+// ============================================================
+
+window.ubaidGetCurrentUser = function () {
+    return auth.currentUser;
+};
 
 
 // ============================================================
