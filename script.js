@@ -26,6 +26,9 @@ import { auth } from "./firebase.js";
    MEDICINE DATA
    ========================================================= */
 
+// NOTE: Aap kisi bhi product me `image: "images/logo.png"` ya web URL add kar sakte hain.
+// Agar image URL empty '' hoga, toh ye automatically `icon` use karega.
+
 const medicines = [
     {
         id: 1,
@@ -33,7 +36,8 @@ const medicines = [
         category: "fever",
         description: "For fever and mild to moderate pain",
         price: 25,
-        icon: "fa-tablets"
+        icon: "fa-tablets",
+        image: "" // E.g., "images/paracetamol.png"
     },
     {
         id: 2,
@@ -41,7 +45,8 @@ const medicines = [
         category: "fever",
         description: "Pain and fever relief tablets",
         price: 35,
-        icon: "fa-pills"
+        icon: "fa-pills",
+        image: ""
     },
     {
         id: 3,
@@ -49,7 +54,8 @@ const medicines = [
         category: "fever",
         description: "Pain and inflammation relief",
         price: 45,
-        icon: "fa-tablets"
+        icon: "fa-tablets",
+        image: ""
     },
     {
         id: 4,
@@ -57,7 +63,8 @@ const medicines = [
         category: "cold",
         description: "Relief from cough and throat irritation",
         price: 85,
-        icon: "fa-prescription-bottle-medical"
+        icon: "fa-prescription-bottle-medical",
+        image: ""
     },
     {
         id: 5,
@@ -65,7 +72,8 @@ const medicines = [
         category: "cold",
         description: "Helps relieve common cold symptoms",
         price: 60,
-        icon: "fa-pills"
+        icon: "fa-pills",
+        image: ""
     },
     {
         id: 6,
@@ -73,7 +81,8 @@ const medicines = [
         category: "vitamins",
         description: "Daily vitamin C supplement",
         price: 120,
-        icon: "fa-capsules"
+        icon: "fa-capsules",
+        image: ""
     },
     {
         id: 7,
@@ -81,7 +90,8 @@ const medicines = [
         category: "vitamins",
         description: "Daily vitamins and minerals",
         price: 180,
-        icon: "fa-capsules"
+        icon: "fa-capsules",
+        image: ""
     },
     {
         id: 8,
@@ -89,7 +99,8 @@ const medicines = [
         category: "vitamins",
         description: "Helps restore fluids and electrolytes",
         price: 25,
-        icon: "fa-droplet"
+        icon: "fa-droplet",
+        image: ""
     },
     {
         id: 9,
@@ -97,7 +108,8 @@ const medicines = [
         category: "firstaid",
         description: "For cleaning minor cuts and wounds",
         price: 95,
-        icon: "fa-bottle-droplet"
+        icon: "fa-bottle-droplet",
+        image: ""
     },
     {
         id: 10,
@@ -105,7 +117,8 @@ const medicines = [
         category: "firstaid",
         description: "Useful for minor cuts and wounds",
         price: 30,
-        icon: "fa-bandage"
+        icon: "fa-bandage",
+        image: ""
     },
     {
         id: 11,
@@ -113,7 +126,8 @@ const medicines = [
         category: "firstaid",
         description: "Soft cotton for first aid use",
         price: 45,
-        icon: "fa-box"
+        icon: "fa-box",
+        image: ""
     },
     {
         id: 12,
@@ -121,7 +135,8 @@ const medicines = [
         category: "personal-care",
         description: "Easy-to-use digital thermometer",
         price: 199,
-        icon: "fa-temperature-half"
+        icon: "fa-temperature-half",
+        image: ""
     }
 ];
 
@@ -433,11 +448,16 @@ function renderProducts() {
         card.className =
             "product-card";
 
+        // Dynamic visual render (Logo image OR FontAwesome Icon)
+        const visualContent = product.image
+            ? `<img src="${product.image}" alt="${product.name}" class="product-logo-img">`
+            : `<i class="fa-solid ${product.icon}"></i>`;
+
 
         card.innerHTML = `
 
             <div class="product-image">
-                <i class="fa-solid ${product.icon}"></i>
+                ${visualContent}
             </div>
 
             <span class="product-category">
@@ -516,6 +536,8 @@ function addToCart(productId) {
             price: product.price,
 
             icon: product.icon,
+
+            image: product.image || "",
 
             quantity: 1
 
@@ -629,11 +651,15 @@ function updateCart() {
         element.className =
             "cart-item";
 
+        const cartVisual = item.image
+            ? `<img src="${item.image}" alt="${item.name}" class="cart-logo-img">`
+            : `<i class="fa-solid ${item.icon}"></i>`;
+
 
         element.innerHTML = `
 
             <div class="cart-item-image">
-                <i class="fa-solid ${item.icon}"></i>
+                ${cartVisual}
             </div>
 
             <div>
@@ -1989,20 +2015,6 @@ document
 /* =========================================================
    WHATSAPP ORDER
    ========================================================= */
-
-/*
-   IMPORTANT:
-   Replace the number below with
-   your actual WhatsApp number.
-
-   India format:
-   91 + 10 digit number
-
-   Example:
-   919876543210
-
-   Do NOT use + or spaces.
-*/
 
 const whatsappNumber =
     "919044286963";
