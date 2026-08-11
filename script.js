@@ -1,284 +1,654 @@
-/* =========================================================
-   UBAID MEDICAL STORE
-   COMPLETE script.js
-   ========================================================= */
+// ============================================================
+// UBAID MEDICAL STORE V2
+// MAIN JAVASCRIPT - FINAL FIXED VERSION
+// ============================================================
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    "use strict";
+    // ========================================================
+    // HELPERS
+    // ========================================================
 
-    /* =====================================================
-       HELPERS
-       ===================================================== */
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => document.querySelectorAll(selector);
 
-    const $ = (id) => document.getElementById(id);
+    const get = (id) => document.getElementById(id);
 
-    const safeJSON = (key, fallback) => {
-        try {
-            const value = localStorage.getItem(key);
-            return value ? JSON.parse(value) : fallback;
-        } catch {
-            return fallback;
-        }
-    };
+    function showToast(message, icon = "fa-circle-check") {
 
-    const escapeHTML = (value) => {
-        const div = document.createElement("div");
-        div.textContent = String(value ?? "");
-        return div.innerHTML;
-    };
+        const toast = get("toast");
 
-    const money = (value) => `₹${Number(value).toFixed(0)}`;
-
-
-    /* =====================================================
-       ELEMENTS
-       ===================================================== */
-
-    const themeToggle = $("themeToggle");
-
-    const accountBtn = $("accountBtn");
-    const userProfileGroup = $("userProfileGroup");
-    const userDisplayName = $("userDisplayName");
-    const logoutBtn = $("logoutBtn");
-
-    const authModal = $("authModal");
-    const closeAuth = $("closeAuth");
-
-    const loginForm = $("loginForm");
-    const signupForm = $("signupForm");
-
-    const showSignup = $("showSignup");
-    const showLogin = $("showLogin");
-
-    const authTitle = $("authTitle");
-    const authSubtitle = $("authSubtitle");
-    const authMessage = $("authMessage");
-
-    const loginEmail = $("loginEmail");
-    const loginPassword = $("loginPassword");
-
-    const signupName = $("signupName");
-    const signupEmail = $("signupEmail");
-    const signupPassword = $("signupPassword");
-
-    const productsGrid = $("productsGrid");
-    const emptyProducts = $("emptyProducts");
-    const resultCount = $("resultCount");
-    const categoryFilter = $("categoryFilter");
-
-    const medicineSearch = $("medicineSearch");
-    const mobileMedicineSearch = $("mobileMedicineSearch");
-    const mainMedicineSearch = $("mainMedicineSearch");
-
-    const searchBtn = $("searchBtn");
-    const mobileSearchBtn = $("mobileSearchBtn");
-    const mainSearchBtn = $("mainSearchBtn");
-
-    const cartBtn = $("cartBtn");
-    const cartSidebar = $("cartSidebar");
-    const closeCart = $("closeCart");
-    const cartItems = $("cartItems");
-    const cartCount = $("cartCount");
-    const cartItemsText = $("cartItemsText");
-    const cartTotal = $("cartTotal");
-    const cartFooter = $("cartFooter");
-    const emptyCart = $("emptyCart");
-    const continueShopping = $("continueShopping");
-    const whatsappOrderBtn = $("whatsappOrderBtn");
-
-    const overlay = $("overlay");
-
-    const toast = $("toast");
-    const toastMessage = $("toastMessage");
-
-    const commentForm = $("commentForm");
-    const commentName = $("commentName");
-    const commentText = $("commentText");
-    const commentsList = $("commentsList");
-
-    const mobileMenuBtn = $("mobileMenuBtn");
-    const navLinks = $("navLinks");
-
-    const currentYear = $("currentYear");
-
-
-    /* =====================================================
-       YEAR
-       ===================================================== */
-
-    if (currentYear) {
-        currentYear.textContent =
-            new Date().getFullYear();
-    }
-
-
-    /* =====================================================
-       MEDICINES
-       ===================================================== */
-
-    const medicines = [
-
-        {
-            id: 1,
-            name: "Paracetamol 500mg",
-            category: "fever",
-            price: 25,
-            icon: "fa-tablets",
-            description: "Fever and pain relief"
-        },
-
-        {
-            id: 2,
-            name: "Paracetamol 650mg",
-            category: "fever",
-            price: 35,
-            icon: "fa-pills",
-            description: "Fever and body pain relief"
-        },
-
-        {
-            id: 3,
-            name: "Cough Syrup",
-            category: "cold",
-            price: 90,
-            icon: "fa-prescription-bottle-medical",
-            description: "Cold, cough and throat care"
-        },
-
-        {
-            id: 4,
-            name: "Vitamin C Tablets",
-            category: "vitamins",
-            price: 120,
-            icon: "fa-capsules",
-            description: "Daily vitamin support"
-        },
-
-        {
-            id: 5,
-            name: "Multivitamin Tablets",
-            category: "vitamins",
-            price: 180,
-            icon: "fa-capsules",
-            description: "Daily nutritional support"
-        },
-
-        {
-            id: 6,
-            name: "Antiseptic Liquid",
-            category: "firstaid",
-            price: 75,
-            icon: "fa-bottle-droplet",
-            description: "First aid and wound cleaning"
-        },
-
-        {
-            id: 7,
-            name: "Cotton Roll",
-            category: "firstaid",
-            price: 45,
-            icon: "fa-kit-medical",
-            description: "Soft medical cotton"
-        },
-
-        {
-            id: 8,
-            name: "Digital Thermometer",
-            category: "firstaid",
-            price: 150,
-            icon: "fa-temperature-half",
-            description: "Digital temperature checking"
-        },
-
-        {
-            id: 9,
-            name: "Hand Sanitizer",
-            category: "personal-care",
-            price: 60,
-            icon: "fa-pump-soap",
-            description: "Everyday hand hygiene"
-        },
-
-        {
-            id: 10,
-            name: "Face Mask",
-            category: "personal-care",
-            price: 10,
-            icon: "fa-head-side-mask",
-            description: "Protective face mask"
-        }
-
-    ];
-
-
-    /* =====================================================
-       TOAST
-       ===================================================== */
-
-    function showToast(message) {
-
-        if (!toast || !toastMessage) {
-            alert(message);
+        if (!toast) {
+            console.log(message);
             return;
         }
 
-        toastMessage.textContent = message;
+        const iconElement = toast.querySelector("i");
+        const textElement = toast.querySelector("span");
+
+        if (iconElement) {
+            iconElement.className = `fa-solid ${icon}`;
+        }
+
+        if (textElement) {
+            textElement.textContent = message;
+        } else {
+            toast.textContent = message;
+        }
 
         toast.classList.add("show");
 
-        clearTimeout(showToast.timer);
+        clearTimeout(window.ubaidToastTimer);
 
-        showToast.timer = setTimeout(() => {
+        window.ubaidToastTimer = setTimeout(() => {
             toast.classList.remove("show");
-        }, 2500);
+        }, 3000);
     }
 
 
-    /* =====================================================
-       CART
-       ===================================================== */
+    function getInitials(name = "User") {
 
-    let cart = safeJSON(
-        "ubaidMedicalCart",
-        []
-    );
+        const words = name
+            .trim()
+            .split(/\s+/)
+            .filter(Boolean);
+
+        if (!words.length) return "U";
+
+        if (words.length === 1) {
+            return words[0].substring(0, 2).toUpperCase();
+        }
+
+        return (
+            words[0][0] +
+            words[words.length - 1][0]
+        ).toUpperCase();
+    }
+
+
+    function escapeHTML(value = "") {
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+
+    // ========================================================
+    // DARK MODE
+    // ========================================================
+
+    const themeButtons = [
+        get("themeToggle"),
+        get("darkModeToggle"),
+        get("darkModeBtn")
+    ].filter(Boolean);
+
+    function applyTheme() {
+
+        const savedTheme =
+            localStorage.getItem("ubaid-theme");
+
+        const dark =
+            savedTheme === "dark";
+
+        document.body.classList.toggle(
+            "dark-mode",
+            dark
+        );
+
+        themeButtons.forEach((button) => {
+
+            const icon = button.querySelector("i");
+
+            if (icon) {
+                icon.className = dark
+                    ? "fa-solid fa-sun"
+                    : "fa-solid fa-moon";
+            }
+        });
+    }
+
+    themeButtons.forEach((button) => {
+
+        button.addEventListener("click", () => {
+
+            const dark =
+                !document.body.classList.contains("dark-mode");
+
+            document.body.classList.toggle(
+                "dark-mode",
+                dark
+            );
+
+            localStorage.setItem(
+                "ubaid-theme",
+                dark ? "dark" : "light"
+            );
+        });
+    });
+
+    applyTheme();
+
+
+    // ========================================================
+    // MOBILE NAVIGATION
+    // ========================================================
+
+    const mobileMenuBtn =
+        get("mobileMenuBtn") ||
+        $(".mobile-menu-btn");
+
+    const nav =
+        get("nav") ||
+        $(".nav");
+
+    const overlay =
+        get("overlay") ||
+        $(".overlay");
+
+    function closeMobileMenu() {
+
+        if (nav) {
+            nav.classList.remove("open");
+            nav.classList.remove("active");
+        }
+
+        if (overlay) {
+            overlay.classList.remove("active");
+        }
+
+        document.body.classList.remove("no-scroll");
+    }
+
+
+    function openMobileMenu() {
+
+        if (nav) {
+            nav.classList.add("open");
+        }
+
+        if (overlay) {
+            overlay.classList.add("active");
+        }
+
+        document.body.classList.add("no-scroll");
+    }
+
+
+    if (mobileMenuBtn) {
+
+        mobileMenuBtn.addEventListener("click", () => {
+
+            if (
+                nav &&
+                (
+                    nav.classList.contains("open") ||
+                    nav.classList.contains("active")
+                )
+            ) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+    }
+
+
+    if (overlay) {
+
+        overlay.addEventListener(
+            "click",
+            closeMobileMenu
+        );
+    }
+
+
+    $$(".nav-links a").forEach((link) => {
+
+        link.addEventListener("click", () => {
+            closeMobileMenu();
+        });
+    });
+
+
+    // ========================================================
+    // SEARCH
+    // ========================================================
+
+    const searchInputs = [
+        get("searchInput"),
+        get("mobileSearchInput"),
+        get("mainSearchInput")
+    ].filter(Boolean);
+
+    const productSearch =
+        get("productSearch") ||
+        get("medicineSearch");
+
+
+    function performSearch(value) {
+
+        const query =
+            String(value || "")
+                .trim()
+                .toLowerCase();
+
+        if (productSearch) {
+            productSearch.value = query;
+            productSearch.dispatchEvent(
+                new Event("input", {
+                    bubbles: true
+                })
+            );
+        }
+
+        const medicinesSection =
+            document.querySelector(
+                "#medicines"
+            ) ||
+            document.querySelector(
+                ".medicines-section"
+            );
+
+        if (query && medicinesSection) {
+
+            medicinesSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    }
+
+
+    searchInputs.forEach((input) => {
+
+        input.addEventListener("keydown", (event) => {
+
+            if (event.key === "Enter") {
+                performSearch(input.value);
+            }
+        });
+    });
+
+
+    $$(".search-main-btn, .header-search button, .mobile-search-box button")
+        .forEach((button) => {
+
+            button.addEventListener("click", () => {
+
+                const parent =
+                    button.closest(
+                        ".search-box, .header-search, .mobile-search-box"
+                    );
+
+                const input =
+                    parent?.querySelector("input");
+
+                performSearch(
+                    input?.value || ""
+                );
+            });
+        });
+
+
+    // ========================================================
+    // PRODUCTS
+    // ========================================================
+
+    const productsGrid =
+        get("productsGrid") ||
+        $(".products-grid");
+
+    const productCards =
+        productsGrid
+            ? Array.from(
+                productsGrid.querySelectorAll(
+                    ".product-card"
+                )
+            )
+            : [];
+
+
+    function filterProducts(query = "") {
+
+        const search =
+            query
+                .trim()
+                .toLowerCase();
+
+        let visible = 0;
+
+        productCards.forEach((card) => {
+
+            const text =
+                card.textContent.toLowerCase();
+
+            const match =
+                !search ||
+                text.includes(search);
+
+            card.style.display =
+                match ? "" : "block";
+
+            if (!match) {
+                card.style.display = "none";
+            } else {
+                visible++;
+            }
+        });
+
+
+        const result =
+            document.querySelector(
+                ".medicine-result"
+            );
+
+        if (result) {
+
+            const number =
+                result.querySelector(
+                    "strong, span"
+                );
+
+            if (number) {
+                number.textContent =
+                    visible;
+            }
+        }
+
+
+        const empty =
+            get("emptyProducts") ||
+            $(".empty-products");
+
+        if (empty) {
+            empty.style.display =
+                visible === 0
+                    ? "block"
+                    : "none";
+        }
+    }
+
+
+    if (productSearch) {
+
+        productSearch.addEventListener(
+            "input",
+            () => {
+                filterProducts(
+                    productSearch.value
+                );
+            }
+        );
+    }
+
+
+    // ========================================================
+    // CATEGORY FILTER
+    // ========================================================
+
+    $$(".category-card").forEach((card) => {
+
+        card.addEventListener("click", () => {
+
+            const category =
+                (
+                    card.dataset.category ||
+                    card.querySelector("h3")?.textContent ||
+                    ""
+                )
+                .toLowerCase();
+
+            if (productSearch) {
+                productSearch.value =
+                    category;
+            }
+
+            filterProducts(category);
+
+            const section =
+                document.querySelector(
+                    "#medicines"
+                ) ||
+                document.querySelector(
+                    ".medicines-section"
+                );
+
+            if (section) {
+
+                section.scrollIntoView({
+                    behavior: "smooth"
+                });
+            }
+        });
+    });
+
+
+    // ========================================================
+    // CART
+    // ========================================================
+
+    const CART_KEY =
+        "ubaid-medical-cart";
+
+    let cart = [];
+
+    try {
+
+        cart =
+            JSON.parse(
+                localStorage.getItem(
+                    CART_KEY
+                )
+            ) || [];
+
+        if (!Array.isArray(cart)) {
+            cart = [];
+        }
+
+    } catch {
+
+        cart = [];
+    }
+
+
+    const cartSidebar =
+        get("cartSidebar") ||
+        $(".cart-sidebar");
+
+    const cartButton =
+        get("cartButton") ||
+        $(".cart-button");
+
+    const cartItems =
+        get("cartItems") ||
+        $(".cart-items");
+
+    const cartCount =
+        get("cartCount");
+
+    const cartTotal =
+        get("cartTotal") ||
+        document.querySelector(
+            ".cart-total-row strong"
+        );
 
 
     function saveCart() {
 
         localStorage.setItem(
-            "ubaidMedicalCart",
+            CART_KEY,
             JSON.stringify(cart)
         );
-
     }
 
 
-    function addToCart(id) {
+    function getCartCount() {
 
-        const product =
-            medicines.find(
-                item => item.id === Number(id)
-            );
+        return cart.reduce(
+            (total, item) =>
+                total + Number(item.quantity || 0),
+            0
+        );
+    }
 
-        if (!product) return;
+
+    function getCartTotal() {
+
+        return cart.reduce(
+            (total, item) =>
+                total +
+                (
+                    Number(item.price || 0) *
+                    Number(item.quantity || 0)
+                ),
+            0
+        );
+    }
+
+
+    function updateCartCount() {
+
+        if (cartCount) {
+
+            cartCount.textContent =
+                getCartCount();
+        }
+    }
+
+
+    function renderCart() {
+
+        updateCartCount();
+
+        if (!cartItems) return;
+
+
+        if (!cart.length) {
+
+            cartItems.innerHTML = `
+                <div class="empty-cart">
+                    <div class="empty-cart-icon">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+
+                    <h3>Your cart is empty</h3>
+
+                    <p>
+                        Add medicines to your cart
+                        to continue.
+                    </p>
+                </div>
+            `;
+
+        } else {
+
+            cartItems.innerHTML =
+                cart.map((item, index) => {
+
+                    const price =
+                        Number(item.price || 0);
+
+                    const quantity =
+                        Number(item.quantity || 1);
+
+                    const subtotal =
+                        price * quantity;
+
+                    return `
+                        <div class="cart-item">
+
+                            <div class="cart-item-image cart-item-icon">
+                                <i class="fa-solid fa-pills"></i>
+                            </div>
+
+                            <div>
+
+                                <h4>
+                                    ${escapeHTML(item.name)}
+                                </h4>
+
+                                <p>
+                                    ₹${price.toFixed(2)}
+                                </p>
+
+                                <div class="cart-qty quantity-controls">
+
+                                    <button
+                                        type="button"
+                                        data-cart-action="decrease"
+                                        data-index="${index}"
+                                    >
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+
+                                    <span>
+                                        ${quantity}
+                                    </span>
+
+                                    <button
+                                        type="button"
+                                        data-cart-action="increase"
+                                        data-index="${index}"
+                                    >
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                            <div class="cart-item-price">
+                                ₹${subtotal.toFixed(2)}
+                            </div>
+
+                        </div>
+                    `;
+                }).join("");
+        }
+
+
+        if (cartTotal) {
+
+            cartTotal.textContent =
+                `₹${getCartTotal().toFixed(2)}`;
+        }
+
+
+        saveCart();
+    }
+
+
+    function addToCart(product) {
 
         const existing =
             cart.find(
-                item => item.id === product.id
+                item =>
+                    String(item.id) ===
+                    String(product.id)
             );
 
+
         if (existing) {
-            existing.quantity += 1;
+
+            existing.quantity =
+                Number(existing.quantity || 0) + 1;
+
         } else {
+
             cart.push({
-                ...product,
+                id: product.id,
+                name: product.name,
+                price: Number(product.price || 0),
                 quantity: 1
             });
         }
 
-        saveCart();
+
         renderCart();
 
         showToast(
@@ -287,718 +657,261 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    function removeFromCart(id) {
+    // Existing add-cart buttons
+    $$(".add-cart-btn").forEach((button) => {
 
-        cart =
-            cart.filter(
-                item => item.id !== Number(id)
-            );
+        button.addEventListener("click", () => {
 
-        saveCart();
-        renderCart();
+            const card =
+                button.closest(".product-card");
 
-    }
+            if (!card) return;
 
+            const name =
+                card.dataset.name ||
+                card.querySelector("h3")?.textContent ||
+                "Medicine";
 
-    function changeQuantity(id, amount) {
-
-        const item =
-            cart.find(
-                product => product.id === Number(id)
-            );
-
-        if (!item) return;
-
-        item.quantity += amount;
-
-        if (item.quantity <= 0) {
-            removeFromCart(id);
-            return;
-        }
-
-        saveCart();
-        renderCart();
-
-    }
+            const priceText =
+                card.dataset.price ||
+                card.querySelector(
+                    ".product-price strong"
+                )?.textContent ||
+                card.querySelector(
+                    ".product-bottom strong"
+                )?.textContent ||
+                "0";
 
 
-    function renderCart() {
-
-        if (!cartItems) return;
-
-        cartItems.innerHTML = "";
-
-        let totalItems = 0;
-        let total = 0;
+            const price =
+                Number(
+                    String(priceText)
+                        .replace(/[₹,\s]/g, "")
+                        .replace(/[^\d.]/g, "")
+                ) || 0;
 
 
-        cart.forEach(item => {
-
-            totalItems += item.quantity;
-            total +=
-                item.price * item.quantity;
-
-
-            const element =
-                document.createElement("div");
-
-            element.className =
-                "cart-item";
-
-
-            element.innerHTML = `
-
-                <div class="cart-item-icon">
-                    <i class="fa-solid ${escapeHTML(item.icon)}"></i>
-                </div>
-
-                <div class="cart-item-info">
-
-                    <h4>
-                        ${escapeHTML(item.name)}
-                    </h4>
-
-                    <strong>
-                        ${money(item.price)}
-                    </strong>
-
-                    <div class="quantity-controls">
-
-                        <button
-                            type="button"
-                            class="quantity-btn"
-                            data-action="minus"
-                            data-id="${item.id}"
-                        >
-                            −
-                        </button>
-
-                        <span>
-                            ${item.quantity}
-                        </span>
-
-                        <button
-                            type="button"
-                            class="quantity-btn"
-                            data-action="plus"
-                            data-id="${item.id}"
-                        >
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <button
-                    type="button"
-                    class="remove-cart-item"
-                    data-id="${item.id}"
-                    aria-label="Remove"
-                >
-                    <i class="fa-solid fa-trash"></i>
-                </button>
-
-            `;
-
-            cartItems.appendChild(element);
-
-        });
-
-
-        if (cartCount) {
-            cartCount.textContent =
-                totalItems;
-        }
-
-        if (cartItemsText) {
-            cartItemsText.textContent =
-                `${totalItems} item${totalItems === 1 ? "" : "s"}`;
-        }
-
-        if (cartTotal) {
-            cartTotal.textContent =
-                money(total);
-        }
-
-
-        if (cart.length === 0) {
-
-            if (emptyCart) {
-                emptyCart.style.display = "flex";
-            }
-
-            if (cartFooter) {
-                cartFooter.style.display = "none";
-            }
-
-        } else {
-
-            if (emptyCart) {
-                emptyCart.style.display = "none";
-            }
-
-            if (cartFooter) {
-                cartFooter.style.display = "block";
-            }
-
-        }
-
-    }
-
-
-    if (productsGrid) {
-
-        productsGrid.addEventListener(
-            "click",
-            event => {
-
-                const button =
-                    event.target.closest(
-                        ".add-cart-btn"
-                    );
-
-                if (!button) return;
-
-                addToCart(
-                    button.dataset.id
+            const id =
+                card.dataset.id ||
+                name.toLowerCase().replace(
+                    /\s+/g,
+                    "-"
                 );
 
-            }
-        );
 
-    }
+            addToCart({
+                id,
+                name,
+                price
+            });
+        });
+    });
 
 
     if (cartItems) {
 
         cartItems.addEventListener(
             "click",
-            event => {
+            (event) => {
 
-                const quantityButton =
+                const button =
                     event.target.closest(
-                        ".quantity-btn"
+                        "[data-cart-action]"
                     );
 
-                const removeButton =
-                    event.target.closest(
-                        ".remove-cart-item"
-                    );
+                if (!button) return;
+
+                const index =
+                    Number(button.dataset.index);
+
+                const action =
+                    button.dataset.cartAction;
+
+                if (!cart[index]) return;
 
 
-                if (quantityButton) {
+                if (action === "increase") {
 
-                    changeQuantity(
-                        quantityButton.dataset.id,
-                        quantityButton.dataset.action === "plus"
-                            ? 1
-                            : -1
-                    );
+                    cart[index].quantity++;
 
-                    return;
+                } else if (
+                    action === "decrease"
+                ) {
+
+                    cart[index].quantity--;
+
+                    if (
+                        cart[index].quantity <= 0
+                    ) {
+                        cart.splice(index, 1);
+                    }
                 }
 
-
-                if (removeButton) {
-
-                    removeFromCart(
-                        removeButton.dataset.id
-                    );
-
-                }
-
+                renderCart();
             }
         );
-
     }
 
 
     function openCart() {
 
-        cartSidebar?.classList.add("active");
-        overlay?.classList.add("active");
+        if (cartSidebar) {
+            cartSidebar.classList.add("active");
+        }
 
-        document.body.classList.add(
-            "no-scroll"
+        if (overlay) {
+            overlay.classList.add("active");
+        }
+
+        document.body.classList.add("no-scroll");
+    }
+
+
+    function closeCart() {
+
+        if (cartSidebar) {
+            cartSidebar.classList.remove("active");
+        }
+
+        if (overlay) {
+            overlay.classList.remove("active");
+        }
+
+        document.body.classList.remove("no-scroll");
+    }
+
+
+    if (cartButton) {
+        cartButton.addEventListener(
+            "click",
+            openCart
         );
-
     }
 
 
-    function closeCartSidebar() {
+    $$(".cart-close, .close-cart-btn").forEach(
+        (button) => {
 
-        cartSidebar?.classList.remove("active");
-        overlay?.classList.remove("active");
-
-        document.body.classList.remove(
-            "no-scroll"
-        );
-
-    }
-
-
-    cartBtn?.addEventListener(
-        "click",
-        openCart
-    );
-
-    closeCart?.addEventListener(
-        "click",
-        closeCartSidebar
-    );
-
-    overlay?.addEventListener(
-        "click",
-        closeCartSidebar
-    );
-
-    continueShopping?.addEventListener(
-        "click",
-        closeCartSidebar
-    );
-
-
-    /* =====================================================
-       WHATSAPP ORDER
-       ===================================================== */
-
-    whatsappOrderBtn?.addEventListener(
-        "click",
-        () => {
-
-            if (!cart.length) {
-
-                showToast(
-                    "Cart abhi empty hai."
-                );
-
-                return;
-            }
-
-
-            let message =
-                "🩺 Ubaid Medical Store Order\n\n";
-
-
-            cart.forEach(
-                (item, index) => {
-
-                    message +=
-                        `${index + 1}. ${item.name} x ${item.quantity} = ${money(item.price * item.quantity)}\n`;
-
-                }
+            button.addEventListener(
+                "click",
+                closeCart
             );
-
-
-            const total =
-                cart.reduce(
-                    (sum, item) =>
-                        sum +
-                        item.price *
-                        item.quantity,
-                    0
-                );
-
-
-            message +=
-                `\nTotal: ${money(total)}`;
-
-            message +=
-                "\n\n📍 Thamarwa, Gopamau, Hardoi";
-
-            message +=
-                "\n\nPlease confirm my order.";
-
-
-            const number =
-                "918009174690";
-
-
-            const url =
-                `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
-
-
-            window.open(
-                url,
-                "_blank",
-                "noopener"
-            );
-
         }
     );
 
 
-    /* =====================================================
-       PRODUCTS
-       ===================================================== */
+    renderCart();
 
-    function renderProducts(list) {
 
-        if (!productsGrid) return;
+    // ========================================================
+    // WHATSAPP ORDER
+    // ========================================================
 
-        productsGrid.innerHTML = "";
+    $$(".whatsapp-order-btn, .whatsapp-banner-btn")
+        .forEach((button) => {
 
-
-        if (!list.length) {
-
-            if (emptyProducts) {
-                emptyProducts.hidden = false;
-            }
-
-            if (resultCount) {
-                resultCount.textContent =
-                    "0 medicines found";
-            }
-
-            return;
-        }
-
-
-        if (emptyProducts) {
-            emptyProducts.hidden = true;
-        }
-
-
-        if (resultCount) {
-            resultCount.textContent =
-                `Showing ${list.length} medicine${list.length === 1 ? "" : "s"}`;
-        }
-
-
-        list.forEach(product => {
-
-            const card =
-                document.createElement("article");
-
-
-            card.className =
-                "product-card";
-
-
-            card.innerHTML = `
-
-                <div class="product-image">
-                    <i class="fa-solid ${escapeHTML(product.icon)}"></i>
-                </div>
-
-                <div class="product-content">
-
-                    <span class="product-category">
-                        ${escapeHTML(product.category)}
-                    </span>
-
-                    <h3>
-                        ${escapeHTML(product.name)}
-                    </h3>
-
-                    <p>
-                        ${escapeHTML(product.description)}
-                    </p>
-
-                    <div class="product-bottom">
-
-                        <strong>
-                            ${money(product.price)}
-                        </strong>
-
-                        <button
-                            type="button"
-                            class="add-cart-btn"
-                            data-id="${product.id}"
-                        >
-                            <i class="fa-solid fa-cart-plus"></i>
-                            Add
-                        </button>
-
-                    </div>
-
-                </div>
-            `;
-
-
-            productsGrid.appendChild(card);
-
-        });
-
-    }
-
-
-    function filterProducts(searchValue = "") {
-
-        const query =
-            searchValue.trim().toLowerCase();
-
-        const category =
-            categoryFilter?.value || "all";
-
-
-        const filtered =
-            medicines.filter(product => {
-
-                const matchesSearch =
-                    !query ||
-                    product.name
-                        .toLowerCase()
-                        .includes(query) ||
-                    product.description
-                        .toLowerCase()
-                        .includes(query);
-
-
-                const matchesCategory =
-                    category === "all" ||
-                    product.category === category;
-
-
-                return (
-                    matchesSearch &&
-                    matchesCategory
-                );
-
-            });
-
-
-        renderProducts(filtered);
-
-    }
-
-
-    function doSearch(input) {
-
-        const value =
-            input?.value || "";
-
-        filterProducts(value);
-
-        if (value.trim()) {
-
-            $("medicines")?.scrollIntoView({
-                behavior: "smooth"
-            });
-
-        }
-
-    }
-
-
-    searchBtn?.addEventListener(
-        "click",
-        () => doSearch(medicineSearch)
-    );
-
-    mobileSearchBtn?.addEventListener(
-        "click",
-        () => doSearch(mobileMedicineSearch)
-    );
-
-    mainSearchBtn?.addEventListener(
-        "click",
-        () => doSearch(mainMedicineSearch)
-    );
-
-
-    [
-        medicineSearch,
-        mobileMedicineSearch,
-        mainMedicineSearch
-    ].forEach(input => {
-
-        input?.addEventListener(
-            "keydown",
-            event => {
-
-                if (
-                    event.key === "Enter"
-                ) {
-
-                    event.preventDefault();
-
-                    doSearch(input);
-
-                }
-
-            }
-        );
-
-    });
-
-
-    categoryFilter?.addEventListener(
-        "change",
-        () => {
-
-            filterProducts(
-                medicineSearch?.value || ""
-            );
-
-        }
-    );
-
-
-    document
-        .querySelectorAll(
-            ".category-card"
-        )
-        .forEach(card => {
-
-            card.addEventListener(
+            button.addEventListener(
                 "click",
                 () => {
 
-                    const category =
-                        card.dataset.category;
+                    if (!cart.length) {
 
-                    if (categoryFilter) {
-                        categoryFilter.value =
-                            category;
+                        showToast(
+                            "Pehle cart mein medicine add karo.",
+                            "fa-cart-shopping"
+                        );
+
+                        return;
                     }
 
-                    filterProducts("");
 
-                    $("medicines")?.scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-                }
-            );
-
-        });
-
-
-    /* =====================================================
-       DARK MODE
-       ===================================================== */
-
-    const savedTheme =
-        localStorage.getItem(
-            "ubaidMedicalTheme"
-        );
+                    const lines =
+                        cart.map(
+                            item =>
+                                `• ${item.name} x${item.quantity} - ₹${(
+                                    item.price *
+                                    item.quantity
+                                ).toFixed(2)}`
+                        );
 
 
-    if (savedTheme === "dark") {
-        document.body.classList.add(
-            "dark-mode"
-        );
-    }
+                    const message =
+                        `Hello Ubaid Medical Store,%0A%0A` +
+                        `Mujhe ye medicines order karni hain:%0A%0A` +
+                        `${lines.join("%0A")}%0A%0A` +
+                        `Total: ₹${getCartTotal().toFixed(2)}`;
 
 
-    function updateThemeIcon() {
-
-        const icon =
-            themeToggle?.querySelector("i");
-
-        if (!icon) return;
+                    const phone =
+                        "919999999999";
 
 
-        if (
-            document.body.classList.contains(
-                "dark-mode"
-            )
-        ) {
-
-            icon.className =
-                "fa-solid fa-sun";
-
-        } else {
-
-            icon.className =
-                "fa-solid fa-moon";
-
-        }
-
-    }
-
-
-    updateThemeIcon();
-
-
-    themeToggle?.addEventListener(
-        "click",
-        () => {
-
-            document.body.classList.toggle(
-                "dark-mode"
-            );
-
-
-            const mode =
-                document.body.classList.contains(
-                    "dark-mode"
-                )
-                    ? "dark"
-                    : "light";
-
-
-            localStorage.setItem(
-                "ubaidMedicalTheme",
-                mode
-            );
-
-
-            updateThemeIcon();
-
-        }
-    );
-
-
-    /* =====================================================
-       MOBILE MENU
-       ===================================================== */
-
-    mobileMenuBtn?.addEventListener(
-        "click",
-        () => {
-
-            navLinks?.classList.toggle(
-                "active"
-            );
-
-        }
-    );
-
-
-    navLinks
-        ?.querySelectorAll("a")
-        .forEach(link => {
-
-            link.addEventListener(
-                "click",
-                () => {
-
-                    navLinks.classList.remove(
-                        "active"
+                    window.open(
+                        `https://wa.me/${phone}?text=${message}`,
+                        "_blank"
                     );
-
                 }
             );
-
         });
 
 
-    /* =====================================================
-       AUTH MODAL
-       ===================================================== */
+    // ========================================================
+    // AUTH ELEMENTS
+    // ========================================================
 
-    function openAuth() {
+    const authModal =
+        get("authModal") ||
+        $(".auth-modal");
+
+    const profileModal =
+        get("profileModal") ||
+        $(".profile-modal");
+
+    const loginForm =
+        get("loginForm");
+
+    const signupForm =
+        get("signupForm");
+
+    const forgotForm =
+        get("forgotPasswordForm");
+
+
+    const accountBtn =
+        get("accountBtn") ||
+        $(".account-btn");
+
+
+    const profileBtn =
+        get("profileBtn") ||
+        $(".profile-btn");
+
+
+    const profileGroup =
+        get("userProfileGroup") ||
+        $(".user-profile-group");
+
+
+    const profileDropdown =
+        get("profileDropdown") ||
+        $(".profile-dropdown");
+
+
+    // ========================================================
+    // AUTH MODAL HELPERS
+    // ========================================================
+
+    function openAuthModal(mode = "login") {
 
         if (!authModal) return;
 
-        authModal.classList.add(
-            "active"
-        );
-
-        authModal.setAttribute(
-            "aria-hidden",
-            "false"
-        );
+        authModal.classList.add("active");
 
         document.body.classList.add(
             "no-scroll"
         );
 
-        showLogin();
-
+        switchAuthMode(mode);
     }
 
 
@@ -1006,281 +919,200 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!authModal) return;
 
-        authModal.classList.remove(
-            "active"
-        );
-
-        authModal.setAttribute(
-            "aria-hidden",
-            "true"
-        );
+        authModal.classList.remove("active");
 
         document.body.classList.remove(
             "no-scroll"
         );
+    }
 
-        clearAuthMessage();
 
+    function switchAuthMode(mode) {
+
+        const loginBox =
+            get("loginBox") ||
+            get("loginSection");
+
+        const signupBox =
+            get("signupBox") ||
+            get("signupSection");
+
+        const forgotBox =
+            get("forgotBox") ||
+            get("forgotSection");
+
+
+        if (loginBox) {
+            loginBox.style.display =
+                mode === "login"
+                    ? ""
+                    : "none";
+        }
+
+        if (signupBox) {
+            signupBox.style.display =
+                mode === "signup"
+                    ? ""
+                    : "none";
+        }
+
+        if (forgotBox) {
+            forgotBox.style.display =
+                mode === "forgot"
+                    ? ""
+                    : "none";
+        }
+    }
+
+
+    if (accountBtn) {
+
+        accountBtn.addEventListener(
+            "click",
+            () => openAuthModal("login")
+        );
+    }
+
+
+    $$(".auth-close, .close-auth").forEach(
+        (button) => {
+
+            button.addEventListener(
+                "click",
+                closeAuthModal
+            );
+        }
+    );
+
+
+    if (authModal) {
+
+        authModal.addEventListener(
+            "click",
+            (event) => {
+
+                if (
+                    event.target === authModal
+                ) {
+                    closeAuthModal();
+                }
+            }
+        );
+    }
+
+
+    // Login/signup/forgot switches
+    $$("[data-auth-mode]").forEach(
+        (button) => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    switchAuthMode(
+                        button.dataset.authMode
+                    );
+                }
+            );
+        }
+    );
+
+
+    // ========================================================
+    // PASSWORD TOGGLE
+    // ========================================================
+
+    $$(".password-toggle").forEach(
+        (button) => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const input =
+                        button.parentElement
+                            ?.querySelector(
+                                "input"
+                            );
+
+                    if (!input) return;
+
+                    const isPassword =
+                        input.type === "password";
+
+                    input.type =
+                        isPassword
+                            ? "text"
+                            : "password";
+
+
+                    const icon =
+                        button.querySelector("i");
+
+                    if (icon) {
+
+                        icon.className =
+                            isPassword
+                                ? "fa-solid fa-eye-slash"
+                                : "fa-solid fa-eye";
+                    }
+                }
+            );
+        }
+    );
+
+
+    // ========================================================
+    // AUTH MESSAGE
+    // ========================================================
+
+    function authMessage(
+        message,
+        type = "error"
+    ) {
+
+        const boxes =
+            $$(".auth-message");
+
+        boxes.forEach((box) => {
+
+            box.textContent = message;
+
+            box.className =
+                `auth-message show ${type}`;
+        });
     }
 
 
     function clearAuthMessage() {
 
-        if (!authMessage) return;
-
-        authMessage.textContent = "";
-
-        authMessage.className =
-            "auth-message";
-
-    }
-
-
-    function authError(message) {
-
-        if (!authMessage) return;
-
-        authMessage.textContent =
-            message;
-
-        authMessage.className =
-            "auth-message error";
-
-    }
-
-
-    function authSuccess(message) {
-
-        if (!authMessage) return;
-
-        authMessage.textContent =
-            message;
-
-        authMessage.className =
-            "auth-message success";
-
-    }
-
-
-    function showLogin() {
-
-        if (loginForm) {
-            loginForm.hidden = false;
-        }
-
-        if (signupForm) {
-            signupForm.hidden = true;
-        }
-
-        if (authTitle) {
-            authTitle.textContent =
-                "Welcome Back";
-        }
-
-        if (authSubtitle) {
-            authSubtitle.textContent =
-                "Login to your Ubaid Medical Store account.";
-        }
-
-        clearAuthMessage();
-
-    }
-
-
-    function showSignupForm() {
-
-        if (loginForm) {
-            loginForm.hidden = true;
-        }
-
-        if (signupForm) {
-            signupForm.hidden = false;
-        }
-
-        if (authTitle) {
-            authTitle.textContent =
-                "Create Account";
-        }
-
-        if (authSubtitle) {
-            authSubtitle.textContent =
-                "Create your Ubaid Medical Store account.";
-        }
-
-        clearAuthMessage();
-
-    }
-
-
-    accountBtn?.addEventListener(
-        "click",
-        openAuth
-    );
-
-
-    closeAuth?.addEventListener(
-        "click",
-        closeAuthModal
-    );
-
-
-    authModal?.addEventListener(
-        "click",
-        event => {
-
-            if (
-                event.target === authModal
-            ) {
-                closeAuthModal();
-            }
-
-        }
-    );
-
-
-    showSignup?.addEventListener(
-        "click",
-        showSignupForm
-    );
-
-
-    showLogin?.addEventListener(
-        "click",
-        showLogin
-    );
-
-
-    /* =====================================================
-       FORGOT PASSWORD BUTTON
-       ===================================================== */
-
-    function addForgotPasswordButton() {
-
-        if (!loginPassword) return;
-
-        if (
-            $("forgotPasswordBtn")
-        ) {
-            return;
-        }
-
-
-        const button =
-            document.createElement(
-                "button"
-            );
-
-
-        button.type = "button";
-
-        button.id =
-            "forgotPasswordBtn";
-
-        button.className =
-            "forgot-password-btn";
-
-        button.textContent =
-            "Forgot Password?";
-
-
-        loginPassword.parentElement
-            ?.appendChild(button);
-
-
-        button.addEventListener(
-            "click",
-            async () => {
-
-                const email =
-                    loginEmail?.value.trim();
-
-
-                if (!email) {
-
-                    authError(
-                        "Pehle apna email enter karein."
-                    );
-
-                    loginEmail?.focus();
-
-                    return;
-
-                }
-
-
-                if (
-                    typeof window
-                        .ubaidResetPassword !==
-                    "function"
-                ) {
-
-                    authError(
-                        "Firebase password reset connect nahi hai."
-                    );
-
-                    return;
-
-                }
-
-
-                try {
-
-                    await window
-                        .ubaidResetPassword(
-                            email
-                        );
-
-
-                    authSuccess(
-                        "Password reset link email par bhej diya gaya hai."
-                    );
-
-
-                    showToast(
-                        "Reset email bhej diya gaya."
-                    );
-
-
-                } catch (error) {
-
-                    console.error(
-                        error
-                    );
-
-                    authError(
-                        getFirebaseError(
-                            error
-                        )
-                    );
-
-                }
-
+        $$(".auth-message").forEach(
+            (box) => {
+
+                box.classList.remove(
+                    "show",
+                    "error",
+                    "success"
+                );
+
+                box.textContent = "";
             }
         );
-
     }
 
 
-    addForgotPasswordButton();
-
-
-    /* =====================================================
-       FIREBASE ERROR
-       ===================================================== */
-
-    function getFirebaseError(error) {
+    function firebaseError(error) {
 
         const code =
             error?.code || "";
 
-
-        const errors = {
+        const messages = {
 
             "auth/invalid-credential":
                 "Email ya password galat hai.",
 
-            "auth/invalid-email":
-                "Valid email enter karein.",
+            "auth/invalid-login-credentials":
+                "Email ya password galat hai.",
 
             "auth/user-not-found":
                 "Is email se account nahi mila.",
@@ -1292,564 +1124,1058 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Is email se account pehle se bana hua hai.",
 
             "auth/weak-password":
-                "Password kam se kam 6 characters ka rakhein.",
+                "Password kam se kam 6 characters ka hona chahiye.",
+
+            "auth/invalid-email":
+                "Valid email address enter karo.",
 
             "auth/too-many-requests":
-                "Bahut attempts ho gaye. Thodi der baad try karein.",
+                "Bahut zyada attempts ho gaye. Thodi der baad try karo.",
 
             "auth/network-request-failed":
-                "Internet connection check karein."
+                "Internet connection check karo.",
 
+            "auth/user-disabled":
+                "Ye account disable hai."
         };
 
 
         return (
-            errors[code] ||
+            messages[code] ||
+            error?.message ||
             "Authentication mein problem aa gayi."
         );
-
     }
 
 
-    /* =====================================================
-       LOGIN
-       ===================================================== */
+    // ========================================================
+    // LOGIN
+    // ========================================================
 
-    loginForm?.addEventListener(
-        "submit",
-        async event => {
+    if (loginForm) {
 
-            event.preventDefault();
+        loginForm.addEventListener(
+            "submit",
+            async (event) => {
 
-            clearAuthMessage();
+                event.preventDefault();
 
+                clearAuthMessage();
 
-            const email =
-                loginEmail?.value.trim();
 
-            const password =
-                loginPassword?.value;
+                const email =
+                    loginForm.querySelector(
+                        'input[type="email"]'
+                    )?.value.trim();
 
 
-            if (!email || !password) {
+                const password =
+                    loginForm.querySelector(
+                        'input[type="password"]'
+                    )?.value;
 
-                authError(
-                    "Email aur password dono enter karein."
-                );
 
-                return;
-
-            }
-
-
-            if (
-                typeof window
-                    .ubaidLogin !==
-                "function"
-            ) {
-
-                authError(
-                    "Firebase login function nahi mil raha. firebase.js check karein."
-                );
-
-                return;
-
-            }
-
-
-            try {
-
-                authSuccess(
-                    "Login ho raha hai..."
-                );
-
-
-                const user =
-                    await window
-                        .ubaidLogin(
-                            email,
-                            password
-                        );
-
-
-                updateUserUI(user);
-
-                loginForm.reset();
-
-                closeAuthModal();
-
-                showToast(
-                    "Login successful ❤️"
-                );
-
-
-            } catch (error) {
-
-                console.error(
-                    "Login:",
-                    error
-                );
-
-                authError(
-                    getFirebaseError(
-                        error
-                    )
-                );
-
-            }
-
-        }
-    );
-
-
-    /* =====================================================
-       SIGNUP
-       ===================================================== */
-
-    signupForm?.addEventListener(
-        "submit",
-        async event => {
-
-            event.preventDefault();
-
-            clearAuthMessage();
-
-
-            const name =
-                signupName?.value.trim();
-
-            const email =
-                signupEmail?.value.trim();
-
-            const password =
-                signupPassword?.value;
-
-
-            if (
-                !name ||
-                !email ||
-                !password
-            ) {
-
-                authError(
-                    "Sabhi details fill karein."
-                );
-
-                return;
-
-            }
-
-
-            if (password.length < 6) {
-
-                authError(
-                    "Password kam se kam 6 characters ka hona chahiye."
-                );
-
-                return;
-
-            }
-
-
-            if (
-                typeof window
-                    .ubaidSignup !==
-                "function"
-            ) {
-
-                authError(
-                    "Firebase signup function nahi mil raha."
-                );
-
-                return;
-
-            }
-
-
-            try {
-
-                authSuccess(
-                    "Account create ho raha hai..."
-                );
-
-
-                const user =
-                    await window
-                        .ubaidSignup(
-                            email,
-                            password,
-                            name
-                        );
-
-
-                updateUserUI(user);
-
-                signupForm.reset();
-
-                closeAuthModal();
-
-                showToast(
-                    "Account successfully create ho gaya ❤️"
-                );
-
-
-            } catch (error) {
-
-                console.error(
-                    "Signup:",
-                    error
-                );
-
-                authError(
-                    getFirebaseError(
-                        error
-                    )
-                );
-
-            }
-
-        }
-    );
-
-
-    /* =====================================================
-       USER UI
-       ===================================================== */
-
-    function updateUserUI(user) {
-
-        if (user) {
-
-            accountBtn &&
-                (accountBtn.style.display =
-                    "none");
-
-
-            userProfileGroup &&
-                (userProfileGroup.style.display =
-                    "flex");
-
-
-            const name =
-                user.displayName ||
-                user.email?.split("@")[0] ||
-                "User";
-
-
-            if (userDisplayName) {
-
-                userDisplayName.textContent =
-                    name;
-
-            }
-
-
-        } else {
-
-            accountBtn &&
-                (accountBtn.style.display =
-                    "");
-
-
-            userProfileGroup &&
-                (userProfileGroup.style.display =
-                    "none");
-
-
-            if (userDisplayName) {
-
-                userDisplayName.textContent =
-                    "User";
-
-            }
-
-        }
-
-    }
-
-
-    /* =====================================================
-       FIREBASE AUTH STATE
-       ===================================================== */
-
-    window.addEventListener(
-        "ubaidAuthStateChanged",
-        event => {
-
-            updateUserUI(
-                event.detail || null
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       LOGOUT
-       ===================================================== */
-
-    logoutBtn?.addEventListener(
-        "click",
-        async event => {
-
-            event.stopPropagation();
-
-
-            if (
-                typeof window
-                    .ubaidLogout !==
-                "function"
-            ) {
-
-                updateUserUI(null);
-
-                showToast(
-                    "Logout ho gaya."
-                );
-
-                return;
-
-            }
-
-
-            try {
-
-                await window
-                    .ubaidLogout();
-
-
-                updateUserUI(null);
-
-
-                showToast(
-                    "Logout successful."
-                );
-
-
-            } catch (error) {
-
-                console.error(
-                    "Logout:",
-                    error
-                );
-
-                showToast(
-                    "Logout nahi ho paya."
-                );
-
-            }
-
-        }
-    );
-
-
-    /* =====================================================
-       COMMENTS
-       ===================================================== */
-
-    let comments =
-        safeJSON(
-            "ubaidMedicalComments",
-            []
-        );
-
-
-    function saveComments() {
-
-        localStorage.setItem(
-            "ubaidMedicalComments",
-            JSON.stringify(comments)
-        );
-
-    }
-
-
-    function renderComments() {
-
-        if (!commentsList) return;
-
-        commentsList.innerHTML = "";
-
-
-        if (!comments.length) {
-
-            commentsList.innerHTML = `
-
-                <div class="no-comments">
-
-                    <i class="fa-regular fa-comment-dots"></i>
-
-                    <h3>
-                        Abhi koi review nahi hai
-                    </h3>
-
-                    <p>
-                        Sabse pehla review aap likh sakte hain ❤️
-                    </p>
-
-                </div>
-
-            `;
-
-            return;
-
-        }
-
-
-        comments
-            .slice()
-            .reverse()
-            .forEach(comment => {
-
-                const card =
-                    document.createElement(
-                        "article"
+                const submit =
+                    loginForm.querySelector(
+                        'button[type="submit"]'
                     );
 
 
-                card.className =
-                    "comment-card";
+                try {
+
+                    if (!window.ubaidLogin) {
+                        throw new Error(
+                            "Firebase load nahi hua."
+                        );
+                    }
 
 
-                const initial =
-                    String(
-                        comment.name || "U"
-                    )
-                        .charAt(0)
-                        .toUpperCase();
+                    if (submit) {
+                        submit.disabled = true;
+                        submit.dataset.oldText =
+                            submit.innerHTML;
+                        submit.innerHTML =
+                            "Logging in...";
+                    }
 
 
-                card.innerHTML = `
-
-                    <div class="comment-avatar">
-                        ${escapeHTML(initial)}
-                    </div>
-
-                    <div class="comment-content">
-
-                        <div class="comment-top">
-
-                            <strong>
-                                ${escapeHTML(comment.name)}
-                            </strong>
-
-                            <span>
-                                ${escapeHTML(comment.date)}
-                            </span>
-
-                        </div>
-
-                        <p>
-                            ${escapeHTML(comment.text)}
-                        </p>
-
-                    </div>
-
-                `;
+                    await window.ubaidLogin(
+                        email,
+                        password
+                    );
 
 
-                commentsList.appendChild(
-                    card
-                );
+                    authMessage(
+                        "Login successful!",
+                        "success"
+                    );
 
-            });
 
+                    showToast(
+                        "Login successful!"
+                    );
+
+
+                    setTimeout(
+                        closeAuthModal,
+                        600
+                    );
+
+                } catch (error) {
+
+                    authMessage(
+                        firebaseError(error),
+                        "error"
+                    );
+
+                } finally {
+
+                    if (submit) {
+
+                        submit.disabled = false;
+
+                        submit.innerHTML =
+                            submit.dataset.oldText ||
+                            "Login";
+                    }
+                }
+            }
+        );
     }
 
 
-    commentForm?.addEventListener(
-        "submit",
-        event => {
+    // ========================================================
+    // SIGNUP
+    // ========================================================
 
-            event.preventDefault();
+    if (signupForm) {
+
+        signupForm.addEventListener(
+            "submit",
+            async (event) => {
+
+                event.preventDefault();
+
+                clearAuthMessage();
 
 
-            const name =
-                commentName?.value.trim();
+                const inputs =
+                    signupForm.querySelectorAll(
+                        "input"
+                    );
 
-            const text =
-                commentText?.value.trim();
+
+                const name =
+                    signupForm.querySelector(
+                        'input[name="name"]'
+                    )?.value.trim() ||
+                    inputs[0]?.value.trim();
 
 
-            if (!name || !text) {
+                const email =
+                    signupForm.querySelector(
+                        'input[type="email"]'
+                    )?.value.trim();
 
-                showToast(
-                    "Name aur review dono likhein."
-                );
 
-                return;
+                const password =
+                    signupForm.querySelector(
+                        'input[type="password"]'
+                    )?.value;
 
+
+                const submit =
+                    signupForm.querySelector(
+                        'button[type="submit"]'
+                    );
+
+
+                try {
+
+                    if (!window.ubaidSignup) {
+                        throw new Error(
+                            "Firebase load nahi hua."
+                        );
+                    }
+
+
+                    if (submit) {
+
+                        submit.disabled = true;
+
+                        submit.dataset.oldText =
+                            submit.innerHTML;
+
+                        submit.innerHTML =
+                            "Creating account...";
+                    }
+
+
+                    await window.ubaidSignup(
+                        email,
+                        password,
+                        name
+                    );
+
+
+                    authMessage(
+                        "Account successfully create ho gaya!",
+                        "success"
+                    );
+
+
+                    showToast(
+                        "Account created successfully!"
+                    );
+
+
+                    setTimeout(
+                        closeAuthModal,
+                        800
+                    );
+
+                } catch (error) {
+
+                    authMessage(
+                        firebaseError(error),
+                        "error"
+                    );
+
+                } finally {
+
+                    if (submit) {
+
+                        submit.disabled = false;
+
+                        submit.innerHTML =
+                            submit.dataset.oldText ||
+                            "Create Account";
+                    }
+                }
             }
+        );
+    }
 
 
-            comments.push({
+    // ========================================================
+    // FORGOT PASSWORD
+    // ========================================================
 
-                name,
+    if (forgotForm) {
 
-                text,
+        forgotForm.addEventListener(
+            "submit",
+            async (event) => {
 
-                date:
-                    new Date()
-                        .toLocaleDateString(
-                            "en-IN",
-                            {
-                                day: "2-digit",
-                                month: "short",
-                                year: "numeric"
-                            }
-                        )
+                event.preventDefault();
 
-            });
+                clearAuthMessage();
 
 
-            saveComments();
+                const email =
+                    forgotForm.querySelector(
+                        'input[type="email"]'
+                    )?.value.trim();
 
-            renderComments();
 
-            commentForm.reset();
+                try {
+
+                    await window.ubaidResetPassword(
+                        email
+                    );
 
 
-            showToast(
-                "Review add ho gaya ❤️"
+                    authMessage(
+                        "Password reset email bhej diya gaya hai.",
+                        "success"
+                    );
+
+
+                    showToast(
+                        "Password reset email sent."
+                    );
+
+                } catch (error) {
+
+                    authMessage(
+                        firebaseError(error),
+                        "error"
+                    );
+                }
+            }
+        );
+    }
+
+
+    // ========================================================
+    // PROFILE
+    // ========================================================
+
+    function updateUserUI(user) {
+
+        const loggedIn =
+            !!user;
+
+
+        // Account button
+        if (accountBtn) {
+
+            accountBtn.style.display =
+                loggedIn
+                    ? "none"
+                    : "";
+        }
+
+
+        // Profile group
+        if (profileGroup) {
+
+            profileGroup.style.display =
+                loggedIn
+                    ? ""
+                    : "none";
+        }
+
+
+        if (!loggedIn) return;
+
+
+        const name =
+            user.displayName ||
+            user.email?.split("@")[0] ||
+            "User";
+
+
+        const initials =
+            getInitials(name);
+
+
+        $$(".user-name").forEach(
+            (element) => {
+
+                element.textContent =
+                    name;
+            }
+        );
+
+
+        $$(".user-avatar, .profile-avatar-large, .profile-modal-avatar")
+            .forEach(
+                (element) => {
+
+                    element.textContent =
+                        initials;
+                }
             );
 
+
+        $$(".profile-email, [data-user-email]")
+            .forEach(
+                (element) => {
+
+                    element.textContent =
+                        user.email || "";
+                }
+            );
+
+
+        $$(".profile-user-name, [data-user-name]")
+            .forEach(
+                (element) => {
+
+                    element.textContent =
+                        name;
+                }
+            );
+    }
+
+
+    if (profileBtn) {
+
+        profileBtn.addEventListener(
+            "click",
+            (event) => {
+
+                event.stopPropagation();
+
+                if (!profileGroup) return;
+
+                profileGroup.classList.toggle(
+                    "open"
+                );
+            }
+        );
+    }
+
+
+    document.addEventListener(
+        "click",
+        (event) => {
+
+            if (
+                profileGroup &&
+                !profileGroup.contains(event.target)
+            ) {
+                profileGroup.classList.remove(
+                    "open"
+                );
+            }
         }
     );
 
 
-    /* =====================================================
-       ESCAPE KEY
-       ===================================================== */
+    function openProfileModal() {
+
+        if (!profileModal) return;
+
+        profileModal.classList.add("active");
+
+        document.body.classList.add(
+            "no-scroll"
+        );
+    }
+
+
+    function closeProfileModal() {
+
+        if (!profileModal) return;
+
+        profileModal.classList.remove(
+            "active"
+        );
+
+        document.body.classList.remove(
+            "no-scroll"
+        );
+    }
+
+
+    $$(".profile-view-btn, [data-profile-open]")
+        .forEach(
+            (button) => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        if (profileGroup) {
+                            profileGroup.classList.remove(
+                                "open"
+                            );
+                        }
+
+                        openProfileModal();
+                    }
+                );
+            }
+        );
+
+
+    $$(".profile-modal-close, .close-profile")
+        .forEach(
+            (button) => {
+
+                button.addEventListener(
+                    "click",
+                    closeProfileModal
+                );
+            }
+        );
+
+
+    if (profileModal) {
+
+        profileModal.addEventListener(
+            "click",
+            (event) => {
+
+                if (
+                    event.target === profileModal
+                ) {
+                    closeProfileModal();
+                }
+            }
+        );
+    }
+
+
+    // ========================================================
+    // LOGOUT
+    // ========================================================
+
+    $$(".logout-menu-btn, .logout-large-btn, #logoutBtn")
+        .forEach(
+            (button) => {
+
+                button.addEventListener(
+                    "click",
+                    async () => {
+
+                        try {
+
+                            if (
+                                window.ubaidLogout
+                            ) {
+
+                                await window.ubaidLogout();
+                            }
+
+
+                            if (profileGroup) {
+                                profileGroup.classList.remove(
+                                    "open"
+                                );
+                            }
+
+
+                            closeProfileModal();
+
+                            showToast(
+                                "Logout successful."
+                            );
+
+                        } catch (error) {
+
+                            showToast(
+                                firebaseError(error),
+                                "fa-circle-exclamation"
+                            );
+                        }
+                    }
+                );
+            }
+        );
+
+
+    // ========================================================
+    // FIREBASE AUTH STATE
+    // ========================================================
+
+    function handleAuthState(user) {
+
+        updateUserUI(user);
+
+        if (user) {
+
+            console.log(
+                "✅ User authenticated:",
+                user.email
+            );
+
+        } else {
+
+            console.log(
+                "ℹ️ User is logged out"
+            );
+        }
+    }
+
+
+    // Listen for Firebase event
+    window.addEventListener(
+        "ubaidAuthStateChanged",
+        (event) => {
+
+            handleAuthState(
+                event.detail || null
+            );
+        }
+    );
+
+
+    // IMPORTANT:
+    // firebase.js may have already completed
+    // auth state before this script listener existed.
+    if (
+        window.ubaidAuthReady === true
+    ) {
+
+        handleAuthState(
+            window.ubaidCurrentUser || null
+        );
+    }
+
+
+    // ========================================================
+    // REVIEWS
+    // ========================================================
+
+    const REVIEW_KEY =
+        "ubaid-medical-reviews";
+
+
+    let reviews = [];
+
+    try {
+
+        reviews =
+            JSON.parse(
+                localStorage.getItem(
+                    REVIEW_KEY
+                )
+            ) || [];
+
+        if (!Array.isArray(reviews)) {
+            reviews = [];
+        }
+
+    } catch {
+
+        reviews = [];
+    }
+
+
+    const reviewForm =
+        get("reviewForm");
+
+
+    const commentsList =
+        get("commentsList") ||
+        $(".comments-list");
+
+
+    const ratingButtons =
+        $$(".rating-input button");
+
+
+    let selectedRating = 0;
+
+
+    ratingButtons.forEach(
+        (button, index) => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    selectedRating =
+                        Number(
+                            button.dataset.rating ||
+                            index + 1
+                        );
+
+
+                    ratingButtons.forEach(
+                        (star, starIndex) => {
+
+                            star.classList.toggle(
+                                "active",
+                                starIndex <
+                                selectedRating
+                            );
+                        }
+                    );
+                }
+            );
+        }
+    );
+
+
+    function renderReviews() {
+
+        if (!commentsList) return;
+
+
+        if (!reviews.length) {
+
+            commentsList.innerHTML = `
+                <div class="review-placeholder">
+                    <i class="fa-regular fa-comments"></i>
+
+                    <h3>No reviews yet</h3>
+
+                    <p>
+                        Be the first to review Ubaid Medical Store.
+                    </p>
+                </div>
+            `;
+
+            return;
+        }
+
+
+        commentsList.innerHTML =
+            reviews.map(
+                (review) => {
+
+                    const stars =
+                        "★".repeat(
+                            Number(review.rating || 0)
+                        ) +
+                        "☆".repeat(
+                            5 -
+                            Number(review.rating || 0)
+                        );
+
+
+                    return `
+                        <div class="review-item">
+
+                            <div class="review-item-head">
+
+                                <div class="review-user">
+
+                                    <div class="review-user-avatar">
+                                        ${escapeHTML(
+                                            getInitials(
+                                                review.name
+                                            )
+                                        )}
+                                    </div>
+
+                                    <div>
+                                        <strong>
+                                            ${escapeHTML(
+                                                review.name
+                                            )}
+                                        </strong>
+
+                                        <small>
+                                            ${escapeHTML(
+                                                review.date || ""
+                                            )}
+                                        </small>
+                                    </div>
+
+                                </div>
+
+                                <div class="stars">
+                                    ${stars}
+                                </div>
+
+                            </div>
+
+                            <p class="review-text">
+                                ${escapeHTML(
+                                    review.text
+                                )}
+                            </p>
+
+                        </div>
+                    `;
+                }
+            ).join("");
+    }
+
+
+    if (reviewForm) {
+
+        reviewForm.addEventListener(
+            "submit",
+            (event) => {
+
+                event.preventDefault();
+
+
+                const user =
+                    window.ubaidCurrentUser;
+
+
+                if (!user) {
+
+                    showToast(
+                        "Review dene ke liye pehle login karo.",
+                        "fa-lock"
+                    );
+
+                    openAuthModal("login");
+
+                    return;
+                }
+
+
+                if (!selectedRating) {
+
+                    showToast(
+                        "Rating select karo.",
+                        "fa-star"
+                    );
+
+                    return;
+                }
+
+
+                const name =
+                    user.displayName ||
+                    user.email?.split("@")[0] ||
+                    "User";
+
+
+                const textarea =
+                    reviewForm.querySelector(
+                        "textarea"
+                    );
+
+
+                const text =
+                    textarea?.value.trim();
+
+
+                if (!text) {
+
+                    showToast(
+                        "Review likho.",
+                        "fa-comment"
+                    );
+
+                    return;
+                }
+
+
+                reviews.unshift({
+
+                    name,
+
+                    email:
+                        user.email || "",
+
+                    rating:
+                        selectedRating,
+
+                    text,
+
+                    date:
+                        new Date().toLocaleDateString(
+                            "en-IN"
+                        )
+                });
+
+
+                localStorage.setItem(
+                    REVIEW_KEY,
+                    JSON.stringify(reviews)
+                );
+
+
+                reviewForm.reset();
+
+                selectedRating = 0;
+
+                ratingButtons.forEach(
+                    (star) => {
+                        star.classList.remove(
+                            "active"
+                        );
+                    }
+                );
+
+
+                renderReviews();
+
+
+                showToast(
+                    "Review successfully add ho gaya!"
+                );
+            }
+        );
+    }
+
+
+    renderReviews();
+
+
+    // ========================================================
+    // SELECT / SORT PRODUCTS
+    // ========================================================
+
+    const sortSelect =
+        document.querySelector(
+            ".medicine-filter select"
+        );
+
+
+    if (
+        sortSelect &&
+        productsGrid
+    ) {
+
+        sortSelect.addEventListener(
+            "change",
+            () => {
+
+                const cards =
+                    Array.from(
+                        productsGrid.querySelectorAll(
+                            ".product-card"
+                        )
+                    );
+
+
+                const value =
+                    sortSelect.value;
+
+
+                cards.sort(
+                    (a, b) => {
+
+                        const priceA =
+                            Number(
+                                (
+                                    a.dataset.price ||
+                                    a.querySelector(
+                                        ".product-price strong"
+                                    )?.textContent ||
+                                    "0"
+                                )
+                                .replace(
+                                    /[^\d.]/g,
+                                    ""
+                                )
+                            ) || 0;
+
+
+                        const priceB =
+                            Number(
+                                (
+                                    b.dataset.price ||
+                                    b.querySelector(
+                                        ".product-price strong"
+                                    )?.textContent ||
+                                    "0"
+                                )
+                                .replace(
+                                    /[^\d.]/g,
+                                    ""
+                                )
+                            ) || 0;
+
+
+                        if (
+                            value === "low" ||
+                            value === "price-low"
+                        ) {
+                            return priceA - priceB;
+                        }
+
+
+                        if (
+                            value === "high" ||
+                            value === "price-high"
+                        ) {
+                            return priceB - priceA;
+                        }
+
+
+                        return 0;
+                    }
+                );
+
+
+                cards.forEach(
+                    (card) =>
+                        productsGrid.appendChild(
+                            card
+                        )
+                );
+            }
+        );
+    }
+
+
+    // ========================================================
+    // ACTIVE NAVIGATION
+    // ========================================================
+
+    const sections =
+        Array.from(
+            document.querySelectorAll(
+                "section[id]"
+            )
+        );
+
+
+    const navAnchors =
+        Array.from(
+            document.querySelectorAll(
+                ".nav-links a[href^='#']"
+            )
+        );
+
+
+    function updateActiveNav() {
+
+        const scrollPosition =
+            window.scrollY + 130;
+
+
+        let currentId = "";
+
+
+        sections.forEach(
+            (section) => {
+
+                if (
+                    scrollPosition >=
+                    section.offsetTop
+                ) {
+                    currentId =
+                        section.id;
+                }
+            }
+        );
+
+
+        navAnchors.forEach(
+            (link) => {
+
+                const target =
+                    link.getAttribute("href")
+                        ?.replace("#", "");
+
+
+                link.classList.toggle(
+                    "active",
+                    target === currentId
+                );
+            }
+        );
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        updateActiveNav,
+        {
+            passive: true
+        }
+    );
+
+
+    updateActiveNav();
+
+
+    // ========================================================
+    // GLOBAL ESCAPE KEY
+    // ========================================================
 
     document.addEventListener(
         "keydown",
-        event => {
+        (event) => {
 
-            if (
-                event.key === "Escape"
-            ) {
-
-                closeCartSidebar();
-                closeAuthModal();
-
+            if (event.key !== "Escape") {
+                return;
             }
 
+            closeMobileMenu();
+            closeCart();
+            closeAuthModal();
+            closeProfileModal();
+
+            if (profileGroup) {
+                profileGroup.classList.remove(
+                    "open"
+                );
+            }
         }
     );
 
 
-    /* =====================================================
-       INITIALIZE
-       ===================================================== */
-
-    renderProducts(medicines);
-
-    renderCart();
-
-    renderComments();
+    // ========================================================
+    // FINAL INIT
+    // ========================================================
 
     console.log(
-        "✅ Ubaid Medical Store script.js loaded successfully."
+        "✅ Ubaid Medical Store V2 JavaScript Ready"
     );
 
 });
