@@ -1,1623 +1,2073 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#087f5b"><title>Ubaid Medical Store | Thamarwa, Gopamau, Hardoi</title><meta name="description"
+content="Ubaid Medical Store - Medicines and healthcare products in Thamarwa, Gopamau, Hardoi. Order medicines on WhatsApp.">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<style>
+:root{
+    --primary:#087f5b;
+    --primary-dark:#056044;
+    --light:#e8f8f2;
+    --bg:#ffffff;
+    --soft:#f5faf8;
+    --card:#ffffff;
+    --text:#17202a;
+    --muted:#667085;
+    --border:#e3e8e6;
+    --danger:#dc3545;
+    --whatsapp:#25d366;
+    --shadow:0 10px 30px rgba(16,42,67,.09);
+}
 
-    <meta
-        name="description"
-        content="Ubaid Medical Store - Trusted medicines, healthcare products and pharmacy services."
-    >
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    <meta
-        name="theme-color"
-        content="#087f5b"
-    >
+html{
+    scroll-behavior:smooth;
+}
 
-    <title>Ubaid Medical Store | Trusted Healthcare</title>
+body{
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    transition:.25s;
+}
 
-    <!-- =====================================================
-         FONT AWESOME
-         ===================================================== -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+body.dark{
+    --bg:#0c1714;
+    --soft:#12221d;
+    --card:#172a25;
+    --text:#edf7f3;
+    --muted:#aabdb6;
+    --border:#294139;
+    --light:#183b30;
+}
 
-    <!-- =====================================================
-         MAIN CSS
-         ===================================================== -->
-    <link rel="stylesheet" href="style.css">
-</head>
+a{
+    text-decoration:none;
+    color:inherit;
+}
 
-<body>
+button,
+input,
+select{
+    font:inherit;
+}
 
-<!-- =========================================================
-     TOP BAR
-     ========================================================= -->
+button{
+    cursor:pointer;
+    border:0;
+}
 
-<div class="top-bar">
-    <div class="container top-bar-content">
+.container{
+    width:min(1180px,calc(100% - 28px));
+    margin:auto;
+}
 
-        <div class="top-left">
+/* TOP BAR */
 
-            <span>
-                <i class="fa-solid fa-truck-medical"></i>
-                Trusted Healthcare Service
-            </span>
+.topbar{
+    background:var(--primary-dark);
+    color:white;
+    font-size:13px;
+}
 
-            <span>
-                <i class="fa-solid fa-clock"></i>
-                Open 24/7
-            </span>
+.topbar-inner{
+    min-height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
 
-        </div>
+.topbar a:hover{
+    text-decoration:underline;
+}
 
-        <div class="top-right">
+/* HEADER */
 
-            <a href="tel:+919999999999">
-                <i class="fa-solid fa-phone"></i>
-                Call Us
-            </a>
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:var(--bg);
+    border-bottom:1px solid var(--border);
+}
 
-            <a
-                href="https://wa.me/919999999999"
-                target="_blank"
-                rel="noopener"
-            >
-                <i class="fa-brands fa-whatsapp"></i>
-                WhatsApp
-            </a>
+.header-inner{
+    min-height:76px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
 
-        </div>
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-shrink:0;
+}
 
+.logo-icon{
+    width:45px;
+    height:45px;
+    display:grid;
+    place-items:center;
+    border-radius:13px;
+    background:linear-gradient(145deg,var(--primary),#13a979);
+    color:white;
+    font-size:27px;
+    font-weight:900;
+}
+
+.logo-text strong{
+    display:block;
+    color:var(--text);
+    font-size:17px;
+}
+
+.logo-text small{
+    display:block;
+    color:var(--primary);
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.search{
+    flex:1;
+    height:46px;
+    display:flex;
+    background:var(--soft);
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.search input{
+    flex:1;
+    min-width:0;
+    padding:0 14px;
+    border:0;
+    outline:0;
+    background:transparent;
+    color:var(--text);
+}
+
+.search button{
+    width:55px;
+    background:var(--primary);
+    color:white;
+}
+
+.actions{
+    display:flex;
+    gap:7px;
+}
+
+.icon-btn{
+    width:43px;
+    height:43px;
+    display:grid;
+    place-items:center;
+    border:1px solid var(--border);
+    background:var(--soft);
+    color:var(--text);
+    border-radius:11px;
+    position:relative;
+}
+
+.icon-btn:hover{
+    color:var(--primary);
+    border-color:var(--primary);
+}
+
+.cart-count{
+    position:absolute;
+    top:-6px;
+    right:-5px;
+    min-width:20px;
+    height:20px;
+    display:grid;
+    place-items:center;
+    padding:0 5px;
+    background:var(--danger);
+    color:white;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:800;
+}
+
+/* NAV */
+
+nav{
+    border-bottom:1px solid var(--border);
+    background:var(--card);
+}
+
+.nav-inner{
+    min-height:48px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:6px;
+}
+
+.nav-inner a{
+    padding:8px 14px;
+    border-radius:8px;
+    color:var(--muted);
+    font-size:13px;
+    font-weight:700;
+}
+
+.nav-inner a:hover{
+    background:var(--light);
+    color:var(--primary);
+}
+
+/* HERO */
+
+.hero{
+    background:
+    radial-gradient(circle at 85% 20%,rgba(8,127,91,.14),transparent 30%),
+    linear-gradient(135deg,var(--soft),var(--bg));
+    padding:70px 0 85px;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:55px;
+    align-items:center;
+}
+
+.badge{
+    display:inline-block;
+    padding:6px 13px;
+    border-radius:30px;
+    background:var(--light);
+    color:var(--primary);
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:16px;
+}
+
+.hero h1{
+    color:var(--text);
+    font-size:clamp(40px,6vw,65px);
+    line-height:1.05;
+    letter-spacing:-2px;
+}
+
+.hero h1 span{
+    color:var(--primary);
+}
+
+.hero p{
+    max-width:600px;
+    margin:20px 0 25px;
+    color:var(--muted);
+    font-size:16px;
+}
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.btn{
+    min-height:45px;
+    padding:0 18px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    border-radius:10px;
+    font-weight:800;
+}
+
+.primary{
+    background:var(--primary);
+    color:white;
+}
+
+.primary:hover{
+    background:var(--primary-dark);
+}
+
+.green{
+    background:var(--whatsapp);
+    color:white;
+}
+
+.outline{
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+}
+
+.hero-card{
+    width:min(370px,90%);
+    margin:auto;
+    padding:30px;
+    border-radius:28px;
+    background:linear-gradient(145deg,var(--primary),#075e47);
+    color:white;
+    box-shadow:0 25px 55px rgba(8,127,91,.25);
+    transform:rotate(2deg);
+}
+
+.cross{
+    width:100px;
+    height:100px;
+    margin:30px auto;
+    display:grid;
+    place-items:center;
+    border-radius:25px;
+    background:rgba(255,255,255,.13);
+    font-size:70px;
+    font-weight:300;
+}
+
+.hero-card h2{
+    font-size:22px;
+}
+
+.hero-card p{
+    color:white;
+    opacity:.8;
+    margin:3px 0 0;
+    font-size:13px;
+}
+
+/* INFO */
+
+.info{
+    margin-top:-30px;
+    position:relative;
+    z-index:5;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.info-card{
+    padding:18px;
+    display:flex;
+    gap:12px;
+    align-items:center;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:15px;
+    box-shadow:var(--shadow);
+}
+
+.info-icon{
+    width:42px;
+    height:42px;
+    flex-shrink:0;
+    display:grid;
+    place-items:center;
+    background:var(--light);
+    color:var(--primary);
+    border-radius:11px;
+}
+
+.info-card strong{
+    display:block;
+    color:var(--text);
+    font-size:15px;
+}
+
+.info-card span{
+    color:var(--muted);
+    font-size:11px;
+}
+
+/* SECTIONS */
+
+.section{
+    padding:75px 0;
+}
+
+.section.soft{
+    background:var(--soft);
+}
+
+.heading{
+    max-width:680px;
+    margin:0 auto 35px;
+    text-align:center;
+}
+
+.heading span{
+    color:var(--primary);
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.heading h2{
+    color:var(--text);
+    font-size:clamp(28px,4vw,42px);
+    line-height:1.15;
+    margin-top:5px;
+}
+
+.heading p{
+    color:var(--muted);
+    margin-top:8px;
+    font-size:14px;
+}
+
+/* SEARCH MEDICINE */
+
+.medicine-search{
+    display:flex;
+    margin-bottom:25px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:13px;
+    overflow:hidden;
+}
+
+.medicine-search input{
+    flex:1;
+    min-width:0;
+    height:52px;
+    padding:0 15px;
+    border:0;
+    outline:0;
+    background:transparent;
+    color:var(--text);
+}
+
+.medicine-search button{
+    width:65px;
+    background:var(--primary);
+    color:white;
+}
+
+.toolbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.result{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.filter{
+    height:40px;
+    padding:0 10px;
+    background:var(--card);
+    color:var(--text);
+    border:1px solid var(--border);
+    border-radius:9px;
+    outline:0;
+}
+
+/* PRODUCTS */
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:17px;
+}
+
+.product{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:17px;
+    overflow:hidden;
+    box-shadow:0 5px 18px rgba(16,42,67,.06);
+    transition:.25s;
+}
+
+.product:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow);
+}
+
+.product-img{
+    height:145px;
+    display:grid;
+    place-items:center;
+    background:var(--soft);
+    color:var(--primary);
+    font-size:45px;
+}
+
+.product-body{
+    padding:15px;
+}
+
+.product-body h3{
+    color:var(--text);
+    font-size:15px;
+    line-height:1.3;
+}
+
+.category{
+    color:var(--primary);
+    font-size:10px;
+    font-weight:800;
+}
+
+.product-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    margin-top:12px;
+}
+
+.price{
+    color:var(--text);
+    font-size:17px;
+    font-weight:900;
+}
+
+.add{
+    min-height:36px;
+    padding:0 11px;
+    background:var(--primary);
+    color:white;
+    border-radius:8px;
+    font-size:11px;
+    font-weight:800;
+}
+
+.add:hover{
+    background:var(--primary-dark);
+}
+
+/* CONTACT */
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.contact{
+    padding:23px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:17px;
+    box-shadow:var(--shadow);
+}
+
+.contact-icon{
+    width:48px;
+    height:48px;
+    display:grid;
+    place-items:center;
+    background:var(--light);
+    color:var(--primary);
+    border-radius:13px;
+    margin-bottom:13px;
+    font-size:21px;
+}
+
+.contact h3{
+    color:var(--text);
+    font-size:16px;
+}
+
+.contact p{
+    color:var(--muted);
+    font-size:12px;
+    margin:4px 0 13px;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+    background:linear-gradient(135deg,#087f5b,#056044);
+    color:white;
+    border-radius:22px;
+    padding:28px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.whatsapp-icon{
+    width:60px;
+    height:60px;
+    display:grid;
+    place-items:center;
+    background:rgba(255,255,255,.13);
+    border-radius:16px;
+    font-size:28px;
+}
+
+.whatsapp-content{
+    flex:1;
+}
+
+.whatsapp-content h2{
+    font-size:23px;
+}
+
+.whatsapp-content p{
+    opacity:.8;
+    font-size:13px;
+}
+
+.whatsapp .btn{
+    background:white;
+    color:var(--primary);
+}
+
+/* FOOTER */
+
+footer{
+    background:#09251e;
+    color:#d8e7e2;
+}
+
+.footer-main{
+    padding:50px 0 35px;
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr;
+    gap:35px;
+}
+
+.footer h3{
+    color:white;
+    margin-bottom:10px;
+}
+
+.footer p,
+.footer a{
+    color:#9fb6af;
+    font-size:12px;
+}
+
+.footer a{
+    display:block;
+    margin-top:7px;
+}
+
+.footer a:hover{
+    color:#73d6b5;
+}
+
+.footer-bottom{
+    padding:17px 0;
+    border-top:1px solid rgba(255,255,255,.08);
+    text-align:center;
+    color:#8da8a0;
+    font-size:11px;
+}
+
+/* CART */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    opacity:0;
+    visibility:hidden;
+    z-index:1500;
+    transition:.25s;
+}
+
+.overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.cart{
+    position:fixed;
+    right:0;
+    top:0;
+    width:min(420px,100%);
+    height:100vh;
+    background:var(--card);
+    z-index:1600;
+    transform:translateX(100%);
+    transition:.3s;
+    display:flex;
+    flex-direction:column;
+}
+
+.cart.active{
+    transform:translateX(0);
+}
+
+.cart-head{
+    padding:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--border);
+}
+
+.cart-head h2{
+    color:var(--text);
+}
+
+.close{
+    width:38px;
+    height:38px;
+    background:var(--soft);
+    color:var(--text);
+    border-radius:9px;
+}
+
+.cart-items{
+    flex:1;
+    overflow:auto;
+    padding:15px;
+}
+
+.cart-item{
+    display:grid;
+    grid-template-columns:45px 1fr auto;
+    gap:10px;
+    padding:12px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.cart-item-icon{
+    width:45px;
+    height:45px;
+    display:grid;
+    place-items:center;
+    background:var(--light);
+    color:var(--primary);
+    border-radius:10px;
+}
+
+.cart-item h4{
+    color:var(--text);
+    font-size:12px;
+}
+
+.cart-item small{
+    color:var(--muted);
+    font-size:10px;
+}
+
+.qty{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-top:5px;
+}
+
+.qty button{
+    width:23px;
+    height:23px;
+    border-radius:6px;
+    background:var(--soft);
+    color:var(--text);
+}
+
+.cart-price{
+    color:var(--text);
+    font-size:12px;
+    font-weight:800;
+}
+
+.cart-footer{
+    padding:18px;
+    border-top:1px solid var(--border);
+}
+
+.total{
+    display:flex;
+    justify-content:space-between;
+    color:var(--text);
+    margin-bottom:13px;
+}
+
+.order{
+    width:100%;
+    min-height:48px;
+    background:var(--whatsapp);
+    color:white;
+    border-radius:10px;
+    font-weight:900;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:20px;
+    transform:translate(-50%,20px);
+    z-index:3000;
+    background:var(--card);
+    color:var(--text);
+    border:1px solid var(--border);
+    padding:12px 17px;
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    opacity:0;
+    visibility:hidden;
+    transition:.25s;
+    font-size:12px;
+}
+
+.toast.show{
+    opacity:1;
+    visibility:visible;
+    transform:translate(-50%,0);
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+    .products{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .info-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:800px){
+    .search{
+        display:none;
+    }
+
+    .hero-grid{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .hero p{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .buttons{
+        justify-content:center;
+    }
+
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-main{
+        grid-template-columns:1fr;
+    }
+
+    .nav-inner{
+        overflow-x:auto;
+        justify-content:flex-start;
+        padding:5px 0;
+    }
+
+    .nav-inner a{
+        white-space:nowrap;
+    }
+}
+
+@media(max-width:600px){
+    .container{
+        width:min(100% - 20px,1180px);
+    }
+
+    .topbar-inner{
+        justify-content:center;
+        text-align:center;
+    }
+
+    .topbar .hide-mobile{
+        display:none;
+    }
+
+    .logo-text strong{
+        font-size:14px;
+    }
+
+    .logo-text small{
+        font-size:8px;
+    }
+
+    .logo-icon{
+        width:40px;
+        height:40px;
+    }
+
+    .actions{
+        margin-left:auto;
+    }
+
+    .icon-btn{
+        width:38px;
+        height:38px;
+    }
+
+    .hero{
+        padding:50px 0 70px;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .hero-card{
+        width:290px;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr 1fr;
+        gap:8px;
+    }
+
+    .info-card{
+        padding:12px;
+    }
+
+    .info-card strong{
+        font-size:12px;
+    }
+
+    .info-card span{
+        font-size:9px;
+    }
+
+    .section{
+        padding:55px 0;
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .product-img{
+        height:120px;
+    }
+
+    .product-body{
+        padding:11px;
+    }
+
+    .product-body h3{
+        font-size:12px;
+    }
+
+    .product-bottom{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .add{
+        width:100%;
+    }
+
+    .toolbar{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .filter{
+        width:100%;
+    }
+
+    .whatsapp{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .whatsapp .btn{
+        width:100%;
+    }
+}
+
+@media(max-width:380px){
+    .products{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .hero h1{
+        font-size:34px;
+    }
+}
+</style></head><body><!-- TOP BAR --><div class="topbar">
+    <div class="container topbar-inner">
+        <span>💚 Trusted Local Pharmacy</span>
+        <span class="hide-mobile">📍 Thamarwa, Gopamau, Hardoi</span>
+        <a href="tel:9044286963">📞 9044286963</a>
     </div>
-</div>
+</div><!-- HEADER --><header>
+    <div class="container header-inner">    <a href="#" class="logo">
+        <div class="logo-icon">✚</div>
 
+        <div class="logo-text">
+            <strong>UBAID MEDICAL</strong>
+            <small>STORE</small>
+        </div>
+    </a>
 
-<!-- =========================================================
-     HEADER
-     ========================================================= -->
-
-<header class="header">
-
-    <div class="container header-content">
-
-        <!-- LOGO -->
-
-        <a
-            href="#home"
-            class="logo"
-            aria-label="Ubaid Medical Store Home"
+    <div class="search">
+        <input
+            id="headerSearch"
+            type="search"
+            placeholder="Search medicines..."
         >
-
-            <div class="logo-mark">
-
-                <div class="logo-cross">
-                    <span></span>
-                    <span></span>
-                </div>
-
-            </div>
-
-            <div class="logo-text">
-
-                <strong>UBAID MEDICAL</strong>
-                <span>STORE</span>
-
-            </div>
-
-        </a>
-
-
-        <!-- DESKTOP SEARCH -->
-
-        <form
-            class="header-search"
-            id="headerSearchForm"
-        >
-
-            <i class="fa-solid fa-magnifying-glass"></i>
-
-            <input
-                type="search"
-                id="headerSearchInput"
-                placeholder="Search medicines, healthcare products..."
-                autocomplete="off"
-            >
-
-            <button type="submit">
-                Search
-            </button>
-
-        </form>
-
-
-        <!-- HEADER ACTIONS -->
-
-        <div class="header-actions">
-
-            <!-- DARK MODE -->
-
-            <button
-                type="button"
-                class="header-icon-btn"
-                id="themeToggle"
-                aria-label="Toggle dark mode"
-                title="Dark mode"
-            >
-                <i class="fa-solid fa-moon"></i>
-            </button>
-
-
-            <!-- ACCOUNT -->
-
-            <button
-                type="button"
-                class="account-btn"
-                id="accountBtn"
-                aria-label="Account"
-            >
-                <i class="fa-regular fa-user"></i>
-                <span>Account</span>
-            </button>
-
-
-            <!-- CART -->
-
-            <button
-                type="button"
-                class="cart-button"
-                id="cartButton"
-                aria-label="Open shopping cart"
-            >
-
-                <i class="fa-solid fa-cart-shopping"></i>
-
-                <span id="cartCount">0</span>
-
-            </button>
-
-
-            <!-- MOBILE MENU -->
-
-            <button
-                type="button"
-                class="mobile-menu-btn"
-                id="mobileMenuBtn"
-                aria-label="Open menu"
-                aria-expanded="false"
-            >
-                <i class="fa-solid fa-bars"></i>
-            </button>
-
-        </div>
-
+        <button onclick="searchMedicine()">🔎</button>
     </div>
 
-
-    <!-- MOBILE SEARCH -->
-
-    <div class="container mobile-search">
-
-        <form
-            class="mobile-search-box"
-            id="mobileSearchForm"
-        >
-
-            <i class="fa-solid fa-magnifying-glass"></i>
-
-            <input
-                type="search"
-                id="mobileSearchInput"
-                placeholder="Search medicines..."
-                autocomplete="off"
-            >
-
-            <button type="submit">
-                <i class="fa-solid fa-arrow-right"></i>
-            </button>
-
-        </form>
-
-    </div>
-
-</header>
-
-
-<!-- =========================================================
-     NAVIGATION
-     ========================================================= -->
-
-<nav class="nav" id="mainNav">
-
-    <div class="container">
-
-        <div class="nav-links">
-
-            <a
-                href="#home"
-                class="active"
-            >
-                <i class="fa-solid fa-house"></i>
-                Home
-            </a>
-
-            <a href="#categories">
-                <i class="fa-solid fa-layer-group"></i>
-                Categories
-            </a>
-
-            <a href="#medicines">
-                <i class="fa-solid fa-pills"></i>
-                Medicines
-            </a>
-
-            <a href="#services">
-                <i class="fa-solid fa-hand-holding-medical"></i>
-                Services
-            </a>
-
-            <a href="#offers">
-                <i class="fa-solid fa-tags"></i>
-                Offers
-            </a>
-
-            <a href="#contact">
-                <i class="fa-solid fa-phone"></i>
-                Contact
-            </a>
-
-        </div>
-
-    </div>
-
-</nav>
-
-
-<!-- =========================================================
-     OVERLAY
-     ========================================================= -->
-
-<div
-    class="overlay"
-    id="overlay"
-></div>
-
-
-<!-- =========================================================
-     MAIN
-     ========================================================= -->
-
-<main>
-
-
-<!-- =========================================================
-     HERO
-     ========================================================= -->
-
-<section
-    class="hero"
-    id="home"
->
-
-    <div class="container hero-content">
-
-
-        <!-- HERO TEXT -->
-
-        <div class="hero-text">
-
-            <span class="hero-badge">
-
-                <i class="fa-solid fa-shield-heart"></i>
-
-                Your Trusted Healthcare Partner
-
-            </span>
-
-
-            <h1>
-
-                Quality Care.
-
-                <span>Better Health.</span>
-
-            </h1>
-
-
-            <p>
-
-                Get trusted medicines, healthcare products
-                and pharmacy services from Ubaid Medical Store.
-
-            </p>
-
-
-            <div class="hero-buttons">
-
-                <a
-                    href="#medicines"
-                    class="btn btn-primary"
-                >
-
-                    <i class="fa-solid fa-pills"></i>
-
-                    Explore Medicines
-
-                </a>
-
-
-                <a
-                    href="https://wa.me/919999999999"
-                    target="_blank"
-                    rel="noopener"
-                    class="btn whatsapp-btn"
-                >
-
-                    <i class="fa-brands fa-whatsapp"></i>
-
-                    Order on WhatsApp
-
-                </a>
-
-            </div>
-
-
-            <div class="hero-trust">
-
-                <div>
-                    <i class="fa-solid fa-circle-check"></i>
-                    Genuine Products
-                </div>
-
-                <div>
-                    <i class="fa-solid fa-truck-fast"></i>
-                    Fast Service
-                </div>
-
-                <div>
-                    <i class="fa-solid fa-headset"></i>
-                    Helpful Support
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- HERO VISUAL -->
-
-        <div class="hero-visual">
-
-            <div class="hero-glow"></div>
-
-
-            <div class="medical-card">
-
-                <div class="medical-card-top">
-
-                    <span>
-                        UBAID MEDICAL
-                    </span>
-
-                    <i class="fa-solid fa-heart-pulse"></i>
-
-                </div>
-
-
-                <div class="medical-symbol">
-
-                    <div class="big-cross">
-
-                        <span></span>
-                        <span></span>
-
-                    </div>
-
-                </div>
-
-
-                <h3>
-                    Complete Healthcare
-                </h3>
-
-                <p>
-                    Care you can trust.
-                </p>
-
-
-                <div class="medical-card-bottom">
-
-                    <span>
-                        PHARMACY
-                    </span>
-
-                    <span>
-                        HEALTHCARE
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="floating-card floating-card-one">
-
-                <i class="fa-solid fa-shield-heart"></i>
-
-                <div>
-
-                    <strong>Trusted</strong>
-
-                    <small>
-                        Healthcare
-                    </small>
-
-                </div>
-
-            </div>
-
-
-            <div class="floating-card floating-card-two">
-
-                <i class="fa-solid fa-truck-fast"></i>
-
-                <div>
-
-                    <strong>Fast Service</strong>
-
-                    <small>
-                        Quick assistance
-                    </small>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     STATS
-     ========================================================= -->
-
-<section class="stats">
-
-    <div class="container stats-grid">
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                <i class="fa-solid fa-pills"></i>
-            </div>
-
-            <div>
-
-                <strong>500+</strong>
-
-                <span>Products</span>
-
-            </div>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                <i class="fa-solid fa-user-doctor"></i>
-            </div>
-
-            <div>
-
-                <strong>24/7</strong>
-
-                <span>Support</span>
-
-            </div>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                <i class="fa-solid fa-shield-heart"></i>
-            </div>
-
-            <div>
-
-                <strong>100%</strong>
-
-                <span>Trusted</span>
-
-            </div>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                <i class="fa-solid fa-heart"></i>
-            </div>
-
-            <div>
-
-                <strong>Care</strong>
-
-                <span>For Everyone</span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     SEARCH SECTION
-     ========================================================= -->
-
-<section class="search-section">
-
-    <div class="container">
-
-        <form
-            class="search-box"
-            id="mainSearchForm"
-        >
-
-            <div class="search-content">
-
-                <i class="fa-solid fa-magnifying-glass"></i>
-
-                <input
-                    type="search"
-                    id="mainSearchInput"
-                    placeholder="Search medicine or healthcare product..."
-                    autocomplete="off"
-                >
-
-            </div>
-
-            <button
-                type="submit"
-                class="search-main-btn"
-            >
-                Search
-            </button>
-
-        </form>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     CATEGORIES
-     ========================================================= -->
-
-<section
-    class="section"
-    id="categories"
->
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span>
-                Shop By Category
-            </span>
-
-            <h2>
-                Find What You Need
-            </h2>
-
-            <p>
-                Browse our healthcare categories easily.
-            </p>
-
-        </div>
-
-
-        <div class="category-grid">
-
-
-            <a
-                href="#medicines"
-                class="category-card"
-                data-category="Medicines"
-            >
-
-                <div class="category-icon">
-                    <i class="fa-solid fa-pills"></i>
-                </div>
-
-                <h3>Medicines</h3>
-
-                <span>
-                    Common medicines
-                </span>
-
-                <i class="fa-solid fa-arrow-right category-arrow"></i>
-
-            </a>
-
-
-            <a
-                href="#medicines"
-                class="category-card"
-                data-category="Healthcare"
-            >
-
-                <div class="category-icon">
-                    <i class="fa-solid fa-heart-pulse"></i>
-                </div>
-
-                <h3>Healthcare</h3>
-
-                <span>
-                    Daily healthcare
-                </span>
-
-                <i class="fa-solid fa-arrow-right category-arrow"></i>
-
-            </a>
-
-
-            <a
-                href="#medicines"
-                class="category-card"
-                data-category="Personal Care"
-            >
-
-                <div class="category-icon">
-                    <i class="fa-solid fa-hand-holding-heart"></i>
-                </div>
-
-                <h3>Personal Care</h3>
-
-                <span>
-                    Personal products
-                </span>
-
-                <i class="fa-solid fa-arrow-right category-arrow"></i>
-
-            </a>
-
-
-            <a
-                href="#medicines"
-                class="category-card"
-                data-category="Baby Care"
-            >
-
-                <div class="category-icon">
-                    <i class="fa-solid fa-baby"></i>
-                </div>
-
-                <h3>Baby Care</h3>
-
-                <span>
-                    Baby essentials
-                </span>
-
-                <i class="fa-solid fa-arrow-right category-arrow"></i>
-
-            </a>
-
-
-            <a
-                href="#medicines"
-                class="category-card"
-                data-category="First Aid"
-            >
-
-                <div class="category-icon">
-                    <i class="fa-solid fa-kit-medical"></i>
-                </div>
-
-                <h3>First Aid</h3>
-
-                <span>
-                    First aid essentials
-                </span>
-
-                <i class="fa-solid fa-arrow-right category-arrow"></i>
-
-            </a>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     MEDICINES
-     ========================================================= -->
-
-<section
-    class="section medicines-section"
-    id="medicines"
->
-
-    <div class="container">
-
-
-        <div class="section-heading">
-
-            <span>
-                Our Products
-            </span>
-
-            <h2>
-                Medicines & Healthcare
-            </h2>
-
-            <p>
-                Explore available healthcare products.
-            </p>
-
-        </div>
-
-
-        <div class="medicine-toolbar">
-
-            <div class="medicine-result">
-
-                <i class="fa-solid fa-circle-info"></i>
-
-                <span id="medicineResult">
-                    Showing products
-                </span>
-
-            </div>
-
-
-            <div class="medicine-filter">
-
-                <label for="medicineFilter">
-                    Sort:
-                </label>
-
-                <select id="medicineFilter">
-
-                    <option value="default">
-                        Recommended
-                    </option>
-
-                    <option value="low">
-                        Price: Low to High
-                    </option>
-
-                    <option value="high">
-                        Price: High to Low
-                    </option>
-
-                    <option value="name">
-                        Name A-Z
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-
-        <div
-            class="products-grid"
-            id="productsGrid"
-        >
-
-            <!-- PRODUCTS WILL BE LOADED BY script.js -->
-
-        </div>
-
-
-        <div
-            class="empty-products"
-            id="emptyProducts"
-            style="display:none;"
-        >
-
-            <div class="empty-products-icon">
-
-                <i class="fa-solid fa-magnifying-glass"></i>
-
-            </div>
-
-            <h3>
-                No products found
-            </h3>
-
-            <p>
-                Try searching for another medicine or product.
-            </p>
-
-            <button
-                type="button"
-                class="btn btn-primary"
-                id="clearSearchBtn"
-            >
-                Clear Search
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     SERVICES
-     ========================================================= -->
-
-<section
-    class="section"
-    id="services"
->
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span>
-                Our Services
-            </span>
-
-            <h2>
-                Healthcare Made Simple
-            </h2>
-
-            <p>
-                Convenient services for your everyday healthcare needs.
-            </p>
-
-        </div>
-
-
-        <div class="services-grid">
-
-
-            <div class="service-card">
-
-                <div class="service-icon">
-                    <i class="fa-solid fa-pills"></i>
-                </div>
-
-                <h3>
-                    Medicine Assistance
-                </h3>
-
-                <p>
-                    Find common medicines and healthcare products easily.
-                </p>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">
-                    <i class="fa-solid fa-truck-fast"></i>
-                </div>
-
-                <h3>
-                    Quick Service
-                </h3>
-
-                <p>
-                    Get quick assistance for your healthcare requirements.
-                </p>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon whatsapp-service-icon">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </div>
-
-                <h3>
-                    WhatsApp Orders
-                </h3>
-
-                <p>
-                    Contact us directly through WhatsApp for assistance.
-                </p>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">
-                    <i class="fa-solid fa-headset"></i>
-                </div>
-
-                <h3>
-                    Customer Support
-                </h3>
-
-                <p>
-                    Helpful support for your pharmacy-related queries.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     WHATSAPP BANNER
-     ========================================================= -->
-
-<section class="whatsapp-banner-section">
-
-    <div class="container">
-
-        <div class="whatsapp-banner">
-
-
-            <div class="whatsapp-banner-icon">
-
-                <i class="fa-brands fa-whatsapp"></i>
-
-            </div>
-
-
-            <div class="whatsapp-banner-text">
-
-                <span>
-                    NEED HELP?
-                </span>
-
-                <h2>
-                    Talk to Ubaid Medical Store
-                </h2>
-
-                <p>
-                    Send us your medicine requirement on WhatsApp.
-                </p>
-
-            </div>
-
-
-            <a
-                href="https://wa.me/919999999999"
-                target="_blank"
-                rel="noopener"
-                class="btn whatsapp-banner-btn"
-            >
-
-                <i class="fa-brands fa-whatsapp"></i>
-
-                WhatsApp Us
-
-            </a>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     OFFERS
-     ========================================================= -->
-
-<section
-    class="section offers-section"
-    id="offers"
->
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span>
-                Why Choose Us
-            </span>
-
-            <h2>
-                Better Pharmacy Experience
-            </h2>
-
-            <p>
-                Simple, reliable and convenient healthcare service.
-            </p>
-
-        </div>
-
-
-        <div class="offers-grid">
-
-
-            <div class="offer-card">
-
-                <div class="offer-card-icon">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-
-                <div>
-
-                    <span class="offer-label">
-                        TRUST
-                    </span>
-
-                    <h3>
-                        Genuine Healthcare
-                    </h3>
-
-                    <p>
-                        Focused on reliable healthcare products.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="offer-card">
-
-                <div class="offer-card-icon">
-                    <i class="fa-solid fa-bolt"></i>
-                </div>
-
-                <div>
-
-                    <span class="offer-label">
-                        QUICK
-                    </span>
-
-                    <h3>
-                        Easy Ordering
-                    </h3>
-
-                    <p>
-                        Search products and add them to your cart.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="offer-card">
-
-                <div class="offer-card-icon">
-                    <i class="fa-solid fa-heart"></i>
-                </div>
-
-                <div>
-
-                    <span class="offer-label">
-                        CARE
-                    </span>
-
-                    <h3>
-                        Customer First
-                    </h3>
-
-                    <p>
-                        Your healthcare needs are our priority.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     CONTACT
-     ========================================================= -->
-
-<section
-    class="section contact-section"
-    id="contact"
->
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span>
-                Contact Us
-            </span>
-
-            <h2>
-                We're Here To Help
-            </h2>
-
-            <p>
-                Contact Ubaid Medical Store for assistance.
-            </p>
-
-        </div>
-
-
-        <div class="contact-grid">
-
-
-            <a
-                href="tel:+919999999999"
-                class="contact-card"
-            >
-
-                <div class="contact-icon">
-                    <i class="fa-solid fa-phone"></i>
-                </div>
-
-                <div>
-
-                    <span>
-                        CALL
-                    </span>
-
-                    <h3>
-                        +91 99999 99999
-                    </h3>
-
-                    <p>
-                        Call for assistance
-                    </p>
-
-                </div>
-
-            </a>
-
-
-            <a
-                href="https://wa.me/919999999999"
-                target="_blank"
-                rel="noopener"
-                class="contact-card whatsapp-contact"
-            >
-
-                <div class="contact-icon">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </div>
-
-                <div>
-
-                    <span>
-                        WHATSAPP
-                    </span>
-
-                    <h3>
-                        Chat With Us
-                    </h3>
-
-                    <p>
-                        Send your requirement
-                    </p>
-
-                </div>
-
-            </a>
-
-
-            <div class="contact-card">
-
-                <div class="contact-icon">
-                    <i class="fa-solid fa-clock"></i>
-                </div>
-
-                <div>
-
-                    <span>
-                        TIMING
-                    </span>
-
-                    <h3>
-                        Open 24/7
-                    </h3>
-
-                    <p>
-                        Healthcare assistance
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="contact-card">
-
-                <div class="contact-icon">
-                    <i class="fa-solid fa-location-dot"></i>
-                </div>
-
-                <div>
-
-                    <span>
-                        LOCATION
-                    </span>
-
-                    <h3>
-                        Ubaid Medical Store
-                    </h3>
-
-                    <p>
-                        Contact us for location details
-                    </p>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<!-- =========================================================
-     FOOTER
-     ========================================================= -->
-
-<footer class="footer">
-
-    <div class="container footer-content">
-
-
-        <div class="footer-brand">
-
-            <a
-                href="#home"
-                class="logo"
-            >
-
-                <div class="logo-mark">
-
-                    <div class="logo-cross">
-                        <span></span>
-                        <span></span>
-                    </div>
-
-                </div>
-
-                <div class="logo-text">
-
-                    <strong>UBAID MEDICAL</strong>
-                    <span>STORE</span>
-
-                </div>
-
-            </a>
-
-
-            <p>
-                Trusted medicines and healthcare services
-                for your everyday needs.
-            </p>
-
-
-            <div class="footer-social">
-
-                <a
-                    href="https://wa.me/919999999999"
-                    target="_blank"
-                    rel="noopener"
-                    aria-label="WhatsApp"
-                >
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-
-                <a
-                    href="#contact"
-                    aria-label="Contact"
-                >
-                    <i class="fa-solid fa-phone"></i>
-                </a>
-
-                <a
-                    href="#home"
-                    aria-label="Home"
-                >
-                    <i class="fa-solid fa-house"></i>
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div class="footer-links">
-
-            <h3>
-                Quick Links
-            </h3>
-
-            <a href="#home">
-                Home
-            </a>
-
-            <a href="#categories">
-                Categories
-            </a>
-
-            <a href="#medicines">
-                Medicines
-            </a>
-
-            <a href="#services">
-                Services
-            </a>
-
-        </div>
-
-
-        <div class="footer-links">
-
-            <h3>
-                Healthcare
-            </h3>
-
-            <a href="#medicines">
-                Medicines
-            </a>
-
-            <a href="#medicines">
-                Healthcare Products
-            </a>
-
-            <a href="#offers">
-                Offers
-            </a>
-
-            <a href="#contact">
-                Support
-            </a>
-
-        </div>
-
-
-        <div class="footer-links">
-
-            <h3>
-                Contact
-            </h3>
-
-            <a href="tel:+919999999999">
-                <i class="fa-solid fa-phone"></i>
-                Call Us
-            </a>
-
-            <a
-                href="https://wa.me/919999999999"
-                target="_blank"
-                rel="noopener"
-            >
-                <i class="fa-brands fa-whatsapp"></i>
-                WhatsApp
-            </a>
-
-            <span>
-                <i class="fa-solid fa-clock"></i>
-                Open 24/7
-            </span>
-
-        </div>
-
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-        <div class="container footer-bottom-content">
-
-            <span>
-                © 2026 Ubaid Medical Store. All rights reserved.
-            </span>
-
-            <span>
-                Trusted Healthcare Partner
-            </span>
-
-        </div>
-
-    </div>
-
-</footer>
-
-
-<!-- =========================================================
-     CART SIDEBAR
-     ========================================================= -->
-
-<aside
-    class="cart-sidebar"
-    id="cartSidebar"
-    aria-label="Shopping cart"
->
-
-    <div class="cart-header">
-
-        <div>
-
-            <span>
-                YOUR CART
-            </span>
-
-            <h2>
-                Shopping Cart
-            </h2>
-
-            <small id="cartItemText">
-                0 items
-            </small>
-
-        </div>
-
+    <div class="actions">
 
         <button
-            type="button"
-            class="close-btn"
-            id="closeCartBtn"
-            aria-label="Close cart"
+            class="icon-btn"
+            id="themeBtn"
+            title="Change Theme"
+            onclick="toggleTheme()"
         >
+            🌙
+        </button>
 
-            <i class="fa-solid fa-xmark"></i>
-
+        <button
+            class="icon-btn"
+            title="Cart"
+            onclick="openCart()"
+        >
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
         </button>
 
     </div>
 
+</div>
 
-    <div
-        class="cart-items"
-        id="cartItems"
-    >
-
-        <!-- CART ITEMS WILL BE GENERATED BY JS -->
-
+</header><!-- NAV --><nav>
+    <div class="container nav-inner">
+        <a href="#home">Home</a>
+        <a href="#medicines">Medicines</a>
+        <a href="#contact">Contact</a>
+        <a href="#location">Location</a>
+        <a href="#order">WhatsApp Order</a>
     </div>
+</nav><!-- HERO --><section class="hero" id="home">
+    <div class="container hero-grid">    <div>
+        <span class="badge">✓ Trusted Healthcare Store</span>
 
-
-    <div
-        class="empty-cart"
-        id="emptyCart"
-    >
-
-        <div class="empty-cart-icon">
-
-            <i class="fa-solid fa-cart-shopping"></i>
-
-        </div>
-
-        <h3>
-            Your cart is empty
-        </h3>
+        <h1>
+            Your Health,
+            <span>Our Priority.</span>
+        </h1>
 
         <p>
-            Add medicines or healthcare products to your cart.
+            Ubaid Medical Store provides medicines and healthcare
+            products for your everyday healthcare needs.
+            Search your medicine and order easily on WhatsApp.
         </p>
 
-        <button
-            type="button"
-            class="btn btn-primary"
-            id="shopNowBtn"
-        >
-            Shop Now
-        </button>
+        <div class="buttons">
+            <a href="#medicines" class="btn primary">
+                💊 Browse Medicines
+            </a>
 
+            <a
+                class="btn green"
+                href="https://wa.me/918009174690?text=Hello%20Ubaid%20Medical%20Store%2C%20I%20want%20to%20order%20medicine."
+                target="_blank"
+            >
+                💬 WhatsApp Order
+            </a>
+        </div>
     </div>
 
+    <div>
+        <div class="hero-card">
+            <div>UBAID MEDICAL STORE</div>
 
-    <div class="cart-footer">
+            <div class="cross">+</div>
 
-        <div class="cart-summary">
-
-            <span>
-                Items
-            </span>
-
-            <span id="cartSubtotal">
-                ₹0
-            </span>
-
+            <h2>Healthcare You Can Trust</h2>
+            <p>Thamarwa • Gopamau • Hardoi</p>
         </div>
-
-
-        <div class="cart-total-row">
-
-            <span>
-                Total
-            </span>
-
-            <strong id="cartTotal">
-                ₹0
-            </strong>
-
-        </div>
-
-
-        <button
-            type="button"
-            class="whatsapp-order-btn"
-            id="whatsappOrderBtn"
-        >
-
-            <i class="fa-brands fa-whatsapp"></i>
-
-            Order on WhatsApp
-
-        </button>
-
     </div>
-
-</aside>
-
-
-<!-- =========================================================
-     TOAST
-     ========================================================= -->
-
-<div
-    class="toast"
-    id="toast"
-    role="status"
-    aria-live="polite"
->
-
-    <i class="fa-solid fa-circle-check"></i>
-
-    <span id="toastMessage">
-        Done
-    </span>
 
 </div>
 
+</section><!-- INFO --><section class="info">
+    <div class="container info-grid">    <div class="info-card">
+        <div class="info-icon">💊</div>
+        <div>
+            <strong>500+</strong>
+            <span>Medicines</span>
+        </div>
+    </div>
 
-<!-- =========================================================
-     JAVASCRIPT
-     ========================================================= -->
+    <div class="info-card">
+        <div class="info-icon">📱</div>
+        <div>
+            <strong>WhatsApp</strong>
+            <span>Easy Ordering</span>
+        </div>
+    </div>
 
-<script
-    type="module"
-    src="script.js"
-></script>
+    <div class="info-card">
+        <div class="info-icon">📍</div>
+        <div>
+            <strong>Local Store</strong>
+            <span>Thamarwa, Hardoi</span>
+        </div>
+    </div>
 
-</body>
+    <div class="info-card">
+        <div class="info-icon">🌙</div>
+        <div>
+            <strong>Dark Mode</strong>
+            <span>Theme Available</span>
+        </div>
+    </div>
+
+</div>
+
+</section><!-- MEDICINES --><section class="section soft" id="medicines"><div class="container">
+
+    <div class="heading">
+        <span>Medicine Catalogue</span>
+        <h2>Find Your Medicine</h2>
+        <p>
+            Search from our 500+ medicine catalogue.
+        </p>
+    </div>
+
+    <div class="medicine-search">
+        <input
+            id="medicineSearch"
+            type="search"
+            placeholder="Type medicine name..."
+            oninput="filterMedicines()"
+        >
+
+        <button onclick="filterMedicines()">🔎</button>
+    </div>
+
+    <div class="toolbar">
+
+        <div class="result" id="resultText">
+            Showing medicines...
+        </div>
+
+        <select
+            class="filter"
+            id="categoryFilter"
+            onchange="filterMedicines()"
+        >
+            <option value="all">All Categories</option>
+            <option value="Pain Relief">Pain Relief</option>
+            <option value="Fever">Fever</option>
+            <option value="Cold & Cough">Cold & Cough</option>
+            <option value="Digestive">Digestive</option>
+            <option value="Vitamin">Vitamin</option>
+            <option value="Skin Care">Skin Care</option>
+            <option value="Antiseptic">Antiseptic</option>
+            <option value="General">General</option>
+        </select>
+
+    </div>
+
+    <div class="products" id="products"></div>
+
+</div>
+
+</section><!-- WHATSAPP --><section class="section" id="order"><div class="container">
+
+    <div class="whatsapp">
+
+        <div class="whatsapp-icon">💬</div>
+
+        <div class="whatsapp-content">
+            <h2>Order Medicine on WhatsApp</h2>
+            <p>
+                Send us your medicine requirement and we will
+                assist you with your order.
+            </p>
+        </div>
+
+        <a
+            class="btn"
+            href="https://wa.me/918009174690?text=Hello%20Ubaid%20Medical%20Store%2C%20I%20want%20to%20order%20medicine."
+            target="_blank"
+        >
+            WhatsApp Now
+        </a>
+
+    </div>
+
+</div>
+
+</section><!-- CONTACT --><section class="section soft" id="contact"><div class="container">
+
+    <div class="heading">
+        <span>Contact Us</span>
+        <h2>Ubaid Medical Store</h2>
+        <p>Contact us for medicine availability and orders.</p>
+    </div>
+
+    <div class="contact-grid">
+
+        <div class="contact">
+            <div class="contact-icon">📞</div>
+            <h3>Call Us</h3>
+            <p>8009174690</p>
+
+            <a
+                class="btn primary"
+                href="tel:8009174690"
+            >
+                Call Now
+            </a>
+        </div>
+
+        <div class="contact">
+            <div class="contact-icon">📞</div>
+            <h3>Alternate Number</h3>
+            <p>9044286963</p>
+
+            <a
+                class="btn primary"
+                href="tel:9044286963"
+            >
+                Call Now
+            </a>
+        </div>
+
+        <div class="contact" id="location">
+            <div class="contact-icon">📍</div>
+            <h3>Our Address</h3>
+
+            <p>
+                Thamarwa, Gopamau, Hardoi,
+                Uttar Pradesh, India
+            </p>
+
+            <a
+                class="btn outline"
+                href="https://www.google.com/maps/search/?api=1&query=Thamarwa%2C%20Gopamau%2C%20Hardoi%2C%20Uttar%20Pradesh%2C%20India"
+                target="_blank"
+            >
+                🗺️ Open Map
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+</section><!-- FOOTER --><footer><div class="container footer-main">
+
+    <div>
+        <h3>✚ Ubaid Medical Store</h3>
+
+        <p>
+            Your trusted local medical store in
+            Thamarwa, Gopamau, Hardoi.
+        </p>
+    </div>
+
+    <div>
+        <h3>Quick Links</h3>
+
+        <a href="#home">Home</a>
+        <a href="#medicines">Medicines</a>
+        <a href="#contact">Contact</a>
+        <a href="#location">Location</a>
+    </div>
+
+    <div>
+        <h3>Contact</h3>
+
+        <a href="tel:8009174690">
+            8009174690
+        </a>
+
+        <a href="tel:9044286963">
+            9044286963
+        </a>
+
+        <p>
+            Thamarwa, Gopamau, Hardoi
+        </p>
+    </div>
+
+</div>
+
+<div class="footer-bottom">
+    © 2026 Ubaid Medical Store. All Rights Reserved.
+</div>
+
+</footer><!-- CART OVERLAY --><div
+    class="overlay"
+    id="overlay"
+    onclick="closeCart()"
+></div><!-- CART --><aside class="cart" id="cart"><div class="cart-head">
+    <div>
+        <h2>Your Cart</h2>
+        <small id="cartItemsCount">0 items</small>
+    </div>
+
+    <button
+        class="close"
+        onclick="closeCart()"
+    >
+        ✕
+    </button>
+</div>
+
+<div class="cart-items" id="cartItems"></div>
+
+<div class="cart-footer">
+
+    <div class="total">
+        <span>Total</span>
+        <strong id="cartTotal">₹0</strong>
+    </div>
+
+    <button
+        class="order"
+        onclick="orderCart()"
+    >
+        💬 Order on WhatsApp
+    </button>
+
+</div>
+
+</aside><!-- TOAST --><div class="toast" id="toast"></div><script>
+
+/* =========================================================
+   UBAID MEDICAL STORE
+   MAIN JAVASCRIPT
+   ========================================================= */
+
+
+/* PHONE NUMBERS */
+
+const WHATSAPP_NUMBER = "918009174690";
+
+
+/* =========================================================
+   MEDICINE DATABASE
+   50 COMMON MEDICINE NAMES
+   10 CATALOGUE VARIANTS EACH = 500 ITEMS
+   ========================================================= */
+
+const medicineNames = [
+
+    ["Paracetamol","Fever","₹20"],
+    ["Ibuprofen","Pain Relief","₹35"],
+    ["Diclofenac","Pain Relief","₹45"],
+    ["Naproxen","Pain Relief","₹55"],
+    ["Aspirin","Pain Relief","₹30"],
+
+    ["Cetirizine","Cold & Cough","₹25"],
+    ["Levocetirizine","Cold & Cough","₹35"],
+    ["Loratadine","Cold & Cough","₹40"],
+    ["Fexofenadine","Cold & Cough","₹55"],
+    ["Chlorpheniramine","Cold & Cough","₹25"],
+
+    ["Omeprazole","Digestive","₹35"],
+    ["Pantoprazole","Digestive","₹40"],
+    ["Rabeprazole","Digestive","₹45"],
+    ["Esomeprazole","Digestive","₹50"],
+    ["Famotidine","Digestive","₹30"],
+
+    ["ORS","General","₹25"],
+    ["Antacid","Digestive","₹30"],
+    ["Digestive Enzyme","Digestive","₹45"],
+    ["Lactulose","Digestive","₹90"],
+    ["Isabgol","Digestive","₹120"],
+
+    ["Vitamin C","Vitamin","₹60"],
+    ["Vitamin B Complex","Vitamin","₹70"],
+    ["Vitamin B12","Vitamin","₹80"],
+    ["Vitamin D3","Vitamin","₹100"],
+    ["Calcium","Vitamin","₹90"],
+
+    ["Zinc","Vitamin","₹60"],
+    ["Iron","Vitamin","₹70"],
+    ["Folic Acid","Vitamin","₹35"],
+    ["Multivitamin","Vitamin","₹120"],
+    ["Magnesium","Vitamin","₹100"],
+
+    ["Povidone Iodine","Antiseptic","₹75"],
+    ["Chlorhexidine","Antiseptic","₹80"],
+    ["Antiseptic Solution","Antiseptic","₹70"],
+    ["Antiseptic Cream","Skin Care","₹55"],
+    ["Calamine Lotion","Skin Care","₹80"],
+
+    ["Moisturizer","Skin Care","₹120"],
+    ["Petroleum Jelly","Skin Care","₹55"],
+    ["Aloe Vera Gel","Skin Care","₹100"],
+    ["Sunscreen","Skin Care","₹180"],
+    ["Antifungal Cream","Skin Care","₹95"],
+
+    ["Cough Syrup","Cold & Cough","₹90"],
+    ["Lozenges","Cold & Cough","₹45"],
+    ["Saline Nasal Drops","Cold & Cough","₹55"],
+    ["Steam Inhalation Solution","Cold & Cough","₹70"],
+    ["Balm","Pain Relief","₹45"],
+
+    ["Thermometer","General","₹120"],
+    ["Bandage","General","₹30"],
+    ["Cotton","General","₹45"],
+    ["Gauze","General","₹50"],
+    ["Medical Tape","General","₹60"]
+
+];
+
+
+/* =========================================================
+   CREATE 500 CATALOGUE ITEMS
+   ========================================================= */
+
+const medicines = [];
+
+let id = 1;
+
+medicineNames.forEach(item => {
+
+    for(let variant = 1; variant <= 10; variant++){
+
+        medicines.push({
+
+            id:id++,
+
+            name:
+                item[0] +
+                " - Pack " +
+                variant,
+
+            category:item[1],
+
+            price:
+                parseInt(
+                    item[2].replace("₹","")
+                ) + (variant * 3),
+
+            icon:
+                item[1] === "Vitamin" ? "🧴" :
+                item[1] === "Skin Care" ? "🧴" :
+                item[1] === "Antiseptic" ? "🩹" :
+                item[1] === "Cold & Cough" ? "🤧" :
+                item[1] === "Digestive" ? "💊" :
+                item[1] === "Pain Relief" ? "💊" :
+                item[1] === "Fever" ? "🌡️" :
+                "⚕️"
+
+        });
+
+    }
+
+});
+
+
+/* =========================================================
+   CART
+   ========================================================= */
+
+let cart = [];
+
+
+/* =========================================================
+   DISPLAY MEDICINES
+   ========================================================= */
+
+function displayMedicines(list = medicines){
+
+    const container =
+        document.getElementById("products");
+
+    container.innerHTML = "";
+
+    if(!list.length){
+
+        container.innerHTML = `
+            <div style="
+                grid-column:1/-1;
+                text-align:center;
+                padding:50px;
+                color:var(--muted);
+            ">
+                <div style="font-size:45px;">🔎</div>
+                <h3>No medicine found</h3>
+                <p>Try another medicine name.</p>
+            </div>
+        `;
+
+        updateResult(0);
+
+        return;
+    }
+
+
+    const fragment =
+        document.createDocumentFragment();
+
+
+    list.forEach(medicine => {
+
+        const card =
+            document.createElement("article");
+
+        card.className = "product";
+
+
+        card.innerHTML = `
+
+            <div class="product-img">
+                ${medicine.icon}
+            </div>
+
+            <div class="product-body">
+
+                <div class="category">
+                    ${medicine.category}
+                </div>
+
+                <h3>
+                    ${medicine.name}
+                </h3>
+
+                <div class="product-bottom">
+
+                    <span class="price">
+                        ₹${medicine.price}
+                    </span>
+
+                    <button
+                        class="add"
+                        onclick="addToCart(${medicine.id})"
+                    >
+                        + Add
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+
+        fragment.appendChild(card);
+
+    });
+
+
+    container.appendChild(fragment);
+
+    updateResult(list.length);
+}
+
+
+/* =========================================================
+   RESULT COUNT
+   ========================================================= */
+
+function updateResult(count){
+
+    document.getElementById("resultText").textContent =
+        "Showing " + count + " medicines";
+
+}
+
+
+/* =========================================================
+   FILTER
+   ========================================================= */
+
+function filterMedicines(){
+
+    const search =
+        document
+        .getElementById("medicineSearch")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const category =
+        document
+        .getElementById("categoryFilter")
+        .value;
+
+
+    const result =
+        medicines.filter(medicine => {
+
+            const matchesSearch =
+                medicine.name
+                .toLowerCase()
+                .includes(search);
+
+
+            const matchesCategory =
+                category === "all" ||
+                medicine.category === category;
+
+
+            return matchesSearch && matchesCategory;
+
+        });
+
+
+    displayMedicines(result);
+
+}
+
+
+/* =========================================================
+   HEADER SEARCH
+   ========================================================= */
+
+function searchMedicine(){
+
+    const value =
+        document
+        .getElementById("headerSearch")
+        .value
+        .trim();
+
+
+    document
+        .getElementById("medicineSearch")
+        .value = value;
+
+
+    document
+        .getElementById("medicines")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+
+    filterMedicines();
+
+}
+
+
+/* =========================================================
+   ADD TO CART
+   ========================================================= */
+
+function addToCart(id){
+
+    const medicine =
+        medicines.find(
+            item => item.id === id
+        );
+
+
+    if(!medicine) return;
+
+
+    const existing =
+        cart.find(
+            item => item.id === id
+        );
+
+
+    if(existing){
+
+        existing.qty++;
+
+    }else{
+
+        cart.push({
+            ...medicine,
+            qty:1
+        });
+
+    }
+
+
+    updateCart();
+
+    showToast(
+        medicine.name + " added to cart"
+    );
+
+}
+
+
+/* =========================================================
+   CHANGE QUANTITY
+   ========================================================= */
+
+function changeQty(id, change){
+
+    const item =
+        cart.find(
+            product => product.id === id
+        );
+
+
+    if(!item) return;
+
+
+    item.qty += change;
+
+
+    if(item.qty <= 0){
+
+        cart =
+            cart.filter(
+                product => product.id !== id
+            );
+
+    }
+
+
+    updateCart();
+
+}
+
+
+/* =========================================================
+   UPDATE CART
+   ========================================================= */
+
+function updateCart(){
+
+    const cartItems =
+        document.getElementById("cartItems");
+
+
+    const count =
+        cart.reduce(
+            (sum,item) =>
+                sum + item.qty,
+            0
+        );
+
+
+    document.getElementById("cartCount")
+        .textContent = count;
+
+
+    document.getElementById("cartItemsCount")
+        .textContent =
+            count +
+            (count === 1 ? " item" : " items");
+
+
+    if(!cart.length){
+
+        cartItems.innerHTML = `
+
+            <div style="
+                text-align:center;
+                padding:70px 20px;
+                color:var(--muted);
+            ">
+
+                <div style="
+                    font-size:50px;
+                    margin-bottom:12px;
+                ">
+                    🛒
+                </div>
+
+                <h3 style="color:var(--text)">
+                    Your cart is empty
+                </h3>
+
+                <p>
+                    Add medicines to your cart.
+                </p>
+
+            </div>
+        `;
+
+    }else{
+
+        cartItems.innerHTML =
+            cart.map(item => `
+
+                <div class="cart-item">
+
+                    <div class="cart-item-icon">
+                        ${item.icon}
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            ${item.name}
+                        </h4>
+
+                        <small>
+                            ₹${item.price} each
+                        </small>
+
+                        <div class="qty">
+
+                            <button
+                                onclick="changeQty(
+                                    ${item.id},
+                                    -1
+                                )"
+                            >
+                                −
+                            </button>
+
+                            <span>
+                                ${item.qty}
+                            </span>
+
+                            <button
+                                onclick="changeQty(
+                                    ${item.id},
+                                    1
+                                )"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="cart-price">
+                        ₹${item.price * item.qty}
+                    </div>
+
+                </div>
+
+            `).join("");
+
+    }
+
+
+    const total =
+        cart.reduce(
+            (sum,item) =>
+                sum +
+                item.price * item.qty,
+            0
+        );
+
+
+    document.getElementById("cartTotal")
+        .textContent = "₹" + total;
+
+}
+
+
+/* =========================================================
+   CART OPEN / CLOSE
+   ========================================================= */
+
+function openCart(){
+
+    document
+        .getElementById("cart")
+        .classList.add("active");
+
+
+    document
+        .getElementById("overlay")
+        .classList.add("active");
+
+}
+
+
+function closeCart(){
+
+    document
+        .getElementById("cart")
+        .classList.remove("active");
+
+
+    document
+        .getElementById("overlay")
+        .classList.remove("active");
+
+}
+
+
+/* =========================================================
+   WHATSAPP ORDER
+   ========================================================= */
+
+function orderCart(){
+
+    if(!cart.length){
+
+        showToast(
+            "Cart is empty"
+        );
+
+        return;
+
+    }
+
+
+    let message =
+        "Hello Ubaid Medical Store,%0A%0A" +
+        "I want to order:%0A";
+
+
+    cart.forEach(item => {
+
+        message +=
+            "• " +
+            item.name +
+            " x" +
+            item.qty +
+            " = ₹" +
+            (item.price * item.qty) +
+            "%0A";
+
+    });
+
+
+    const total =
+        cart.reduce(
+            (sum,item) =>
+                sum +
+                item.price * item.qty,
+            0
+        );
+
+
+    message +=
+        "%0ATotal: ₹" +
+        total;
+
+
+    window.open(
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
+        message,
+        "_blank"
+    );
+
+}
+
+
+/* =========================================================
+   THEME
+   ========================================================= */
+
+function toggleTheme(){
+
+    document.body.classList.toggle("dark");
+
+
+    const dark =
+        document.body.classList.contains("dark");
+
+
+    localStorage.setItem(
+        "ubaidTheme",
+        dark ? "dark" : "light"
+    );
+
+
+    document.getElementById("themeBtn")
+        .textContent =
+            dark ? "☀️" : "🌙";
+
+}
+
+
+/* =========================================================
+   LOAD SAVED THEME
+   ========================================================= */
+
+function loadTheme(){
+
+    const saved =
+        localStorage.getItem(
+            "ubaidTheme"
+        );
+
+
+    if(saved === "dark"){
+
+        document.body.classList.add("dark");
+
+        document.getElementById("themeBtn")
+            .textContent = "☀️";
+
+    }
+
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+let toastTimer;
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+
+    clearTimeout(toastTimer);
+
+
+    toastTimer =
+        setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        },2500);
+
+}
+
+
+/* =========================================================
+   INIT
+   ========================================================= */
+
+displayMedicines();
+
+updateCart();
+
+loadTheme();
+
+
+console.log(
+    "✅ Ubaid Medical Store loaded successfully"
+);
+
+console.log(
+    "💊 Medicine catalogue:",
+    medicines.length
+);
+
+</script></body>
 </html>
