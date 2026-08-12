@@ -1,14 +1,52 @@
 /* =========================================================
    UBAID MEDICAL STORE V2
-   MAIN SCRIPT - FINAL GUARANTEED FIX
+   MAIN SCRIPT - GUARANTEED FIX FOR PROVIDED HTML
    ========================================================= */
 
 "use strict";
 
 let cart = [];
-let selectedRating = 5;
 let toastTimer = null;
 const WHATSAPP_NUMBER = "918009174690";
+
+/* Default Price Map (Kyunki HTML me price text nahi numbers chahiye) */
+const DEFAULT_PRICES = {
+    "Paracetamol": 20,
+    "Amoxicillin": 85,
+    "Azithromycin": 120,
+    "Pantoprazole": 60,
+    "Ondansetron": 45,
+    "Diclofenac": 35,
+    "Levocetirizine": 30,
+    "Cefixime": 110,
+    "Metronidazole": 40,
+    "Ibuprofen": 25,
+    "Ofloxacin": 75,
+    "Ciprofloxacin": 80,
+    "Cetirizine": 20,
+    "Omeprazole": 50,
+    "Telmisartan": 65,
+    "Metformin": 40,
+    "Atorvastatin": 90,
+    "Antibiotic": 95,
+    "Combination": 40,
+    "Antacid": 130,
+    "Cough Syrup": 115,
+    "Multivitamin": 140,
+    "Iron Supplement": 160,
+    "Lactulose": 180,
+    "Suspension": 125,
+    "Zinc": 60,
+    "Calcium": 110,
+    "IV Infusion": 150,
+    "Ondansetron Injection": 40,
+    "Antiallergic": 30,
+    "Dexamethasone": 35,
+    "Gentamicin": 45,
+    "Iron Sucrose": 250,
+    "Vitamin B12": 55,
+    "Hydrocortisone": 70
+};
 
 /* =========================================================
    DOM READY INITIALIZATION
@@ -20,32 +58,21 @@ document.addEventListener("DOMContentLoaded", () => {
     initMobileMenu();
     initSearch();
     initCart();
-    initRating();
     initNavigation();
-    initScrollEffects();
     initButtons();
     initProductFilter();
     initCategoryCards();
-    initProfileDropdown();
-    initAuthButtons();
-    initReviewForm();
-    initProfileModal();
     initSmoothLinks();
-    initForms();
-    initContactButtons();
-    initWhatsAppLinks();
     initBackToTop();
-    initImages();
-    initNetworkStatus();
 
     updateCartCount();
     renderCart();
 
-    console.log("✅ Ubaid Medical Store V2 JS Fully Loaded & Working");
+    console.log("✅ Ubaid Medical Store JS Ready");
 });
 
 /* =========================================================
-   1. THEME TOGGLE (HAR TARAH KE BUTTON SE KAAM KAREGA)
+   1. THEME TOGGLE SYSTEM (#darkModeBtn)
    ========================================================= */
 
 function initTheme() {
@@ -65,28 +92,26 @@ function toggleTheme() {
 window.toggleTheme = toggleTheme;
 
 /* =========================================================
-   2. MOBILE MENU & OVERLAY FIX
+   2. MOBILE MENU NAVIGATION (#mobileMenuBtn)
    ========================================================= */
 
 function initMobileMenu() {
-    const menuBtn = document.querySelector(".mobile-menu-btn, .menu-toggle, #menuBtn");
-    const nav = document.querySelector(".nav, .nav-links, .navbar");
-    const overlay = document.querySelector(".overlay");
+    const menuBtn = document.getElementById("mobileMenuBtn");
+    const nav = document.getElementById("mainNav");
+    const overlay = document.getElementById("overlay");
 
     if (menuBtn && nav) {
         menuBtn.addEventListener("click", (e) => {
             e.stopPropagation();
             nav.classList.toggle("open");
-            nav.classList.toggle("active");
-
             if (overlay) {
-                overlay.classList.toggle("active", nav.classList.contains("open") || nav.classList.contains("active"));
+                overlay.classList.toggle("active", nav.classList.contains("open"));
             }
-            document.body.classList.toggle("no-scroll");
+            document.body.classList.toggle("no-scroll", nav.classList.contains("open"));
         });
     }
 
-    document.querySelectorAll(".nav-links a, .nav a").forEach(link => {
+    document.querySelectorAll(".nav-links a").forEach(link => {
         link.addEventListener("click", () => {
             closeMobileMenu();
         });
@@ -94,13 +119,10 @@ function initMobileMenu() {
 }
 
 function closeMobileMenu() {
-    const nav = document.querySelector(".nav, .nav-links, .navbar");
-    const overlay = document.querySelector(".overlay");
+    const nav = document.getElementById("mainNav");
+    const overlay = document.getElementById("overlay");
 
-    if (nav) {
-        nav.classList.remove("open");
-        nav.classList.remove("active");
-    }
+    if (nav) nav.classList.remove("open");
     if (overlay && !document.querySelector(".cart-sidebar.active")) {
         overlay.classList.remove("active");
     }
@@ -108,46 +130,47 @@ function closeMobileMenu() {
 }
 
 /* =========================================================
-   3. MEDICINE PRICE & CART FIX
+   3. MEDICINE PRICE & CART MANAGEMENT
    ========================================================= */
 
 function initCart() {
-    // Dynamic Add To Cart listener
-    document.addEventListener("click", (e) => {
-        const btn = e.target.closest(".add-cart-btn, .add-to-cart, [data-add-cart]");
-        if (btn) {
-            const card = btn.closest(".product-card, .medicine-card, .card");
+    // Add to Cart Buttons
+    document.querySelectorAll(".add-cart-btn").forEach(button => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault();
+            const card = button.closest(".product-card");
             if (!card) return;
 
-            const name = card.querySelector("h3, .product-title, .title")?.textContent?.trim() || "Medicine";
+            // Extract medicine title or data attribute
+            const name = button.getAttribute("data-medicine") || 
+                         card.querySelector("h3")?.textContent?.trim() || 
+                         "Medicine";
 
-            // Deep Price Finder (₹ ya Rs. sab handle kar leta hai)
-            let priceText = "0";
-            const priceEl = card.querySelector(".product-price strong, .price strong, .product-price, .price, [data-price]");
-            if (priceEl) {
-                priceText = priceEl.textContent;
-            } else {
-                priceText = card.innerText;
-            }
-
-            const matchedPrices = priceText.match(/₹?\s*(\d+(\.\d+)?)/);
-            const price = matchedPrices ? parseFloat(matchedPrices[1]) : 0;
+            // Extract Price key from <strong> tag inside .product-price
+            const keyText = card.querySelector(".product-price strong")?.textContent?.trim() || "";
+            const price = DEFAULT_PRICES[keyText] || 50; // Fallback price if not found
 
             addToCart(name, price);
-        }
+        });
     });
 
-    const cartButton = document.querySelector(".cart-button, #cartBtn, .cart-icon");
+    // Cart Sidebar Controls
+    const cartButton = document.getElementById("cartBtn");
     if (cartButton) {
         cartButton.addEventListener("click", openCart);
     }
 
-    const closeCartBtn = document.querySelector(".cart-sidebar .close-btn, .close-cart");
+    const closeCartBtn = document.getElementById("closeCartBtn");
     if (closeCartBtn) {
         closeCartBtn.addEventListener("click", closeCart);
     }
 
-    const overlay = document.querySelector(".overlay");
+    const continueShoppingBtn = document.getElementById("continueShoppingBtn");
+    if (continueShoppingBtn) {
+        continueShoppingBtn.addEventListener("click", closeCart);
+    }
+
+    const overlay = document.getElementById("overlay");
     if (overlay) {
         overlay.addEventListener("click", () => {
             closeCart();
@@ -168,7 +191,7 @@ function addToCart(name, price) {
     saveCart();
     updateCartCount();
     renderCart();
-    showToast(`${name} cart me add ho gaya`);
+    showToast(`${name.split('(')[0]} cart me add ho gaya`);
 }
 
 function changeCartQuantity(index, change) {
@@ -200,41 +223,48 @@ function loadCart() {
 
 function updateCartCount() {
     const count = cart.reduce((total, item) => total + item.quantity, 0);
-    const cartCounts = document.querySelectorAll("#cartCount, .cart-count, .cart-badge");
-    cartCounts.forEach(el => {
-        el.textContent = count;
-    });
+    const cartCountEl = document.getElementById("cartCount");
+    if (cartCountEl) cartCountEl.textContent = count;
 }
 
 function renderCart() {
-    const container = document.querySelector(".cart-items");
-    const empty = document.querySelector(".empty-cart");
+    const container = document.getElementById("cartItems");
     const footer = document.querySelector(".cart-footer");
+    const itemCountEl = document.getElementById("cartItemsCount");
 
     if (!container) return;
 
     if (!cart.length) {
-        container.innerHTML = "";
-        if (empty) empty.style.display = "flex";
+        container.innerHTML = `
+            <div class="empty-cart">
+                <div class="empty-cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <h3>Your Cart is Empty</h3>
+                <p>Add medicines to create your enquiry.</p>
+                <button class="btn btn-primary" onclick="closeCart()" type="button">Continue Shopping</button>
+            </div>
+        `;
         if (footer) footer.style.display = "none";
+        if (itemCountEl) itemCountEl.textContent = "0 items";
         return;
     }
 
-    if (empty) empty.style.display = "none";
     if (footer) footer.style.display = "block";
 
+    const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+    if (itemCountEl) itemCountEl.textContent = `${totalQty} item${totalQty > 1 ? 's' : ''}`;
+
     container.innerHTML = cart.map((item, index) => `
-        <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-            <div>
-                <h4 style="margin:0;">${escapeHTML(item.name)}</h4>
-                <p style="margin:2px 0;">₹${item.price.toFixed(2)}</p>
-                <div class="cart-qty" style="display:flex; gap:8px; align-items:center;">
-                    <button type="button" onclick="changeCartQuantity(${index}, -1)">−</button>
+        <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center; padding: 12px 0; border-bottom: 1px solid #eee;">
+            <div style="flex:1;">
+                <h4 style="margin:0; font-size:14px;">${escapeHTML(item.name)}</h4>
+                <p style="margin:4px 0 0 0; color:#666; font-size:13px;">₹${item.price.toFixed(2)}</p>
+                <div class="cart-qty" style="display:flex; gap:10px; align-items:center; margin-top:6px;">
+                    <button type="button" style="width:24px; height:24px; cursor:pointer;" onclick="changeCartQuantity(${index}, -1)">−</button>
                     <span>${item.quantity}</span>
-                    <button type="button" onclick="changeCartQuantity(${index}, 1)">+</button>
+                    <button type="button" style="width:24px; height:24px; cursor:pointer;" onclick="changeCartQuantity(${index}, 1)">+</button>
                 </div>
             </div>
-            <div class="cart-item-price" style="font-weight:bold;">
+            <div class="cart-item-price" style="font-weight:bold; font-size:14px; margin-left:10px;">
                 ₹${(item.price * item.quantity).toFixed(2)}
             </div>
         </div>
@@ -245,23 +275,18 @@ function renderCart() {
 
 function updateCartTotal() {
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const totalElement = document.querySelector(".cart-total-row strong, .cart-total, #cartTotal");
+    const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-    if (totalElement) {
-        totalElement.textContent = `₹${total.toFixed(2)}`;
-    }
+    const cartTotalItems = document.getElementById("cartTotalItems");
+    if (cartTotalItems) cartTotalItems.textContent = totalQty;
 
-    const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const summary = document.querySelector(".cart-summary span:last-child");
-
-    if (summary) {
-        summary.textContent = `${itemCount} item${itemCount !== 1 ? "s" : ""}`;
-    }
+    const totalElement = document.querySelector(".cart-total-row strong");
+    if (totalElement) totalElement.textContent = `₹${total.toFixed(2)}`;
 }
 
 function openCart() {
-    const sidebar = document.querySelector(".cart-sidebar, .cart-drawer");
-    const overlay = document.querySelector(".overlay");
+    const sidebar = document.getElementById("cartSidebar");
+    const overlay = document.getElementById("overlay");
 
     if (sidebar) sidebar.classList.add("active");
     if (overlay) overlay.classList.add("active");
@@ -270,11 +295,11 @@ function openCart() {
 window.openCart = openCart;
 
 function closeCart() {
-    const sidebar = document.querySelector(".cart-sidebar, .cart-drawer");
-    const overlay = document.querySelector(".overlay");
+    const sidebar = document.getElementById("cartSidebar");
+    const overlay = document.getElementById("overlay");
 
     if (sidebar) sidebar.classList.remove("active");
-    if (overlay && !document.querySelector(".nav.open")) {
+    if (overlay && !document.getElementById("mainNav")?.classList.contains("open")) {
         overlay.classList.remove("active");
     }
     document.body.classList.remove("no-scroll");
@@ -282,7 +307,7 @@ function closeCart() {
 window.closeCart = closeCart;
 
 /* =========================================================
-   4. WHATSAPP ORDER WITH NUMBER 8009174690
+   4. WHATSAPP ORDER PROCESSOR
    ========================================================= */
 
 function sendWhatsAppOrder() {
@@ -292,111 +317,142 @@ function sendWhatsAppOrder() {
     }
 
     let message = "🩺 *UBAID MEDICAL STORE*%0A%0A";
-    message += "📦 *Order Details:*%0A";
+    message += "📦 *Order / Enquiry Details:*%0A";
 
     cart.forEach(item => {
         message += `• ${encodeURIComponent(item.name)} × ${item.quantity} = ₹${(item.price * item.quantity).toFixed(2)}%0A`;
     });
 
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
-    message += `%0A💰 *Total: ₹${total.toFixed(2)}*%0A%0A`;
-    message += "Please confirm my order.";
+    message += `%0A💰 *Total Estimated Amount: ₹${total.toFixed(2)}*%0A%0A`;
+    message += "Please confirm availability and order details.";
 
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank");
 }
 
 /* =========================================================
-   5. BUTTON CLICK BINDINGS (ALL THEME/WHATSAPP BUTTONS)
+   5. BUTTON CLICK BINDINGS
    ========================================================= */
 
 function initButtons() {
-    // Theme toggle bind for any element
-    document.addEventListener("click", (e) => {
-        if (e.target.closest("#themeToggle, .theme-btn, .theme-toggle, [data-theme-toggle]")) {
-            toggleTheme();
-        }
+    const darkBtn = document.getElementById("darkModeBtn");
+    if (darkBtn) {
+        darkBtn.addEventListener("click", toggleTheme);
+    }
 
-        if (e.target.closest(".whatsapp-order-btn, .checkout-whatsapp, #whatsappOrder")) {
-            sendWhatsAppOrder();
-        }
-    });
+    const whatsappBtn = document.getElementById("whatsappOrderBtn");
+    if (whatsappBtn) {
+        whatsappBtn.addEventListener("click", sendWhatsAppOrder);
+    }
 }
 
 /* =========================================================
-   6. SEARCH & FILTERS
+   6. SEARCH & CATEGORY FILTERS
    ========================================================= */
 
 function initSearch() {
-    const searchInputs = document.querySelectorAll("#searchInput, #mobileSearchInput, #mainSearchInput, .search-input");
+    const inputs = [
+        document.getElementById("headerSearchInput"),
+        document.getElementById("mobileSearchInput"),
+        document.getElementById("mainSearchInput")
+    ];
 
-    searchInputs.forEach(input => {
+    inputs.forEach(input => {
+        if (!input) return;
         input.addEventListener("input", () => {
             filterProducts(input.value.trim().toLowerCase());
         });
     });
+
+    const forms = [
+        document.getElementById("headerSearch"),
+        document.getElementById("mobileSearch"),
+        document.getElementById("mainSearch")
+    ];
+
+    forms.forEach(form => {
+        if (!form) return;
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const input = form.querySelector("input");
+            if (input) filterProducts(input.value.trim().toLowerCase());
+        });
+    });
+
+    const clearBtn = document.getElementById("clearSearchBtn");
+    if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+            inputs.forEach(i => { if (i) i.value = ""; });
+            filterProducts("");
+        });
+    }
 }
 
 function filterProducts(searchTerm) {
-    const products = document.querySelectorAll(".product-card, .medicine-card");
+    const products = document.querySelectorAll(".product-card");
+    const emptyState = document.getElementById("emptyProducts");
     let visibleCount = 0;
 
     products.forEach(product => {
-        const text = product.innerText.toLowerCase();
-        const match = !searchTerm || text.includes(searchTerm);
+        const text = (product.getAttribute("data-name") || "") + " " + product.innerText;
+        const match = !searchTerm || text.toLowerCase().includes(searchTerm);
         product.style.display = match ? "" : "none";
         if (match) visibleCount++;
     });
+
+    if (emptyState) {
+        emptyState.style.display = (visibleCount === 0) ? "block" : "none";
+    }
 
     updateMedicineResult(visibleCount);
 }
 
 function updateMedicineResult(count) {
-    const result = document.querySelector(".medicine-result");
+    const result = document.getElementById("medicineResult");
     if (result) {
-        result.innerHTML = `<i class="fa-solid fa-pills"></i> <span>${count} products found</span>`;
+        result.textContent = `Showing ${count} medicines`;
     }
 }
 
 function initProductFilter() {
-    const select = document.querySelector(".medicine-filter select");
+    const select = document.getElementById("medicineFilter");
     if (!select) return;
 
     select.addEventListener("change", () => {
-        const value = select.value.trim().toLowerCase();
-        const products = document.querySelectorAll(".product-card, .medicine-card");
-        let count = 0;
+        const value = select.value.toLowerCase();
+        const products = document.querySelectorAll(".product-card");
+        let visibleCount = 0;
 
         products.forEach(product => {
-            const category = product.querySelector(".product-category")?.textContent?.trim().toLowerCase() || "";
-            const name = product.querySelector("h3")?.textContent?.trim().toLowerCase() || "";
-            const match = value === "all" || value === "" || category.includes(value) || name.includes(value);
+            const category = product.getAttribute("data-category") || "";
+            const match = (value === "all" || category === value);
 
             product.style.display = match ? "" : "none";
-            if (match) count++;
+            if (match) visibleCount++;
         });
 
-        updateMedicineResult(count);
+        updateMedicineResult(visibleCount);
     });
 }
 
 function initCategoryCards() {
-    document.querySelectorAll(".category-card").forEach(card => {
+    document.querySelectorAll(".category-card[data-category]").forEach(card => {
         card.addEventListener("click", () => {
-            const title = card.querySelector("h3")?.textContent?.trim();
-            if (!title) return;
-
-            filterProducts(title.toLowerCase());
-            const medicineSection = document.querySelector("#medicines");
-            if (medicineSection) {
-                medicineSection.scrollIntoView({ behavior: "smooth" });
+            const cat = card.getAttribute("data-category");
+            const select = document.getElementById("medicineFilter");
+            if (select) {
+                select.value = cat;
+                select.dispatchEvent(new Event("change"));
             }
+
+            const section = document.getElementById("medicines");
+            if (section) section.scrollIntoView({ behavior: "smooth" });
         });
     });
 }
 
 /* =========================================================
-   7. NAVIGATION & SCROLL TRACKING
+   7. NAVIGATION & UI HELPERS
    ========================================================= */
 
 function initNavigation() {
@@ -405,94 +461,6 @@ function initNavigation() {
             document.querySelectorAll(".nav-links a").forEach(item => item.classList.remove("active"));
             link.classList.add("active");
         });
-    });
-}
-
-function initScrollEffects() {
-    const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll(".nav-links a");
-
-    if (!sections.length) return;
-
-    window.addEventListener("scroll", () => {
-        let current = "";
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 130;
-            if (window.scrollY >= sectionTop) {
-                current = section.getAttribute("id");
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === `#${current}`) {
-                link.classList.add("active");
-            }
-        });
-    });
-}
-
-/* =========================================================
-   8. EXTRA UI HELPERS
-   ========================================================= */
-
-function initRating() {
-    const ratingButtons = document.querySelectorAll(".rating-input button");
-    ratingButtons.forEach((button, index) => {
-        button.addEventListener("click", () => {
-            selectedRating = index + 1;
-            ratingButtons.forEach((btn, i) => {
-                btn.classList.toggle("active", i < selectedRating);
-            });
-        });
-    });
-}
-
-function initProfileDropdown() {
-    const profileGroup = document.querySelector(".user-profile-group");
-    const profileButton = document.querySelector(".profile-btn");
-    if (!profileGroup || !profileButton) return;
-
-    profileButton.addEventListener("click", (e) => {
-        e.stopPropagation();
-        profileGroup.classList.toggle("open");
-    });
-
-    document.addEventListener("click", (e) => {
-        if (!profileGroup.contains(e.target)) {
-            profileGroup.classList.remove("open");
-        }
-    });
-}
-
-function initAuthButtons() {
-    document.querySelectorAll(".account-btn").forEach(button => {
-        button.addEventListener("click", (e) => {
-            e.preventDefault();
-            showToast("Login system baad me activate hoga");
-        });
-    });
-}
-
-function initReviewForm() {
-    const form = document.querySelector(".review-form-card form");
-    if (!form) return;
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        showToast("Reviews system baad me activate hoga");
-    });
-}
-
-function initProfileModal() {
-    const modal = document.querySelector(".profile-modal");
-    if (!modal) return;
-
-    const closeButton = modal.querySelector(".close-btn");
-    if (closeButton) {
-        closeButton.addEventListener("click", () => modal.classList.remove("active"));
-    }
-    modal.addEventListener("click", (e) => {
-        if (e.target === modal) modal.classList.remove("active");
     });
 }
 
@@ -511,32 +479,12 @@ function initSmoothLinks() {
     });
 }
 
-function initForms() {
-    document.querySelectorAll("form").forEach(form => {
-        if (form.classList.contains("review-form")) return;
-        form.addEventListener("submit", (e) => {
-            const action = form.getAttribute("action");
-            if (!action || action === "#") {
-                e.preventDefault();
-                showToast("Form submitted successfully");
-            }
-        });
-    });
-}
-
-function initContactButtons() {}
-function initWhatsAppLinks() {}
-
 function initBackToTop() {
     const button = document.querySelector(".back-to-top");
     if (!button) return;
 
     window.addEventListener("scroll", () => {
-        if (window.scrollY > 500) {
-            button.classList.add("show");
-        } else {
-            button.classList.remove("show");
-        }
+        button.classList.toggle("show", window.scrollY > 500);
     });
 
     button.addEventListener("click", () => {
@@ -544,26 +492,14 @@ function initBackToTop() {
     });
 }
 
-function initImages() {
-    document.querySelectorAll("img").forEach(img => {
-        if (!img.hasAttribute("loading")) {
-            img.setAttribute("loading", "lazy");
-        }
-    });
-}
-
-function initNetworkStatus() {
-    window.addEventListener("online", () => showToast("Internet connection restored"));
-    window.addEventListener("offline", () => showToast("Internet connection lost"));
-}
-
 function showToast(message) {
-    const toast = document.querySelector(".toast");
+    const toast = document.getElementById("toast");
+    const toastMsg = document.getElementById("toastMessage");
+
     if (!toast) return;
 
-    const text = toast.querySelector("span");
-    if (text) {
-        text.textContent = message;
+    if (toastMsg) {
+        toastMsg.textContent = message;
     } else {
         toast.textContent = message;
     }
@@ -574,7 +510,6 @@ function showToast(message) {
         toast.classList.remove("show");
     }, 2500);
 }
-window.showToast = showToast;
 
 function escapeHTML(value) {
     return String(value)
@@ -591,16 +526,3 @@ document.addEventListener("keydown", (e) => {
         closeMobileMenu();
     }
 });
-
-/* =========================================================
-   GLOBAL OBJECT EXPORT
-   ========================================================= */
-
-window.UbaidMedicalStore = {
-    cart,
-    addToCart,
-    openCart,
-    closeCart,
-    showToast,
-    toggleTheme
-};
