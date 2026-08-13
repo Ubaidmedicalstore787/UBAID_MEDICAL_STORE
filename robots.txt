@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ubaidmedicalstore787.github.io/UBAID_MEDICAL_STORE/sitemap.xml
