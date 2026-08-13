@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ubaid Medical Store | Trusted Pharmacy in Hardoi</title>
+    <title>Ubaid Medical Store | Trusted Healthcare & Pharmacy in Hardoi</title>
 
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Ubaid Medical Store - Genuine medicines, healthcare products, and medical supplies in Thamarwa, Gopamau, Hardoi. Call: +91 9044286963 / 8009174690">
+    <!-- Google Indexing & SEO Meta Tags -->
+    <meta name="description" content="Ubaid Medical Store - Medicines, healthcare products and medical supplies in Thamarwa, Gopamau, Hardoi. Call: +91 9044286963 / 8009174690">
     <meta name="keywords" content="Ubaid Medical Store, Medical Store Hardoi, Pharmacy Thamarwa, Medical Store Gopamau, Genuine Medicines Hardoi">
     <meta name="author" content="Ubaid Medical Store">
     <meta name="robots" content="index, follow">
@@ -14,14 +14,14 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://ubaidmedicalstore787.github.io/UBAID_MEDICAL_STORE/">
 
-    <!-- Social Sharing & Open Graph -->
+    <!-- Social Sharing / WhatsApp Preview -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Ubaid Medical Store - Trusted Pharmacy in Hardoi">
     <meta property="og:description" content="Quality Medicines & Genuine Healthcare Products. Contact +91 9044286963">
     <meta property="og:url" content="https://ubaidmedicalstore787.github.io/UBAID_MEDICAL_STORE/">
     <meta property="og:site_name" content="Ubaid Medical Store">
 
-    <!-- Google Structured Data (Schema.org) for Pharmacy -->
+    <!-- Google Local Business Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -40,21 +40,28 @@
     }
     </script>
 
-    <!-- FontAwesome & Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 
     <style>
+        /* =====================================================
+           UBAID MEDICAL STORE LOGO
+        ===================================================== */
         .site-logo-svg {
             width: 245px;
             height: auto;
             display: block;
         }
+
         .logo {
             display: flex;
             align-items: center;
             text-decoration: none;
         }
+
+        /* =====================================================
+           LOCATION / MAP
+        ===================================================== */
         .map-link {
             display: inline-flex;
             align-items: center;
@@ -63,6 +70,11 @@
             font-weight: 700;
             text-decoration: none;
         }
+
+        .second-phone {
+            margin-top: 5px;
+        }
+
         @media (max-width: 600px) {
             .site-logo-svg {
                 width: 190px;
@@ -76,12 +88,24 @@
 <div class="top-bar">
     <div class="container top-bar-content">
         <div class="top-left">
-            <span><i class="fa-solid fa-shield-heart"></i> Trusted Medical Store</span>
-            <span><i class="fa-solid fa-truck-medical"></i> Healthcare Products</span>
+            <span>
+                <i class="fa-solid fa-shield-heart"></i>
+                Trusted Medical Store
+            </span>
+            <span>
+                <i class="fa-solid fa-truck-medical"></i>
+                Healthcare Products
+            </span>
         </div>
         <div class="top-right">
-            <a href="tel:+918009174690"><i class="fa-solid fa-phone"></i> 8009174690</a>
-            <a href="https://wa.me/918009174690" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+            <a href="tel:+918009174690">
+                <i class="fa-solid fa-phone"></i>
+                8009174690
+            </a>
+            <a href="https://wa.me/918009174690" target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i>
+                WhatsApp
+            </a>
         </div>
     </div>
 </div>
@@ -89,6 +113,8 @@
 <!-- HEADER -->
 <header class="header">
     <div class="container header-content">
+
+        <!-- UBAID MEDICAL STORE LOGO -->
         <a href="#home" class="logo" aria-label="UBAID MEDICAL STORE">
             <svg class="site-logo-svg" viewBox="0 0 500 130" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -97,21 +123,28 @@
                         <stop offset="100%" stop-color="#00A86B"/>
                     </linearGradient>
                 </defs>
+                <!-- Red Cross Icon -->
                 <g transform="translate(15, 25)">
                     <rect x="25" y="5" width="20" height="60" rx="4" fill="#E53935"/>
                     <rect x="5" y="25" width="60" height="20" rx="4" fill="#E53935"/>
                 </g>
-                <text x="110" y="62" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="32" fill="url(#medGrad)" letter-spacing="1">UBAID</text>
-                <text x="110" y="98" font-family="Arial, sans-serif" font-weight="700" font-size="22" fill="#3A3D40" letter-spacing="2">MEDICAL STORE</text>
+                <text x="110" y="62" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="32" fill="url(#medGrad)" letter-spacing="1">
+                    UBAID
+                </text>
+                <text x="110" y="98" font-family="Arial, sans-serif" font-weight="700" font-size="22" fill="#3A3D40" letter-spacing="2">
+                    MEDICAL STORE
+                </text>
             </svg>
         </a>
 
+        <!-- SEARCH -->
         <form class="header-search" id="headerSearch">
             <i class="fa-solid fa-magnifying-glass"></i>
             <input type="search" id="headerSearchInput" placeholder="Search medicines..." autocomplete="off">
             <button type="submit">Search</button>
         </form>
 
+        <!-- ACTIONS -->
         <div class="header-actions">
             <button class="header-icon-btn" id="darkModeBtn" type="button" title="Dark Mode" aria-label="Toggle Dark Mode">
                 <i class="fa-solid fa-moon"></i>
@@ -125,6 +158,17 @@
             </button>
         </div>
     </div>
+
+    <!-- MOBILE SEARCH -->
+    <div class="container mobile-search">
+        <form class="mobile-search-box" id="mobileSearch">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" id="mobileSearchInput" placeholder="Search medicines..." autocomplete="off">
+            <button type="submit" aria-label="Search Medicine">
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </form>
+    </div>
 </header>
 
 <!-- NAVIGATION -->
@@ -134,67 +178,1154 @@
         <a href="#categories"><i class="fa-solid fa-layer-group"></i> Categories</a>
         <a href="#medicines"><i class="fa-solid fa-pills"></i> Medicines</a>
         <a href="#services"><i class="fa-solid fa-hand-holding-medical"></i> Services</a>
+        <a href="#offers"><i class="fa-solid fa-tags"></i> Offers</a>
         <a href="#contact"><i class="fa-solid fa-phone"></i> Contact</a>
     </div>
 </nav>
 
-<!-- HERO SECTION -->
+<!-- OVERLAY -->
+<div class="overlay" id="overlay"></div>
+
+<!-- MAIN CONTENT -->
 <main>
+
+    <!-- HERO -->
     <section class="hero" id="home">
         <div class="container hero-content">
             <div class="hero-text">
-                <div class="hero-badge"><i class="fa-solid fa-circle-check"></i> Your Trusted Healthcare Partner</div>
+                <div class="hero-badge">
+                    <i class="fa-solid fa-circle-check"></i> Your Trusted Healthcare Partner
+                </div>
                 <h1>Your Health, <span>Our Priority.</span></h1>
-                <p>Find essential medicines, healthcare products, and medical supplies at Ubaid Medical Store.</p>
+                <p>Find commonly used medicines, healthcare products and essential medical supplies at Ubaid Medical Store.</p>
                 <div class="hero-buttons">
-                    <a href="#medicines" class="btn btn-primary"><i class="fa-solid fa-pills"></i> Browse Medicines</a>
-                    <a href="https://wa.me/918009174690" target="_blank" rel="noopener" class="btn whatsapp-btn"><i class="fa-brands fa-whatsapp"></i> Order on WhatsApp</a>
+                    <a href="#medicines" class="btn btn-primary">
+                        <i class="fa-solid fa-pills"></i> Browse Medicines
+                    </a>
+                    <a href="https://wa.me/918009174690" target="_blank" rel="noopener" class="btn whatsapp-btn">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+                    </a>
+                </div>
+                <div class="hero-trust">
+                    <div><i class="fa-solid fa-circle-check"></i> Quality Products</div>
+                    <div><i class="fa-solid fa-truck-fast"></i> Easy Ordering</div>
+                    <div><i class="fa-solid fa-headset"></i> Customer Support</div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-glow"></div>
+                <div class="medical-card">
+                    <div class="medical-card-top">
+                        <span>UBAID MEDICAL</span>
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <div class="medical-symbol">
+                        <div class="big-cross">
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <h3>Healthcare Essentials</h3>
+                    <p>Medicines & healthcare products</p>
+                    <div class="medical-card-bottom">
+                        <span>Trusted Care</span>
+                        <span>Since 2026</span>
+                    </div>
+                </div>
+
+                <div class="floating-card floating-card-one">
+                    <i class="fa-solid fa-pills"></i>
+                    <div>
+                        <strong>50+</strong>
+                        <small>Medicines</small>
+                    </div>
+                </div>
+
+                <div class="floating-card floating-card-two">
+                    <i class="fa-solid fa-truck-medical"></i>
+                    <div>
+                        <strong>Easy Order</strong>
+                        <small>Contact Store</small>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
-    <section class="section contact-section" id="contact">
+    <!-- STATS -->
+    <section class="stats">
+        <div class="container stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-pills"></i></div>
+                <div><strong>50+</strong><span>Medicines</span></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-capsules"></i></div>
+                <div><strong>3</strong><span>Categories</span></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-shield-heart"></i></div>
+                <div><strong>Trusted</strong><span>Healthcare</span></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                <div><strong>WhatsApp</strong><span>Easy Ordering</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEARCH SECTION -->
+    <section class="search-section">
+        <div class="container">
+            <form class="search-box" id="mainSearch">
+                <div class="search-content">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="mainSearchInput" placeholder="Search by medicine name, brand or category..." autocomplete="off">
+                </div>
+                <button type="submit" class="search-main-btn">Search</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="section" id="categories">
         <div class="container">
             <div class="section-heading">
-                <span>Contact Us</span>
-                <h2>Get In Touch</h2>
+                <span>Categories</span>
+                <h2>Browse Medicines</h2>
+                <p>Select a category to explore available medicines.</p>
             </div>
-            <div class="contact-grid">
-                <a href="tel:+918009174690" class="contact-card">
-                    <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
-                    <div>
-                        <span>CALL STORE</span>
-                        <h3>8009174690</h3>
-                    </div>
+
+            <div class="category-grid">
+                <button class="category-card" type="button" data-category="tablet">
+                    <div class="category-icon"><i class="fa-solid fa-tablets"></i></div>
+                    <h3>Tablets & Capsules</h3>
+                    <span>Medicines</span>
+                    <i class="fa-solid fa-arrow-right category-arrow"></i>
+                </button>
+
+                <button class="category-card" type="button" data-category="syrup">
+                    <div class="category-icon"><i class="fa-solid fa-bottle-droplet"></i></div>
+                    <h3>Syrups & Oral Liquids</h3>
+                    <span>Medicines</span>
+                    <i class="fa-solid fa-arrow-right category-arrow"></i>
+                </button>
+
+                <button class="category-card" type="button" data-category="injection">
+                    <div class="category-icon"><i class="fa-solid fa-syringe"></i></div>
+                    <h3>Injections</h3>
+                    <span>Medicines</span>
+                    <i class="fa-solid fa-arrow-right category-arrow"></i>
+                </button>
+
+                <a href="#services" class="category-card">
+                    <div class="category-icon"><i class="fa-solid fa-hand-holding-medical"></i></div>
+                    <h3>Healthcare Services</h3>
+                    <span>Store Services</span>
+                    <i class="fa-solid fa-arrow-right category-arrow"></i>
                 </a>
-                <a href="https://wa.me/918009174690" target="_blank" rel="noopener" class="contact-card whatsapp-contact">
-                    <div class="contact-icon"><i class="fa-brands fa-whatsapp"></i></div>
-                    <div>
-                        <span>WHATSAPP</span>
-                        <h3>Order Medicine</h3>
-                    </div>
-                </a>
-                <a href="https://www.google.com/maps/search/?api=1&query=Thamarwa%2C+Gopamau%2C+Hardoi%2C+Uttar+Pradesh" target="_blank" rel="noopener" class="contact-card">
-                    <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
-                    <div>
-                        <span>LOCATION</span>
-                        <h3>Thamarwa, Gopamau, Hardoi</h3>
-                    </div>
+
+                <a href="#contact" class="category-card">
+                    <div class="category-icon"><i class="fa-solid fa-headset"></i></div>
+                    <h3>Contact Store</h3>
+                    <span>Get in touch</span>
+                    <i class="fa-solid fa-arrow-right category-arrow"></i>
                 </a>
             </div>
         </div>
     </section>
+
+    <!-- MEDICINES -->
+    <section class="section medicines-section" id="medicines">
+        <div class="container">
+            <div class="section-heading">
+                <span>Medicine Catalogue</span>
+                <h2>Common Medicines</h2>
+                <p>Browse tablets, syrups and injections available in our medicine catalogue.</p>
+            </div>
+
+            <div class="medicine-toolbar">
+                <div class="medicine-result">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span id="medicineResult">Showing medicines</span>
+                </div>
+                <div class="medicine-filter">
+                    <label for="medicineFilter">Category</label>
+                    <select id="medicineFilter">
+                        <option value="all">All Medicines</option>
+                        <option value="tablet">Tablets & Capsules</option>
+                        <option value="syrup">Syrups & Oral Liquids</option>
+                        <option value="injection">Injections</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- PRODUCT GRID -->
+            <div class="products-grid" id="productsGrid">
+
+                <!-- TABLETS -->
+                <article class="product-card" data-category="tablet" data-name="Paracetamol Dolo 650">
+                    <div class="product-image"><i class="fa-solid fa-pills"></i></div>
+                    <div class="product-info">
+                        <h3>Paracetamol 650mg</h3>
+                        <span class="product-category">Dolo 650 • Tablet</span>
+                        <p>Fever and Pain</p>
+                        <div class="product-price">
+                            <strong>Paracetamol</strong>
+                            <button class="add-cart-btn" data-medicine="Paracetamol 650mg (Dolo 650)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="tablet" data-name="Amoxicillin Mox 500">
+                    <div class="product-image"><i class="fa-solid fa-capsules"></i></div>
+                    <div class="product-info">
+                        <h3>Amoxicillin 500mg</h3>
+                        <span class="product-category">Mox 500 • Capsule</span>
+                        <p>Bacterial Infection</p>
+                        <div class="product-price">
+                            <strong>Amoxicillin</strong>
+                            <button class="add-cart-btn" data-medicine="Amoxicillin 500mg (Mox 500)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="tablet" data-name="Azithromycin Azee 500">
+                    <div class="product-image"><i class="fa-solid fa-pills"></i></div>
+                    <div class="product-info">
+                        <h3>Azithromycin 500mg</h3>
+                        <span class="product-category">Azee 500 • Tablet</span>
+                        <p>Throat/Lungs Infection</p>
+                        <div class="product-price">
+                            <strong>Azithromycin</strong>
+                            <button class="add-cart-btn" data-medicine="Azithromycin 500mg (Azee 500)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="tablet" data-name="Pantoprazole Pan 40">
+                    <div class="product-image"><i class="fa-solid fa-pills"></i></div>
+                    <div class="product-info">
+                        <h3>Pantoprazole 40mg</h3>
+                        <span class="product-category">Pan 40 • Tablet</span>
+                        <p>Acidity and Gas</p>
+                        <div class="product-price">
+                            <strong>Pantoprazole</strong>
+                            <button class="add-cart-btn" data-medicine="Pantoprazole 40mg (Pan 40)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="tablet" data-name="Ondansetron Ondem 4">
+                    <div class="product-image"><i class="fa-solid fa-pills"></i></div>
+                    <div class="product-info">
+                        <h3>Ondansetron 4mg</h3>
+                        <span class="product-category">Ondem 4 • Tablet</span>
+                        <p>Nausea and Vomiting</p>
+                        <div class="product-price">
+                            <strong>Ondansetron</strong>
+                            <button class="add-cart-btn" data-medicine="Ondansetron 4mg (Ondem 4)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="tablet" data-name="Diclofenac Voveran">
+                    <div class="product-image"><i class="fa-solid fa-pills"></i></div>
+                    <div class="product-info">
+                        <h3>Diclofenac Sodium 50mg</h3>
+                        <span class="product-category">Voveran • Tablet</span>
+                        <p>Severe Pain</p>
+                        <div class="product-price">
+                            <strong>Diclofenac</strong>
+                            <button class="add-cart-btn" data-medicine="Diclofenac Sodium 50mg (Voveran)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="tablet" data-name="Levocetirizine Cetzine">
+                    <div class="product-image"><i class="fa-solid fa-pills"></i></div>
+                    <div class="product-info">
+                        <h3>Levocetirizine 5mg</h3>
+                        <span class="product-category">Cetzine • Tablet</span>
+                        <p>Allergy and Cold</p>
+                        <div class="product-price">
+                            <strong>Levocetirizine</strong>
+                            <button class="add-cart-btn" data-medicine="Levocetirizine 5mg (Cetzine)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="tablet" data-name="Cefixime Taxim O">
+                    <div class="product-image"><i class="fa-solid fa-capsules"></i></div>
+                    <div class="product-info">
+                        <h3>Cefixime 200mg</h3>
+                        <span class="product-category">Taxim-O • Tablet</span>
+                        <p>Bacterial Infection</p>
+                        <div class="product-price">
+                            <strong>Cefixime</strong>
+                            <button class="add-cart-btn" data-medicine="Cefixime 200mg (Taxim-O)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="tablet" data-name="Metronidazole Flagyl">
+                    <div class="product-image"><i class="fa-solid fa-pills"></i></div>
+                    <div class="product-info">
+                        <h3>Metronidazole 400mg</h3>
+                        <span class="product-category">Flagyl • Tablet</span>
+                        <p>Stomach Infection / Diarrhea</p>
+                        <div class="product-price">
+                            <strong>Metronidazole</strong>
+                            <button class="add-cart-btn" data-medicine="Metronidazole 400mg (Flagyl)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="tablet" data-name="Ibuprofen Brufen">
+                    <div class="product-image"><i class="fa-solid fa-pills"></i></div>
+                    <div class="product-info">
+                        <h3>Ibuprofen 400mg</h3>
+                        <span class="product-category">Brufen • Tablet</span>
+                        <p>Pain and Inflammation</p>
+                        <div class="product-price">
+                            <strong>Ibuprofen</strong>
+                            <button class="add-cart-btn" data-medicine="Ibuprofen 400mg (Brufen)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="tablet" data-name="Ofloxacin Oflox">
+                    <div class="product-image"><i class="fa-solid fa-capsules"></i></div>
+                    <div class="product-info">
+                        <h3>Ofloxacin 200mg</h3>
+                        <span class="product-category">Oflox • Tablet</span>
+                        <p>Urinary and Stomach Infection</p>
+                        <div class="product-price">
+                            <strong>Ofloxacin</strong>
+                            <button class="add-cart-btn" data-medicine="Ofloxacin 200mg (Oflox)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="tablet" data-name="Ciprofloxacin Ciplox">
+                    <div class="product-image"><i class="fa-solid fa-capsules"></i></div>
+                    <div class="product-info">
+                        <h3>Ciprofloxacin 500mg</h3>
+                        <span class="product-category">Ciplox • Tablet</span>
+                        <p>General Infection</p>
+                        <div class="product-price">
+                            <strong>Ciprofloxacin</strong>
+                            <button class="add-cart-btn" data-medicine="Ciprofloxacin 500mg (Ciplox)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="tablet" data-name="Cetirizine Okacet">
+                    <div class="product-image"><i class="fa-solid fa-pills"></i></div>
+                    <div class="product-info">
+                        <h3>Cetirizine 10mg</h3>
+                        <span class="product-category">Okacet • Tablet</span>
+                        <p>Runny Nose and Allergy</p>
+                        <div class="product-price">
+                            <strong>Cetirizine</strong>
+                            <button class="add-cart-btn" data-medicine="Cetirizine 10mg (Okacet)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="tablet" data-name="Omeprazole Omez">
+                    <div class="product-image"><i class="fa-solid fa-pills"></i></div>
+                    <div class="product-info">
+                        <h3>Omeprazole 20mg</h3>
+                        <span class="product-category">Omez • Capsule</span>
+                        <p>Acid Reflux</p>
+                        <div class="product-price">
+                            <strong>Omeprazole</strong>
+                            <button class="add-cart-btn" data-medicine="Omeprazole 20mg (Omez)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="tablet" data-name="Telmisartan Telma 40">
+                    <div class="product-image"><i class="fa-solid fa-pills"></i></div>
+                    <div class="product-info">
+                        <h3>Telmisartan 40mg</h3>
+                        <span class="product-category">Telma 40 • Tablet</span>
+                        <p>High Blood Pressure</p>
+                        <div class="product-price">
+                            <strong>Telmisartan</strong>
+                            <button class="add-cart-btn" data-medicine="Telmisartan 40mg (Telma 40)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="tablet" data-name="Metformin Glycomet">
+                    <div class="product-image"><i class="fa-solid fa-pills"></i></div>
+                    <div class="product-info">
+                        <h3>Metformin 500mg</h3>
+                        <span class="product-category">Glycomet • Tablet</span>
+                        <p>Diabetes</p>
+                        <div class="product-price">
+                            <strong>Metformin</strong>
+                            <button class="add-cart-btn" data-medicine="Metformin 500mg (Glycomet)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="tablet" data-name="Atorvastatin Atorva">
+                    <div class="product-image"><i class="fa-solid fa-pills"></i></div>
+                    <div class="product-info">
+                        <h3>Atorvastatin 10mg</h3>
+                        <span class="product-category">Atorva • Tablet</span>
+                        <p>High Cholesterol</p>
+                        <div class="product-price">
+                            <strong>Atorvastatin</strong>
+                            <button class="add-cart-btn" data-medicine="Atorvastatin 10mg (Atorva)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- SYRUPS -->
+                <article class="product-card" data-category="syrup" data-name="Paracetamol Crocin DS">
+                    <div class="product-image"><i class="fa-solid fa-bottle-droplet"></i></div>
+                    <div class="product-info">
+                        <h3>Paracetamol Pediatric Syrup</h3>
+                        <span class="product-category">Crocin DS • Syrup</span>
+                        <p>Fever in Children</p>
+                        <div class="product-price">
+                            <strong>Paracetamol</strong>
+                            <button class="add-cart-btn" data-medicine="Paracetamol Pediatric Syrup (Crocin DS)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="syrup" data-name="Moxikind CV">
+                    <div class="product-image"><i class="fa-solid fa-bottle-droplet"></i></div>
+                    <div class="product-info">
+                        <h3>Amoxicillin + Clavulanic Acid</h3>
+                        <span class="product-category">Moxikind-CV • Suspension</span>
+                        <p>Severe Infection</p>
+                        <div class="product-price">
+                            <strong>Antibiotic</strong>
+                            <button class="add-cart-btn" data-medicine="Amoxicillin & Clavulanic Acid Suspension (Moxikind-CV)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="syrup" data-name="Azee Liquid">
+                    <div class="product-image"><i class="fa-solid fa-bottle-droplet"></i></div>
+                    <div class="product-info">
+                        <h3>Azithromycin Oral Suspension</h3>
+                        <span class="product-category">Azee Liquid</span>
+                        <p>Cough & Throat Infection</p>
+                        <div class="product-price">
+                            <strong>Azithromycin</strong>
+                            <button class="add-cart-btn" data-medicine="Azithromycin Oral Suspension (Azee Liquid)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="syrup" data-name="Vomikind">
+                    <div class="product-image"><i class="fa-solid fa-bottle-droplet"></i></div>
+                    <div class="product-info">
+                        <h3>Ondansetron Syrup</h3>
+                        <span class="product-category">Vomikind • Syrup</span>
+                        <p>Vomiting in Children</p>
+                        <div class="product-price">
+                            <strong>Ondansetron</strong>
+                            <button class="add-cart-btn" data-medicine="Ondansetron Syrup (Vomikind)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="syrup" data-name="Combiflam Syrup">
+                    <div class="product-image"><i class="fa-solid fa-bottle-droplet"></i></div>
+                    <div class="product-info">
+                        <h3>Ibuprofen + Paracetamol</h3>
+                        <span class="product-category">Combiflam • Suspension</span>
+                        <p>Fever and Pain</p>
+                        <div class="product-price">
+                            <strong>Combination</strong>
+                            <button class="add-cart-btn" data-medicine="Ibuprofen + Paracetamol Suspension (Combiflam)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="syrup" data-name="Digene Gelusil">
+                    <div class="product-image"><i class="fa-solid fa-bottle-droplet"></i></div>
+                    <div class="product-info">
+                        <h3>Antacid Gel</h3>
+                        <span class="product-category">Digene / Gelusil</span>
+                        <p>Acidity and Heartburn</p>
+                        <div class="product-price">
+                            <strong>Antacid</strong>
+                            <button class="add-cart-btn" data-medicine="Antacid Gel (Digene / Gelusil)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="syrup" data-name="Zyrtec">
+                    <div class="product-image"><i class="fa-solid fa-bottle-droplet"></i></div>
+                    <div class="product-info">
+                        <h3>Cetirizine Syrup</h3>
+                        <span class="product-category">Zyrtec • Syrup</span>
+                        <p>Allergy and Cold in Kids</p>
+                        <div class="product-price">
+                            <strong>Cetirizine</strong>
+                            <button class="add-cart-btn" data-medicine="Cetirizine Syrup (Zyrtec)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="syrup" data-name="Ascoril LS">
+                    <div class="product-image"><i class="fa-solid fa-bottle-droplet"></i></div>
+                    <div class="product-info">
+                        <h3>Ambroxol + Levosalbutamol + Guaiphenesin</h3>
+                        <span class="product-category">Ascoril LS</span>
+                        <p>Wet Cough</p>
+                        <div class="product-price">
+                            <strong>Cough Syrup</strong>
+                            <button class="add-cart-btn" data-medicine="Ambroxol + Levosalbutamol + Guaiphenesin (Ascoril LS)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="syrup" data-name="Benadryl">
+                    <div class="product-image"><i class="fa-solid fa-bottle-droplet"></i></div>
+                    <div class="product-info">
+                        <h3>Dextromethorphan + Chlorpheniramine</h3>
+                        <span class="product-category">Benadryl • Syrup</span>
+                        <p>Dry Cough</p>
+                        <div class="product-price">
+                            <strong>Cough Syrup</strong>
+                            <button class="add-cart-btn" data-medicine="Dextromethorphan + Chlorpheniramine (Benadryl)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="syrup" data-name="Becadexamin">
+                    <div class="product-image"><i class="fa-solid fa-bottle-droplet"></i></div>
+                    <div class="product-info">
+                        <h3>Multivitamin & Mineral Syrup</h3>
+                        <span class="product-category">Becadexamin</span>
+                        <p>Weakness and Nutrition</p>
+                        <div class="product-price">
+                            <strong>Multivitamin</strong>
+                            <button class="add-cart-btn" data-medicine="Multivitamin & Mineral Syrup (Becadexamin)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="syrup" data-name="Dexorange">
+                    <div class="product-image"><i class="fa-solid fa-bottle-droplet"></i></div>
+                    <div class="product-info">
+                        <h3>Iron + Folic Acid Syrup</h3>
+                        <span class="product-category">Dexorange</span>
+                        <p>Anemia / Low Iron</p>
+                        <div class="product-price">
+                            <strong>Iron Supplement</strong>
+                            <button class="add-cart-btn" data-medicine="Iron + Folic Acid Syrup (Dexorange)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="syrup" data-name="Duphalac">
+                    <div class="product-image"><i class="fa-solid fa-bottle-droplet"></i></div>
+                    <div class="product-info">
+                        <h3>Lactulose Solution</h3>
+                        <span class="product-category">Duphalac</span>
+                        <p>Constipation</p>
+                        <div class="product-price">
+                            <strong>Lactulose</strong>
+                            <button class="add-cart-btn" data-medicine="Lactulose Solution (Duphalac)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="syrup" data-name="Sucrafil">
+                    <div class="product-image"><i class="fa-solid fa-bottle-droplet"></i></div>
+                    <div class="product-info">
+                        <h3>Sucralfate + Oxetacaine</h3>
+                        <span class="product-category">Sucrafil • Suspension</span>
+                        <p>Stomach Ulcers</p>
+                        <div class="product-price">
+                            <strong>Suspension</strong>
+                            <button class="add-cart-btn" data-medicine="Sucralfate + Oxetacaine Suspension (Sucrafil)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="syrup" data-name="Zinconia">
+                    <div class="product-image"><i class="fa-solid fa-bottle-droplet"></i></div>
+                    <div class="product-info">
+                        <h3>Zinc Gluconate Syrup</h3>
+                        <span class="product-category">Zinconia</span>
+                        <p>Diarrhea Recovery</p>
+                        <div class="product-price">
+                            <strong>Zinc</strong>
+                            <button class="add-cart-btn" data-medicine="Zinc Gluconate Syrup (Zinconia)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="syrup" data-name="Shelcal">
+                    <div class="product-image"><i class="fa-solid fa-bottle-droplet"></i></div>
+                    <div class="product-info">
+                        <h3>Calcium + Vitamin D3</h3>
+                        <span class="product-category">Shelcal • Suspension</span>
+                        <p>Bone Health</p>
+                        <div class="product-price">
+                            <strong>Calcium</strong>
+                            <button class="add-cart-btn" data-medicine="Calcium + Vitamin D3 Suspension (Shelcal)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- INJECTIONS -->
+                <article class="product-card" data-category="injection" data-name="Paracetamol IV">
+                    <div class="product-image"><i class="fa-solid fa-syringe"></i></div>
+                    <div class="product-info">
+                        <h3>Paracetamol IV Infusion</h3>
+                        <span class="product-category">100ml • IV</span>
+                        <p>High Fever</p>
+                        <div class="product-price">
+                            <strong>IV Infusion</strong>
+                            <button class="add-cart-btn" data-medicine="Paracetamol IV Infusion (100ml)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="injection" data-name="Pan IV">
+                    <div class="product-image"><i class="fa-solid fa-syringe"></i></div>
+                    <div class="product-info">
+                        <h3>Pantoprazole 40mg IV</h3>
+                        <span class="product-category">Pan-IV • Injection</span>
+                        <p>Severe Acidity</p>
+                        <div class="product-price">
+                            <strong>Pantoprazole</strong>
+                            <button class="add-cart-btn" data-medicine="Pantoprazole 40mg IV (Pan-IV)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="injection" data-name="Ondem Injection">
+                    <div class="product-image"><i class="fa-solid fa-syringe"></i></div>
+                    <div class="product-info">
+                        <h3>Ondansetron Injection</h3>
+                        <span class="product-category">Ondem • 2ml</span>
+                        <p>Severe Vomiting</p>
+                        <div class="product-price">
+                            <strong>Ondansetron</strong>
+                            <button class="add-cart-btn" data-medicine="Ondansetron Injection 2ml (Ondem)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="injection" data-name="Voveran AQ">
+                    <div class="product-image"><i class="fa-solid fa-syringe"></i></div>
+                    <div class="product-info">
+                        <h3>Diclofenac Sodium Injection</h3>
+                        <span class="product-category">Voveran AQ</span>
+                        <p>Acute Pain</p>
+                        <div class="product-price">
+                            <strong>Diclofenac</strong>
+                            <button class="add-cart-btn" data-medicine="Diclofenac Sodium Injection (Voveran AQ)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="injection" data-name="Monocef">
+                    <div class="product-image"><i class="fa-solid fa-syringe"></i></div>
+                    <div class="product-info">
+                        <h3>Ceftriaxone 1g Injection</h3>
+                        <span class="product-category">Monocef</span>
+                        <p>Severe Bacterial Infection</p>
+                        <div class="product-price">
+                            <strong>Antibiotic</strong>
+                            <button class="add-cart-btn" data-medicine="Ceftriaxone 1g Injection (Monocef)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="injection" data-name="Augmentin 1.2g">
+                    <div class="product-image"><i class="fa-solid fa-syringe"></i></div>
+                    <div class="product-info">
+                        <h3>Amoxicillin + Clavulanate</h3>
+                        <span class="product-category">Augmentin 1.2g</span>
+                        <p>Infection</p>
+                        <div class="product-price">
+                            <strong>Antibiotic</strong>
+                            <button class="add-cart-btn" data-medicine="Amoxicillin & Potassium Clavulanate Injection (Augmentin 1.2g)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="injection" data-name="Avil">
+                    <div class="product-image"><i class="fa-solid fa-syringe"></i></div>
+                    <div class="product-info">
+                        <h3>Pheniramine Maleate Injection</h3>
+                        <span class="product-category">Avil</span>
+                        <p>Allergic Reaction</p>
+                        <div class="product-price">
+                            <strong>Antiallergic</strong>
+                            <button class="add-cart-btn" data-medicine="Pheniramine Maleate Injection (Avil)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="injection" data-name="Flagyl IV">
+                    <div class="product-image"><i class="fa-solid fa-syringe"></i></div>
+                    <div class="product-info">
+                        <h3>Metronidazole IV Infusion</h3>
+                        <span class="product-category">Flagyl • IV</span>
+                        <p>Intestinal Infection</p>
+                        <div class="product-price">
+                            <strong>Metronidazole</strong>
+                            <button class="add-cart-btn" data-medicine="Metronidazole IV Infusion (Flagyl)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="injection" data-name="Decadron">
+                    <div class="product-image"><i class="fa-solid fa-syringe"></i></div>
+                    <div class="product-info">
+                        <h3>Dexamethasone Injection</h3>
+                        <span class="product-category">Decadron</span>
+                        <p>Inflammation & Allergy</p>
+                        <div class="product-price">
+                            <strong>Dexamethasone</strong>
+                            <button class="add-cart-btn" data-medicine="Dexamethasone Injection (Decadron)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="injection" data-name="Genticyn">
+                    <div class="product-image"><i class="fa-solid fa-syringe"></i></div>
+                    <div class="product-info">
+                        <h3>Gentamicin Injection</h3>
+                        <span class="product-category">Genticyn</span>
+                        <p>Bacterial Infection</p>
+                        <div class="product-price">
+                            <strong>Gentamicin</strong>
+                            <button class="add-cart-btn" data-medicine="Gentamicin Injection (Genticyn)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="injection" data-name="Encifer">
+                    <div class="product-image"><i class="fa-solid fa-syringe"></i></div>
+                    <div class="product-info">
+                        <h3>Iron Sucrose Injection</h3>
+                        <span class="product-category">Encifer</span>
+                        <p>Severe Iron Deficiency</p>
+                        <div class="product-price">
+                            <strong>Iron Sucrose</strong>
+                            <button class="add-cart-btn" data-medicine="Iron Sucrose Injection (Encifer)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="injection" data-name="Neurobion Forte">
+                    <div class="product-image"><i class="fa-solid fa-syringe"></i></div>
+                    <div class="product-info">
+                        <h3>Vitamin B12 Injection</h3>
+                        <span class="product-category">Neurobion Forte</span>
+                        <p>Nerve Weakness</p>
+                        <div class="product-price">
+                            <strong>Vitamin B12</strong>
+                            <button class="add-cart-btn" data-medicine="Vitamin B12 Injection (Neurobion Forte)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="injection" data-name="Efcorlin">
+                    <div class="product-image"><i class="fa-solid fa-syringe"></i></div>
+                    <div class="product-info">
+                        <h3>Hydrocortisone Injection</h3>
+                        <span class="product-category">Efcorlin</span>
+                        <p>Severe Allergy / Emergency</p>
+                        <div class="product-price">
+                            <strong>Hydrocortisone</strong>
+                            <button class="add-cart-btn" data-medicine="Hydrocortisone Injection (Efcorlin)">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- EMPTY RESULTS -->
+            <div class="empty-products" id="emptyProducts" style="display:none;">
+                <div class="empty-products-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <h3>No Medicine Found</h3>
+                <p>Try another medicine name or category.</p>
+                <button class="btn btn-primary" id="clearSearchBtn" type="button">Show All Medicines</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHATSAPP BANNER -->
+    <section class="whatsapp-banner-section">
+        <div class="container">
+            <div class="whatsapp-banner">
+                <div class="whatsapp-banner-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                <div class="whatsapp-banner-text">
+                    <span>QUICK ORDER</span>
+                    <h2>Need a Medicine?</h2>
+                    <p>Contact Ubaid Medical Store directly on WhatsApp.</p>
+                </div>
+                <a href="https://wa.me/918009174690" target="_blank" rel="noopener" class="btn whatsapp-banner-btn">
+                    <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-heading">
+                <span>Our Services</span>
+                <h2>Healthcare Made Simple</h2>
+                <p>Easy ways to connect with Ubaid Medical Store.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-pills"></i></div>
+                    <h3>Medicine Enquiry</h3>
+                    <p>Search medicines and contact the store for availability.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon whatsapp-service-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                    <h3>WhatsApp Ordering</h3>
+                    <p>Send your medicine requirement directly on WhatsApp.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-headset"></i></div>
+                    <h3>Customer Support</h3>
+                    <p>Get help regarding medicines and store services.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <h3>Healthcare Products</h3>
+                    <p>Explore common healthcare and medical essentials.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFERS / WHY US -->
+    <section class="section offers-section" id="offers">
+        <div class="container">
+            <div class="section-heading">
+                <span>Why Choose Us</span>
+                <h2>Ubaid Medical Store</h2>
+                <p>Simple, convenient and customer-focused healthcare service.</p>
+            </div>
+
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <div class="offer-card-icon"><i class="fa-solid fa-shield-heart"></i></div>
+                    <div>
+                        <span class="offer-label">TRUST</span>
+                        <h3>Reliable Service</h3>
+                        <p>Focused on convenient healthcare support.</p>
+                    </div>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-card-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div>
+                        <span class="offer-label">EASY</span>
+                        <h3>Quick Enquiry</h3>
+                        <p>Find medicines quickly using search.</p>
+                    </div>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-card-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                    <div>
+                        <span class="offer-label">CONTACT</span>
+                        <h3>WhatsApp Support</h3>
+                        <p>Contact the store directly for enquiries.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="section-heading">
+                <span>Contact</span>
+                <h2>Get In Touch</h2>
+                <p>Contact Ubaid Medical Store for medicine enquiries.</p>
+            </div>
+
+            <div class="contact-grid">
+                <a href="tel:+918009174690" class="contact-card">
+                    <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div>
+                        <span>CALL</span>
+                        <h3>8009174690</h3>
+                        <p>Call Store</p>
+                    </div>
+                </a>
+
+                <a href="tel:+919044286963" class="contact-card">
+                    <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div>
+                        <span>CALL</span>
+                        <h3>9044286963</h3>
+                        <p>Alternate Number</p>
+                    </div>
+                </a>
+
+                <a href="https://wa.me/918009174690" target="_blank" rel="noopener" class="contact-card whatsapp-contact">
+                    <div class="contact-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                    <div>
+                        <span>WHATSAPP</span>
+                        <h3>WhatsApp</h3>
+                        <p>Send Enquiry</p>
+                    </div>
+                </a>
+
+                <a href="https://www.google.com/maps/search/?api=1&query=Thamarwa%2C+Gopamau%2C+Hardoi%2C+Uttar+Pradesh" target="_blank" rel="noopener" class="contact-card">
+                    <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div>
+                        <span>LOCATION</span>
+                        <h3>Ubaid Medical Store</h3>
+                        <p>Thamarwa, Gopamau, Hardoi</p>
+                        <strong class="map-link">
+                            <i class="fa-solid fa-map-location-dot"></i> Open Google Map
+                        </strong>
+                    </div>
+                </a>
+
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+                    <div>
+                        <span>STORE HOURS</span>
+                        <h3>Opening Hours</h3>
+                        <p>Contact store for timings</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </main>
+
+<!-- CART SIDEBAR -->
+<aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <div>
+            <span>YOUR CART</span>
+            2. <h2>Medicine Cart</h2>
+            <small id="cartItemsCount">0 items</small>
+        </div>
+        <button class="close-btn" id="closeCartBtn" type="button" aria-label="Close Cart">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <div class="cart-items" id="cartItems">
+        <div class="empty-cart">
+            <div class="empty-cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <h3>Your Cart is Empty</h3>
+            <p>Add medicines to create your enquiry.</p>
+            <button class="btn btn-primary" id="continueShoppingBtn" type="button">Continue Shopping</button>
+        </div>
+    </div>
+
+    <div class="cart-footer">
+        <div class="cart-summary">
+            <span>Total Items</span>
+            <strong id="cartTotalItems">0</strong>
+        </div>
+        <div class="cart-total-row">
+            <span>Medicine Enquiry</span>
+            <strong>WhatsApp</strong>
+        </div>
+        <button class="whatsapp-order-btn" id="whatsappOrderBtn" type="button">
+            <i class="fa-brands fa-whatsapp"></i> Send Order on WhatsApp
+        </button>
+    </div>
+</aside>
 
 <!-- FOOTER -->
 <footer class="footer">
-    <div class="container footer-bottom-content">
-        <span>© 2026 Ubaid Medical Store. All rights reserved.</span>
+    <div class="container footer-content">
+        <!-- BRAND -->
+        <div class="footer-brand">
+            <a href="#home" class="logo" aria-label="UBAID MEDICAL STORE">
+                <svg class="site-logo-svg" viewBox="0 0 500 130" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="footerMedGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#008080"/>
+                            <stop offset="100%" stop-color="#00A86B"/>
+                        </linearGradient>
+                    </defs>
+                    <g transform="translate(15, 25)">
+                        <rect x="25" y="5" width="20" height="60" rx="4" fill="#E53935"/>
+                        <rect x="5" y="25" width="60" height="20" rx="4" fill="#E53935"/>
+                    </g>
+                    <text x="110" y="62" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="32" fill="url(#footerMedGrad)" letter-spacing="1">
+                        UBAID
+                    </text>
+                    <text x="110" y="98" font-family="Arial, sans-serif" font-weight="700" font-size="22" fill="#FFFFFF" letter-spacing="2">
+                        MEDICAL STORE
+                    </text>
+                </svg>
+            </a>
+            <p>Your trusted destination for common medicines and healthcare products.</p>
+            <div class="footer-social">
+                <a href="https://wa.me/918009174690" target="_blank" rel="noopener" aria-label="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                <a href="tel:+918009174690" aria-label="Phone">
+                    <i class="fa-solid fa-phone"></i>
+                </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Thamarwa%2C+Gopamau%2C+Hardoi%2C+Uttar+Pradesh" target="_blank" rel="noopener" aria-label="Google Maps">
+                    <i class="fa-solid fa-location-dot"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- QUICK LINKS -->
+        <div class="footer-links">
+            <h3>Quick Links</h3>
+            <a href="#home">Home</a>
+            <a href="#categories">Categories</a>
+            <a href="#medicines">Medicines</a>
+            <a href="#services">Services</a>
+        </div>
+
+        <!-- MEDICINES -->
+        <div class="footer-links">
+            <h3>Medicines</h3>
+            <a href="#medicines">Tablets & Capsules</a>
+            <a href="#medicines">Syrups</a>
+            <a href="#medicines">Injections</a>
+            <a href="#medicines">Search Medicine</a>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer-links">
+            <h3>Contact</h3>
+            <a href="tel:+918009174690"><i class="fa-solid fa-phone"></i> 8009174690</a>
+            <a href="tel:+919044286963"><i class="fa-solid fa-phone"></i> 9044286963</a>
+            <a href="https://wa.me/918009174690" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Thamarwa%2C+Gopamau%2C+Hardoi%2C+Uttar+Pradesh" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Thamarwa, Gopamau, Hardoi</a>
+        </div>
+    </div>
+
+    <!-- FOOTER BOTTOM -->
+    <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+            <span>© 2026 Ubaid Medical Store. All rights reserved.</span>
+            <span>Healthcare • Medicines • Care</span>
+        </div>
     </div>
 </footer>
 
+<!-- TOAST -->
+<div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMessage">Added to cart</span>
+</div>
+
+<!-- SCRIPT -->
 <script src="script.js"></script>
 </body>
 </html>
